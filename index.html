@@ -38,8 +38,8 @@
 
         #imageContainer {
             overflow: hidden;
-            max-width: 90vw;
-            max-height: 80vh;
+            width: 90vw;  /* Changed from max-width */
+            height: 80vh; /* Changed from max-height */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -49,9 +49,8 @@
 
         #imageContainer.zoomed {
             overflow: auto;
-            max-width: 95vw; /* Increased from 90vw */
-            max-height: 85vh; /* Increased from 80vh */
-            padding: 20px; /* Add some padding */
+            width: 95vw;  /* Changed from max-width */
+            height: 85vh; /* Changed from max-height */
         }
 
         #modalImage {
@@ -59,14 +58,26 @@
             max-height: 80vh;
             object-fit: contain;
             transition: transform 0.2s ease;
-            transform-origin: center;
+            transform-origin: 50% 50%; /* Center the transform origin */
             cursor: default;
+            margin: auto; /* Center the image */
         }
 
         #modalImage.zoomed {
+            transform-origin: 50% 50%;
             max-width: none;
             max-height: none;
             margin: auto;
+        }
+
+        /* Add these new styles */
+        .modal-content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
         }
     </style>
 </head>
@@ -564,7 +575,7 @@
         <div class="relative w-full h-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
             <h3 id="modalTitle" class="text-white text-xl mb-4"></h3>
             
-            <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+            <div class="modal-content-wrapper">
                 <div id="imageContainer" class="relative">
                     <img id="modalImage" src="" alt="" class="transition-transform duration-200">
                 </div>
