@@ -37,20 +37,13 @@
         }
 
         #imageContainer {
-            overflow: hidden;
-            width: 90vw;  /* Changed from max-width */
-            height: 80vh; /* Changed from max-height */
+            overflow: auto;
+            max-width: 95vw;
+            max-height: 85vh;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            margin: auto;
-        }
-
-        #imageContainer.zoomed {
-            overflow: auto;
-            width: 95vw;  /* Changed from max-width */
-            height: 85vh; /* Changed from max-height */
         }
 
         #modalImage {
@@ -58,19 +51,10 @@
             max-height: 80vh;
             object-fit: contain;
             transition: transform 0.2s ease;
-            transform-origin: 50% 50%; /* Center the transform origin */
-            cursor: default;
-            margin: auto; /* Center the image */
-        }
-
-        #modalImage.zoomed {
-            transform-origin: 50% 50%;
-            max-width: none;
-            max-height: none;
+            transform-origin: center;
             margin: auto;
         }
 
-        /* Add these new styles */
         .modal-content-wrapper {
             display: flex;
             justify-content: center;
@@ -78,6 +62,7 @@
             width: 100%;
             height: 100%;
             padding: 2rem;
+            overflow: auto;
         }
     </style>
 </head>
@@ -910,8 +895,6 @@
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
             
-            const previousZoom = currentZoom;
-            
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
             } else if (direction === 'out' && currentZoom > minZoom) {
@@ -920,21 +903,16 @@
             
             modalImage.style.transform = `scale(${currentZoom})`;
             
-            // Only show scrollbars when zoomed in
+            // Adjust container overflow based on zoom level
             if (currentZoom > 1) {
-                modalImage.classList.add('zoomed');
-                container.classList.add('zoomed');
-                
-                // Center the image when first zooming in
-                if (previousZoom <= 1) {
-                    requestAnimationFrame(() => {
-                        container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
-                        container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
-                    });
-                }
+                container.style.overflow = 'auto';
+                // Center scrollbars when first zooming
+                setTimeout(() => {
+                    container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
+                    container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+                }, 50);
             } else {
-                modalImage.classList.remove('zoomed');
-                container.classList.remove('zoomed');
+                container.style.overflow = 'hidden';
                 container.scrollLeft = 0;
                 container.scrollTop = 0;
             }
