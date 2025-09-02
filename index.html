@@ -881,10 +881,11 @@
             }
         });
 
+        // Update these zoom-related variables in your script
         let currentZoom = 1;
         const maxZoom = 3;
         const minZoom = 0.5;
-        const zoomStep = 0.5;
+        const zoomStep = 0.3; // Changed from 0.5 to 0.3 for more gradual zoom
 
         // Update your zoomImage function
         function zoomImage(direction) {
