@@ -35,6 +35,25 @@
             transition: transform 0.2s ease;
             transform-origin: center;
         }
+        .panning {
+            cursor: grabbing !important;
+        }
+
+        #imageContainer {
+            overflow: auto;
+            max-width: 90vw;
+            max-height: 80vh;
+        }
+
+        #imageContainer.zoomed {
+            overflow: scroll;
+            cursor: move;
+        }
+
+        #modalImage.zoomed {
+            max-width: none;
+            max-height: none;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
@@ -63,7 +82,7 @@
             <h2 class="text-2xl font-light text-slate-900 mb-6">About Me</h2>
             <div class="bg-white rounded-lg p-8 shadow-sm border border-slate-200">
                 <p class="text-slate-700 leading-relaxed text-lg mb-6">
-                    Welcome to my portfolio. I'm a professional with a passion for creating intuitive user experiences and clear, comprehensive documentation. My work spans across UX/UI design, technical writing, product management, project management, and data analysis.
+                    Welcome to my portfolio. I'm a software engineer with a passion for creating intuitive user experiences and clear, comprehensive documentation. My work spans across UX/UI design, technical writing, product management, project management, and data analysis.
                 </p>
                 <p class="text-slate-700 leading-relaxed text-lg mb-8">
                     I believe in the power of thoughtful design and clear communication to solve real-world problems and enhance user experiences.
@@ -530,12 +549,9 @@
         <div class="relative w-full h-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
             <h3 id="modalTitle" class="text-white text-xl mb-4"></h3>
             
-            <div class="relative w-full h-full flex items-center justify-center">
-                <img id="modalImage" src="" alt="" class="w-auto h-auto max-w-[90vw] max-h-[80vh] object-contain">
-                <div id="modalPlaceholder" class="hidden">
-                    <svg class="w-16 h-16 text-slate-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
+            <div class="relative w-full h-full flex items-center justify-center overflow-auto" onclick="event.stopPropagation()">
+                <div id="imageContainer" class="relative cursor-move" style="overflow: auto;">
+                    <img id="modalImage" src="" alt="" class="max-w-none max-h-none transition-transform duration-200">
                 </div>
             </div>
             
@@ -612,27 +628,27 @@
             const projectData = {
                 'graph1': { 
                     title: 'Rack Elevation', 
-                    description: 'A visual representation of the organization of IT equipment within a server rack used to track and manage data center assets',
+                    description: 'A diagram illustrating the arrangement of IT equipment in a server rack, designed for tracking and managing data center resources.',
                     image: 'rack elevation.PNG'
                 },
                 'graph2': { 
                     title: 'Row Elevation', 
-                    description: 'A visual representation of the organization of IT equipment within a single row of a server rack used to track and manage data center assets',
+                    description: 'A diagram showing the layout of IT equipment in a single row of a server rack, used for tracking and managing data center resources.',
                     image: 'row elevation.png'
                 },
                 'graph3': { 
                     title: 'Equipment Elevation', 
-                    description: 'A visual representation of the organization of IT equipment used to track and manage data center assets',
+                    description: 'A diagram depicting the configuration of an individual piece of IT equipment, used for tracking and managing data center resources.',
                     image: 'equipment elevation.png'
                 },
                 'graph4': { 
                     title: 'Butterfly View', 
-                    description: 'A "Butterfly View" refers to a diagram of a manhole\'s internal configuration, typically used in telecommunications and utility management systems.',
+                    description: 'A "Butterfly View" is a diagram illustrating a manhole\'s internal duct configuration, visualizing occupied and available conduits for telecommunications and utility management.',
                     image: 'butterfly diagram.png'
                 },
                 'graph5': { 
                     title: 'Butterfly View - Cables', 
-                    description: 'This "butterfly view" shows the duct configuration, allowing users to visualize occupied and available conduits within the manhole.',
+                    description: 'This "butterfly view" shows the duct and cable configuration, allowing users to visualize and manage occupied and available conduits and cables within the manhole.',
                     image: 'butterfly diagram - cables.png'
                 },
                 'graph6': { 
@@ -647,7 +663,7 @@
                 },
                 'graph8': { 
                     title: 'Dependency View', 
-                    description: 'Dependency View graphically displays an infrastructure view of network devices and their interconnections',
+                    description: 'The Dependency View visually represents network devices and their interconnections within an infrastructure layout.',
                     image: 'dependency view.png'
                 },
                 'graph9': { 
@@ -657,7 +673,7 @@
                 },
                 'graph10': { 
                     title: 'Layer Manager 2', 
-                    description: 'Another view of the layer management interface with additional details',
+                    description: 'Another view of the layer management interface with additional filtering features',
                     image: 'layer manager 2.png'
                 },
                 'tech1': { title: 'Technical Writing Sample 1', description: 'Detailed description of your first writing sample' },
@@ -665,7 +681,7 @@
                 // Add these to your existing projectData object
                 'dialog1': { 
                     title: 'Account Manager', 
-                    description: 'Account management interface view',
+                    description: 'A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.',
                     image: 'account manager.png'
                 },
                 'dialog2': { 
@@ -796,11 +812,18 @@
         function closeModal() {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
+            const container = document.getElementById('imageContainer');
+            
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
-            // Reset zoom when closing
+            
+            // Reset zoom and panning
             currentZoom = 1;
             modalImage.style.transform = `scale(${currentZoom})`;
+            modalImage.classList.remove('zoomed');
+            container.classList.remove('zoomed');
+            container.scrollLeft = 0;
+            container.scrollTop = 0;
         }
         
         // Close modal with Escape key
@@ -854,9 +877,17 @@
         const minZoom = 0.5;
         const zoomStep = 0.5;
 
+        // Add these variables to your script
+        let isPanning = false;
+        let startPoint = { x: 0, y: 0 };
+        let scrollLeft = 0;
+        let scrollTop = 0;
+
+        // Update your zoomImage function
         function zoomImage(direction) {
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
+            const container = document.getElementById('imageContainer');
             
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
@@ -866,6 +897,78 @@
             
             modalImage.style.transform = `scale(${currentZoom})`;
             modalImage.style.transition = 'transform 0.2s ease';
+            
+            // Add or remove zoomed class based on zoom level
+            if (currentZoom > 1) {
+                modalImage.classList.add('zoomed');
+                container.classList.add('zoomed');
+            } else {
+                modalImage.classList.remove('zoomed');
+                container.classList.remove('zoomed');
+            }
+        }
+
+        // Add mouse panning event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('imageContainer');
+
+            container.addEventListener('mousedown', function(e) {
+                if (currentZoom <= 1) return;
+                
+                isPanning = true;
+                container.classList.add('panning');
+                
+                startPoint = {
+                    x: e.pageX - container.offsetLeft,
+                    y: e.pageY - container.offsetTop
+                };
+                
+                scrollLeft = container.scrollLeft;
+                scrollTop = container.scrollTop;
+            });
+
+            container.addEventListener('mousemove', function(e) {
+                if (!isPanning) return;
+                
+                e.preventDefault();
+                
+                const x = e.pageX - container.offsetLeft;
+                const y = e.pageY - container.offsetTop;
+                
+                const walkX = (x - startPoint.x) * 1.5;
+                const walkY = (y - startPoint.y) * 1.5;
+                
+                container.scrollLeft = scrollLeft - walkX;
+                container.scrollTop = scrollTop - walkY;
+            });
+
+            container.addEventListener('mouseup', function() {
+                isPanning = false;
+                container.classList.remove('panning');
+            });
+
+            container.addEventListener('mouseleave', function() {
+                isPanning = false;
+                container.classList.remove('panning');
+            });
+        });
+
+        // Update closeModal function to reset panning
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const container = document.getElementById('imageContainer');
+            
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            
+            // Reset zoom and panning
+            currentZoom = 1;
+            modalImage.style.transform = `scale(${currentZoom})`;
+            modalImage.classList.remove('zoomed');
+            container.classList.remove('zoomed');
+            container.scrollLeft = 0;
+            container.scrollTop = 0;
         }
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97814f05778fec1e',t:'MTc1NjY5MzQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
