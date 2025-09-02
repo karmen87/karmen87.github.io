@@ -35,9 +35,6 @@
             transition: transform 0.2s ease;
             transform-origin: center;
         }
-        .panning {
-            cursor: grabbing !important;
-        }
 
         #imageContainer {
             overflow: hidden; /* Changed from 'auto' to 'hidden' by default */
@@ -50,7 +47,6 @@
 
         #imageContainer.zoomed {
             overflow: auto;
-            cursor: move;
         }
 
         #modalImage {
@@ -889,12 +885,6 @@
         const minZoom = 0.5;
         const zoomStep = 0.5;
 
-        // Add these variables to your script
-        let isPanning = false;
-        let startPoint = { x: 0, y: 0 };
-        let scrollLeft = 0;
-        let scrollTop = 0;
-
         // Update the zoomImage function
         function zoomImage(direction) {
             event.stopPropagation();
@@ -928,51 +918,6 @@
                 container.scrollTop = 0;
             }
         }
-
-        // Add mouse panning event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('imageContainer');
-
-            container.addEventListener('mousedown', function(e) {
-                if (currentZoom <= 1) return;
-                
-                isPanning = true;
-                container.classList.add('panning');
-                
-                startPoint = {
-                    x: e.pageX - container.offsetLeft,
-                    y: e.pageY - container.offsetTop
-                };
-                
-                scrollLeft = container.scrollLeft;
-                scrollTop = container.scrollTop;
-            });
-
-            container.addEventListener('mousemove', function(e) {
-                if (!isPanning) return;
-                
-                e.preventDefault();
-                
-                const x = e.pageX - container.offsetLeft;
-                const y = e.pageY - container.offsetTop;
-                
-                const walkX = (x - startPoint.x) * 1.5;
-                const walkY = (y - startPoint.y) * 1.5;
-                
-                container.scrollLeft = scrollLeft - walkX;
-                container.scrollTop = scrollTop - walkY;
-            });
-
-            container.addEventListener('mouseup', function() {
-                isPanning = false;
-                container.classList.remove('panning');
-            });
-
-            container.addEventListener('mouseleave', function() {
-                isPanning = false;
-                container.classList.remove('panning');
-            });
-        });
 
         // Update closeModal function to reset panning
         function closeModal() {
