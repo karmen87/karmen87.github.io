@@ -37,16 +37,21 @@
         }
 
         #imageContainer {
-            overflow: hidden; /* Changed from 'auto' to 'hidden' by default */
+            overflow: hidden;
             max-width: 90vw;
             max-height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            margin: auto;
         }
 
         #imageContainer.zoomed {
             overflow: auto;
+            max-width: 95vw; /* Increased from 90vw */
+            max-height: 85vh; /* Increased from 80vh */
+            padding: 20px; /* Add some padding */
         }
 
         #modalImage {
@@ -55,12 +60,13 @@
             object-fit: contain;
             transition: transform 0.2s ease;
             transform-origin: center;
-            cursor: default; /* Add this line */
+            cursor: default;
         }
 
         #modalImage.zoomed {
             max-width: none;
             max-height: none;
+            margin: auto;
         }
     </style>
 </head>
@@ -558,9 +564,9 @@
         <div class="relative w-full h-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
             <h3 id="modalTitle" class="text-white text-xl mb-4"></h3>
             
-            <div class="relative w-full h-full flex items-center justify-center overflow-auto">
-                <div id="imageContainer" class="relative" style="overflow: auto;">
-                    <img id="modalImage" src="" alt="" class="max-w-none max-h-none transition-transform duration-200">
+            <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
+                <div id="imageContainer" class="relative">
+                    <img id="modalImage" src="" alt="" class="transition-transform duration-200">
                 </div>
             </div>
             
