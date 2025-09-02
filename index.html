@@ -31,30 +31,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         /* Add to your existing style section */
-        #modalImage {
-            transition: transform 0.2s ease;
-            transform-origin: center;
-        }
-
-        #imageContainer {
-            overflow: auto;
-            max-width: 95vw;
-            max-height: 85vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        #modalImage {
-            max-width: 90vw;
-            max-height: 80vh;
-            object-fit: contain;
-            transition: transform 0.2s ease;
-            transform-origin: center;
-            margin: auto;
-        }
-
+       
         .modal-content-wrapper {
             display: flex;
             justify-content: center;
@@ -889,7 +866,7 @@
         const minZoom = 0.5;
         const zoomStep = 0.3; // Changed from 0.5 to 0.3 for more gradual zoom
 
-        // Update your zoomImage function
+        // Update the zoomImage function in your script
         function zoomImage(direction) {
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
@@ -903,18 +880,15 @@
             
             modalImage.style.transform = `scale(${currentZoom})`;
             
-            // Adjust container overflow based on zoom level
+            // Show/hide scrollbars based on zoom level
+            container.style.overflow = currentZoom > 1 ? 'auto' : 'hidden';
+            
+            // Center the image when zooming
             if (currentZoom > 1) {
-                container.style.overflow = 'auto';
-                // Center scrollbars when first zooming
-                setTimeout(() => {
+                requestAnimationFrame(() => {
                     container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
                     container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
-                }, 50);
-            } else {
-                container.style.overflow = 'hidden';
-                container.scrollLeft = 0;
-                container.scrollTop = 0;
+                });
             }
         }
 
