@@ -40,14 +40,25 @@
         }
 
         #imageContainer {
-            overflow: auto;
+            overflow: hidden; /* Changed from 'auto' to 'hidden' by default */
             max-width: 90vw;
             max-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #imageContainer.zoomed {
-            overflow: scroll;
+            overflow: auto;
             cursor: move;
+        }
+
+        #modalImage {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+            transform-origin: center;
         }
 
         #modalImage.zoomed {
@@ -795,14 +806,19 @@
                 modalImage.src = project.image;
                 modalImage.alt = project.title;
                 modalImage.classList.remove('hidden');
+                modalImage.classList.remove('zoomed');
+                const container = document.getElementById('imageContainer');
+                container.classList.remove('zoomed');
+                container.scrollLeft = 0;
+                container.scrollTop = 0;
             }
-            
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
             
             // Reset zoom when opening new image
             currentZoom = 1;
             modalImage.style.transform = `scale(${currentZoom})`;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
         
         function closeModal() {
@@ -879,11 +895,13 @@
         let scrollLeft = 0;
         let scrollTop = 0;
 
-        // Update your zoomImage function
+        // Update the zoomImage function
         function zoomImage(direction) {
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
+            
+            const previousZoom = currentZoom;
             
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
@@ -892,15 +910,22 @@
             }
             
             modalImage.style.transform = `scale(${currentZoom})`;
-            modalImage.style.transition = 'transform 0.2s ease';
             
-            // Add or remove zoomed class based on zoom level
+            // Only show scrollbars and enable panning when zoomed in
             if (currentZoom > 1) {
                 modalImage.classList.add('zoomed');
                 container.classList.add('zoomed');
+                
+                // Center the image when first zooming in
+                if (previousZoom <= 1) {
+                    container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
+                    container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+                }
             } else {
                 modalImage.classList.remove('zoomed');
                 container.classList.remove('zoomed');
+                container.scrollLeft = 0;
+                container.scrollTop = 0;
             }
         }
 
