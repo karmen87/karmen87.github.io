@@ -892,28 +892,31 @@
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
 
-            // Get the natural size of the image
-            const naturalWidth = modalImage.naturalWidth;
-            const naturalHeight = modalImage.naturalHeight;
+            // Get the current displayed size
+            const displayedWidth = modalImage.getBoundingClientRect().width;
+            const displayedHeight = modalImage.getBoundingClientRect().height;
+
+            // Use a smaller zoom step for finer control
+            const zoomStepLocal = 0.15;
 
             if (direction === 'in' && currentZoom < maxZoom) {
-                currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
+                currentZoom = Math.min(maxZoom, currentZoom + zoomStepLocal);
             } else if (direction === 'out' && currentZoom > minZoom) {
-                currentZoom = Math.max(minZoom, currentZoom - zoomStep);
+                currentZoom = Math.max(minZoom, currentZoom - zoomStepLocal);
             }
 
             if (currentZoom > 1) {
-                // Set explicit width/height in px
-                modalImage.style.width = (naturalWidth * currentZoom) + 'px';
-                modalImage.style.height = (naturalHeight * currentZoom) + 'px';
+                // Set explicit width/height in px based on the displayed size
+                modalImage.style.width = (displayedWidth * currentZoom) + 'px';
+                modalImage.style.height = (displayedHeight * currentZoom) + 'px';
                 modalImage.style.maxWidth = 'none';
                 modalImage.style.maxHeight = 'none';
                 container.style.overflow = 'auto';
 
                 // Center scrollbars
                 requestAnimationFrame(() => {
-                    container.scrollLeft = (modalImage.width * currentZoom - container.clientWidth) / 2;
-                    container.scrollTop = (modalImage.height * currentZoom - container.clientHeight) / 2;
+                    container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
+                    container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
                 });
             } else {
                 // Reset to fit container
@@ -960,6 +963,7 @@ modalImage.onload = function() {
     modalImage.style.height = '';
     modalImage.style.maxWidth = '90vw';
     modalImage.style.maxHeight = '85vh';
+    currentZoom = 1;
 };
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97814f05778fec1e',t:'MTc1NjY5MzQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
