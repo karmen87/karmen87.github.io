@@ -45,9 +45,10 @@
         #modalImage {
             max-width: 90vw;
             max-height: 85vh;
+            width: auto;
+            height: auto;
             object-fit: contain;
-            transition: transform 0.2s ease;
-            transform-origin: center center;
+            transition: width 0.2s ease, height 0.2s ease;
         }
 
         .modal-content-wrapper {
@@ -891,7 +892,9 @@
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
 
-            const previousZoom = currentZoom;
+            // Get the natural size of the image
+            const naturalWidth = modalImage.naturalWidth;
+            const naturalHeight = modalImage.naturalHeight;
 
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
@@ -899,20 +902,25 @@
                 currentZoom = Math.max(minZoom, currentZoom - zoomStep);
             }
 
-            modalImage.style.transformOrigin = 'center center';
-            modalImage.style.transform = `scale(${currentZoom})`;
-
             if (currentZoom > 1) {
+                // Set explicit width/height in px
+                modalImage.style.width = (naturalWidth * currentZoom) + 'px';
+                modalImage.style.height = (naturalHeight * currentZoom) + 'px';
+                modalImage.style.maxWidth = 'none';
+                modalImage.style.maxHeight = 'none';
                 container.style.overflow = 'auto';
 
-                // Center the scrollbars based on the container's scroll size
+                // Center scrollbars
                 requestAnimationFrame(() => {
-                    const scrollX = (container.scrollWidth - container.clientWidth) / 2;
-                    const scrollY = (container.scrollHeight - container.clientHeight) / 2;
-                    container.scrollLeft = scrollX;
-                    container.scrollTop = scrollY;
+                    container.scrollLeft = (modalImage.width * currentZoom - container.clientWidth) / 2;
+                    container.scrollTop = (modalImage.height * currentZoom - container.clientHeight) / 2;
                 });
             } else {
+                // Reset to fit container
+                modalImage.style.width = '';
+                modalImage.style.height = '';
+                modalImage.style.maxWidth = '90vw';
+                modalImage.style.maxHeight = '85vh';
                 container.style.overflow = 'hidden';
                 container.scrollLeft = 0;
                 container.scrollTop = 0;
@@ -945,6 +953,14 @@
         }
     });
 });
+
+modalImage.onload = function() {
+    // Reset image size on open
+    modalImage.style.width = '';
+    modalImage.style.height = '';
+    modalImage.style.maxWidth = '90vw';
+    modalImage.style.maxHeight = '85vh';
+};
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97814f05778fec1e',t:'MTc1NjY5MzQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
