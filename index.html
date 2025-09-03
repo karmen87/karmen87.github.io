@@ -892,10 +892,6 @@
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
 
-            // Get the current displayed size
-            const displayedWidth = modalImage.getBoundingClientRect().width;
-            const displayedHeight = modalImage.getBoundingClientRect().height;
-
             // Use a smaller zoom step for finer control
             const zoomStepLocal = 0.15;
 
@@ -905,21 +901,21 @@
                 currentZoom = Math.max(minZoom, currentZoom - zoomStepLocal);
             }
 
+            // Always base zoom on natural size
             if (currentZoom > 1) {
-                // Set explicit width/height in px based on the displayed size
-                modalImage.style.width = (displayedWidth * currentZoom) + 'px';
-                modalImage.style.height = (displayedHeight * currentZoom) + 'px';
+                modalImage.style.width = (modalImage.naturalWidth * currentZoom) + 'px';
+                modalImage.style.height = (modalImage.naturalHeight * currentZoom) + 'px';
                 modalImage.style.maxWidth = 'none';
                 modalImage.style.maxHeight = 'none';
                 container.style.overflow = 'auto';
 
                 // Center scrollbars
                 requestAnimationFrame(() => {
-                    container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
-                    container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+                    container.scrollLeft = (modalImage.width * currentZoom - container.clientWidth) / 2;
+                    container.scrollTop = (modalImage.height * currentZoom - container.clientHeight) / 2;
                 });
             } else {
-                // Reset to fit container
+                // Fit to modal
                 modalImage.style.width = '';
                 modalImage.style.height = '';
                 modalImage.style.maxWidth = '90vw';
