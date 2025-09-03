@@ -890,32 +890,28 @@
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
-            
+
             const previousZoom = currentZoom;
-            
+
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
             } else if (direction === 'out' && currentZoom > minZoom) {
                 currentZoom = Math.max(minZoom, currentZoom - zoomStep);
             }
-            
-            // Set transform origin to center
+
             modalImage.style.transformOrigin = 'center center';
             modalImage.style.transform = `scale(${currentZoom})`;
-            
-            // Adjust container for zoom levels
+
             if (currentZoom > 1) {
                 container.style.overflow = 'auto';
-                
-                // Calculate and set scroll position to center the zoomed image
-                if (previousZoom <= 1) {
-                    requestAnimationFrame(() => {
-                        const scrollX = (modalImage.scrollWidth * currentZoom - container.clientWidth) / 2;
-                        const scrollY = (modalImage.scrollHeight * currentZoom - container.clientHeight) / 2;
-                        container.scrollLeft = scrollX;
-                        container.scrollTop = scrollY;
-                    });
-                }
+
+                // Center the scrollbars based on the container's scroll size
+                requestAnimationFrame(() => {
+                    const scrollX = (container.scrollWidth - container.clientWidth) / 2;
+                    const scrollY = (container.scrollHeight - container.clientHeight) / 2;
+                    container.scrollLeft = scrollX;
+                    container.scrollTop = scrollY;
+                });
             } else {
                 container.style.overflow = 'hidden';
                 container.scrollLeft = 0;
