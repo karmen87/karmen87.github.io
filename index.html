@@ -33,22 +33,30 @@
         /* Add to your existing style section */
        
         #imageContainer {
-            overflow: hidden;
+            overflow: hidden; /* Changed from 'auto' to 'hidden' by default */
+            max-width: 90vw;
+            max-height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 95vw;
-            height: 85vh;
-            position: relative;
+        }
+
+        #imageContainer.zoomed {
+            overflow: auto;
+            cursor: move;
         }
 
         #modalImage {
             max-width: 90vw;
-            max-height: 85vh;
-            width: auto;
-            height: auto;
+            max-height: 80vh;
             object-fit: contain;
-            transition: width 0.2s ease, height 0.2s ease;
+            transition: transform 0.2s ease;
+            transform-origin: center;
+        }
+
+        #modalImage.zoomed {
+            max-width: none;
+            max-height: none;
         }
 
         .modal-content-wrapper {
@@ -891,36 +899,30 @@
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
-
-            // Use a smaller zoom step for finer control
-            const zoomStepLocal = 0.15;
-
+            
+            const previousZoom = currentZoom;
+            
             if (direction === 'in' && currentZoom < maxZoom) {
-                currentZoom = Math.min(maxZoom, currentZoom + zoomStepLocal);
+                currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
             } else if (direction === 'out' && currentZoom > minZoom) {
-                currentZoom = Math.max(minZoom, currentZoom - zoomStepLocal);
+                currentZoom = Math.max(minZoom, currentZoom - zoomStep);
             }
-
-            // Always base zoom on natural size
+            
+            modalImage.style.transform = `scale(${currentZoom})`;
+            
+            // Only show scrollbars and enable panning when zoomed in
             if (currentZoom > 1) {
-                modalImage.style.width = (modalImage.naturalWidth * currentZoom) + 'px';
-                modalImage.style.height = (modalImage.naturalHeight * currentZoom) + 'px';
-                modalImage.style.maxWidth = 'none';
-                modalImage.style.maxHeight = 'none';
-                container.style.overflow = 'auto';
-
-                // Center scrollbars
-                requestAnimationFrame(() => {
-                    container.scrollLeft = (modalImage.width * currentZoom - container.clientWidth) / 2;
-                    container.scrollTop = (modalImage.height * currentZoom - container.clientHeight) / 2;
-                });
+                modalImage.classList.add('zoomed');
+                container.classList.add('zoomed');
+                
+                // Center the image when first zooming in
+                if (previousZoom <= 1) {
+                    container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
+                    container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+                }
             } else {
-                // Fit to modal
-                modalImage.style.width = '';
-                modalImage.style.height = '';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.maxHeight = '85vh';
-                container.style.overflow = 'hidden';
+                modalImage.classList.remove('zoomed');
+                container.classList.remove('zoomed');
                 container.scrollLeft = 0;
                 container.scrollTop = 0;
             }
