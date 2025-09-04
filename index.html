@@ -33,12 +33,13 @@
         /* Add to your existing style section */
        
         #imageContainer {
-            overflow: hidden; /* Changed from 'auto' to 'hidden' by default */
+            overflow: hidden; /* Default state */
             max-width: 90vw;
             max-height: 80vh;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start; /* Changed from center to flex-start to avoid clipping left side */
+            align-items: flex-start; /* Changed from center to flex-start */
+            position: relative;
         }
 
         #imageContainer.zoomed {
@@ -52,17 +53,18 @@
             object-fit: contain;
             transition: width 0.2s ease, height 0.2s ease;
             display: block;
-            margin: auto;
+            /* Remove margin: auto to prevent unwanted centering */
         }
 
         #modalImage.zoomed {
-            /* max-width/max-height will be removed in JS when zoomed */
+            max-width: none;
+            max-height: none;
         }
 
         .modal-content-wrapper {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-start; /* Changed from center */
+            align-items: flex-start; /* Changed from center */
             width: 100%;
             height: 100%;
             padding: 2rem;
@@ -894,7 +896,6 @@
         const minZoom = 0.5;
         const zoomStep = 0.3; // Changed from 0.5 to 0.3 for more gradual zoom
 
-        // Update the zoomImage function in your script
         function zoomImage(direction) {
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
@@ -904,6 +905,10 @@
             // Get natural size
             const naturalWidth = modalImage.naturalWidth;
             const naturalHeight = modalImage.naturalHeight;
+
+            // Store the current center point (relative to the image) before zooming
+            const scrollLeftRatio = container.scrollLeft / modalImage.offsetWidth;
+            const scrollTopRatio = container.scrollTop / modalImage.offsetHeight;
 
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
@@ -919,13 +924,11 @@
                 modalImage.style.maxWidth = 'none';
                 modalImage.style.maxHeight = 'none';
 
-                // Center the image when first zooming in
-                if (previousZoom <= 1) {
-                    setTimeout(() => {
-                        container.scrollLeft = Math.max(0, (modalImage.offsetWidth - container.clientWidth) / 2);
-                        container.scrollTop = Math.max(0, (modalImage.offsetHeight - container.clientHeight) / 2);
-                    }, 0);
-                }
+                // Maintain the same relative scroll position after zooming
+                setTimeout(() => {
+                    container.scrollLeft = scrollLeftRatio * modalImage.offsetWidth;
+                    container.scrollTop = scrollTopRatio * modalImage.offsetHeight;
+                }, 0);
             } else {
                 modalImage.classList.remove('zoomed');
                 container.classList.remove('zoomed');
@@ -972,6 +975,39 @@ modalImage.onload = function() {
     modalImage.style.maxHeight = '80vh';
     currentZoom = 1;
 };
+
+// Add panning functionality
+let isDragging = false;
+let startX, startY, scrollLeftStart, scrollTopStart;
+
+document.getElementById('imageContainer').addEventListener('mousedown', (e) => {
+    if (currentZoom > 1) {
+        isDragging = true;
+        startX = e.pageX;
+        startY = e.pageY;
+        scrollLeftStart = document.getElementById('imageContainer').scrollLeft;
+        scrollTopStart = document.getElementById('imageContainer').scrollTop;
+        document.getElementById('imageContainer').style.cursor = 'grabbing';
+    }
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX;
+    const y = e.pageY;
+    const walkX = (startX - x);
+    const walkY = (startY - y);
+    document.getElementById('imageContainer').scrollLeft = scrollLeftStart + walkX;
+    document.getElementById('imageContainer').scrollTop = scrollTopStart + walkY;
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+    document.getElementById('imageContainer').style.cursor = currentZoom > 1 ? 'move' : 'default';
+});
+
+
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97814f05778fec1e',t:'MTc1NjY5MzQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
