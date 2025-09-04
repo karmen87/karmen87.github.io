@@ -922,8 +922,8 @@
                 // Center the image when first zooming in
                 if (previousZoom <= 1) {
                     setTimeout(() => {
-                        container.scrollLeft = (modalImage.offsetWidth - container.clientWidth) / 2;
-                        container.scrollTop = (modalImage.offsetHeight - container.clientHeight) / 2;
+                        container.scrollLeft = Math.max(0, (modalImage.offsetWidth - container.clientWidth) / 2);
+                        container.scrollTop = Math.max(0, (modalImage.offsetHeight - container.clientHeight) / 2);
                     }, 0);
                 }
             } else {
