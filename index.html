@@ -914,11 +914,11 @@
             }
         });
 
-        // Update these zoom-related variables in your script
+    // Update these zoom-related variables
         let currentZoom = 1;
         const maxZoom = 3;
         const minZoom = 0.5;
-        const zoomStep = 0.3; // Changed from 0.5 to 0.3 for more gradual zoom
+        const zoomStep = 0.4; // Changed from 0.3 to 0.4 for 140% initial zoom
 
         function zoomImage(direction) {
             event.stopPropagation();
