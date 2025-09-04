@@ -50,13 +50,13 @@
             max-width: 90vw;
             max-height: 80vh;
             object-fit: contain;
-            transition: transform 0.2s ease;
-            transform-origin: center;
+            transition: width 0.2s ease, height 0.2s ease;
+            display: block;
+            margin: auto;
         }
 
         #modalImage.zoomed {
-            max-width: none;
-            max-height: none;
+            /* max-width/max-height will be removed in JS when zoomed */
         }
 
         .modal-content-wrapper {
@@ -899,30 +899,40 @@
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
             const container = document.getElementById('imageContainer');
-            
             const previousZoom = currentZoom;
-            
+
+            // Get natural size
+            const naturalWidth = modalImage.naturalWidth;
+            const naturalHeight = modalImage.naturalHeight;
+
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
             } else if (direction === 'out' && currentZoom > minZoom) {
                 currentZoom = Math.max(minZoom, currentZoom - zoomStep);
             }
-            
-            modalImage.style.transform = `scale(${currentZoom})`;
-            
-            // Only show scrollbars and enable panning when zoomed in
+
             if (currentZoom > 1) {
                 modalImage.classList.add('zoomed');
                 container.classList.add('zoomed');
-                
+                modalImage.style.width = (naturalWidth * currentZoom) + 'px';
+                modalImage.style.height = (naturalHeight * currentZoom) + 'px';
+                modalImage.style.maxWidth = 'none';
+                modalImage.style.maxHeight = 'none';
+
                 // Center the image when first zooming in
                 if (previousZoom <= 1) {
-                    container.scrollLeft = (container.scrollWidth - container.clientWidth) / 2;
-                    container.scrollTop = (container.scrollHeight - container.clientHeight) / 2;
+                    setTimeout(() => {
+                        container.scrollLeft = (modalImage.offsetWidth - container.clientWidth) / 2;
+                        container.scrollTop = (modalImage.offsetHeight - container.clientHeight) / 2;
+                    }, 0);
                 }
             } else {
                 modalImage.classList.remove('zoomed');
                 container.classList.remove('zoomed');
+                modalImage.style.width = '';
+                modalImage.style.height = '';
+                modalImage.style.maxWidth = '90vw';
+                modalImage.style.maxHeight = '80vh';
                 container.scrollLeft = 0;
                 container.scrollTop = 0;
             }
@@ -956,11 +966,10 @@
 });
 
 modalImage.onload = function() {
-    // Reset image size on open
     modalImage.style.width = '';
     modalImage.style.height = '';
     modalImage.style.maxWidth = '90vw';
-    modalImage.style.maxHeight = '85vh';
+    modalImage.style.maxHeight = '80vh';
     currentZoom = 1;
 };
     </script>
