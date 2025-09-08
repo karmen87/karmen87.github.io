@@ -31,64 +31,10 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         /* Add to your existing style section */
-       
-        #imageContainer {
-            overflow: hidden; /* Default state */
-            max-width: 90vw;
-            max-height: 80vh;
-            display: flex;
-            justify-content: center; /* Center by default */
-            align-items: center; /* Center by default */
-            position: relative;
-        }
-
-        #imageContainer.zoomed {
-            overflow: auto;
-            cursor: move;
-            justify-content: flex-start; /* Prevent cropping when zoomed */
-            align-items: flex-start; /* Prevent cropping when zoomed */
-        }
-
         #modalImage {
-            max-width: 90vw;
-            max-height: 80vh;
-            object-fit: contain;
-            transition: width 0.2s ease, height 0.2s ease;
-            display: block;
+            transition: transform 0.2s ease;
+            transform-origin: center;
         }
-
-        #modalImage.zoomed {
-            max-width: none;
-            max-height: none;
-        }
-
-        .modal-content-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            padding: 2rem;
-            position: relative;
-        }
-
-        /* Navigation arrows */
-        button[onclick="navigateModal('prev')"],
-        button[onclick="navigateModal('next')"] {
-            z-index: 60; /* Increase z-index to ensure arrows are above image */
-            padding: 1rem; /* Increase padding for better visibility */
-            background: rgba(0, 0, 0, 0.4); /* Add semi-transparent background for contrast */
-            border-radius: 50%;
-        }
-
-        button[onclick="navigateModal('prev')"] {
-            left: 1rem; /* Move slightly away from edge for better visibility */
-        }
-
-        button[onclick="navigateModal('next')"] {
-            right: 1rem; /* Move slightly away from edge for better visibility */
-        }
-
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
@@ -122,11 +68,11 @@
                 <p class="text-slate-700 leading-relaxed text-lg mb-8">
                     I believe in the power of thoughtful design and clear communication to solve real-world problems and enhance user experiences.
                 </p>
-                <a href="Karmen Kardum Resume.pdf" target="_blank" class="inline-flex items-center px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-200 font-medium">
+                <a href="https://www.canva.com/design/DAGxYS1WPs8/Qe_vCbxcP_flGcE4p-9m0A/view?utm_content=DAGxYS1WPs8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hfd93e8f226" target="_blank" class="inline-flex items-center px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-200 font-medium">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
-                    Resume
+                    Download Resume
                 </a>
             </div>
         </section>
@@ -545,50 +491,48 @@
     </footer>
 
     <!-- Modal for viewing images -->
-    <!-- Replace your current modal HTML with this -->
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 modal hidden z-50 flex items-center justify-center">
-        <!-- Close button -->
-        <button onclick="closeModal()" class="absolute top-4 right-4 p-2 text-white hover:text-gray-300 transition-colors z-20">
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 modal hidden z-50 flex items-center justify-center" onclick="closeModal()">
+        <!-- Close (X) button -->
+        <button onclick="closeModal()" class="absolute top-4 right-4 p-2 text-white hover:text-gray-300 transition-colors z-20" onclick="event.stopPropagation()">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
 
-        <!-- Navigation arrows -->
-        <button onclick="navigateModal('prev')" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-20">
+        <!-- Left/Right Navigation Arrows -->
+        <button onclick="navigateModal('prev')" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-20" onclick="event.stopPropagation()">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
             </svg>
         </button>
         
-        <button onclick="navigateModal('next')" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-20">
+        <button onclick="navigateModal('next')" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-20" onclick="event.stopPropagation()">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
         </button>
 
-        <!-- Zoom controls -->
+        <!-- Zoom controls - Update this section in your modal -->
         <div class="absolute bottom-4 right-4 flex space-x-2 z-[60] bg-black/40 p-2 rounded-lg backdrop-blur-sm">
-            <button onclick="zoomImage('in')" class="p-2 rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors">
+            <button onclick="zoomImage('in')" class="p-2 rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors" onclick="event.stopPropagation()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
                 </svg>
             </button>
-            <button onclick="zoomImage('out')" class="p-2 rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors">
+            <button onclick="zoomImage('out')" class="p-2 rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors" onclick="event.stopPropagation()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM7 10h6"/>
                 </svg>
             </button>
         </div>
 
-        <!-- Image container -->
-        <!-- Replace the image container div in your modal -->
+        <!-- Content Container -->
         <div class="relative w-full h-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
             <h3 id="modalTitle" class="text-white text-xl mb-4"></h3>
             
-            <div class="modal-content-wrapper">
-                <div id="imageContainer">
-                    <img id="modalImage" src="" alt="">
+            <div class="relative w-full h-full flex items-center justify-center overflow-auto" onclick="event.stopPropagation()">
+                <div id="imageContainer" class="relative cursor-move" style="overflow: auto;">
+                    <img id="modalImage" src="" alt="" class="max-w-none max-h-none transition-transform duration-200">
                 </div>
             </div>
             
@@ -597,167 +541,6 @@
     </div>
 
     <script>
-        const projectData = {
-    // Graphical Functions gallery
-    'graph1': { 
-        title: 'Rack Elevation', 
-        description: 'Network infrastructure visualization',
-        image: 'rack elevation.PNG'
-    },
-    'graph2': { 
-        title: 'Row Elevation', 
-        description: 'Network infrastructure visualization',
-        image: 'row elevation.png'
-    },
-    'graph3': { 
-        title: 'Equipment Elevation', 
-        description: 'Network infrastructure visualization',
-        image: 'equipment elevation.png'
-    },
-    'graph4': { 
-        title: 'Butterfly View', 
-        description: 'Network infrastructure visualization',
-        image: 'butterfly diagram.png'
-    },
-    'graph5': { 
-        title: 'Butterfly View - Cables', 
-        description: 'Network infrastructure visualization',
-        image: 'butterfly diagram - cables.png'
-    },
-    'graph6': { 
-        title: 'Butterfly View - Notes', 
-        description: 'Network infrastructure visualization',
-        image: 'butterfly diagram - notes.png'
-    },
-    'graph7': { 
-        title: 'Dependency View - Access', 
-        description: 'Network infrastructure visualization',
-        image: 'dependency view - access.png'
-    },
-    'graph8': { 
-        title: 'Dependency View', 
-        description: 'Network infrastructure visualization',
-        image: 'dependency view.png'
-    },
-    'graph9': { 
-        title: 'Layer Manager', 
-        description: 'Network infrastructure visualization',
-        image: 'layer manager.png'
-    },
-    'graph10': { 
-        title: 'Layer Manager 2', 
-        description: 'Network infrastructure visualization',
-        image: 'layer manager 2.png'
-    },
-
-    // Dialogs gallery
-    'dialog1': { 
-        title: 'Account Manager', 
-        description: 'System configuration interface',
-        image: 'account manager.png'
-    },
-    'dialog2': { 
-        title: 'Design World 1', 
-        description: 'System configuration interface',
-        image: 'design world 1.png'
-    },
-    'dialog3': { 
-        title: 'Design World 2', 
-        description: 'System configuration interface',
-        image: 'design world 2.png'
-    },
-    'dialog4': { 
-        title: 'Design World 3', 
-        description: 'System configuration interface',
-        image: 'design world 3.png'
-    },
-    'dialog5': { 
-        title: 'Design World 4', 
-        description: 'System configuration interface',
-        image: 'design world 4.png'
-    },
-    'dialog6': { 
-        title: 'Design World 5', 
-        description: 'System configuration interface',
-        image: 'design world 5.png'
-    },
-    'dialog7': { 
-        title: 'Filter Manager 1', 
-        description: 'System configuration interface',
-        image: 'filter manager 1.png'
-    },
-    'dialog8': { 
-        title: 'Filter Manager 2', 
-        description: 'System configuration interface',
-        image: 'filter manager 2.png'
-    },
-    'dialog9': { 
-        title: 'Filter Manager 3', 
-        description: 'System configuration interface',
-        image: 'filter manager 3.png'
-    },
-    'dialog10': { 
-        title: 'Filter Manager 4', 
-        description: 'System configuration interface',
-        image: 'filter manager 4.png'
-    },
-    'dialog11': { 
-        title: 'Filter Manager 5', 
-        description: 'System configuration interface',
-        image: 'filter manager 5.png'
-    },
-    'dialog12': { 
-        title: 'Filter Manager 6', 
-        description: 'System configuration interface',
-        image: 'filter manager 6.png'
-    },
-    'dialog13': { 
-        title: 'Filter Manager 7', 
-        description: 'System configuration interface',
-        image: 'filter manager 7.png'
-    },
-    'dialog14': { 
-        title: 'Filter Manager 8', 
-        description: 'System configuration interface',
-        image: 'filter manager 8.png'
-    },
-    'dialog15': { 
-        title: 'Global Console 1', 
-        description: 'System configuration interface',
-        image: 'global console 1.png'
-    },
-    'dialog16': { 
-        title: 'Global Console 2', 
-        description: 'System configuration interface',
-        image: 'global console 2.png'
-    },
-    'dialog17': { 
-        title: 'MAC 1', 
-        description: 'System configuration interface',
-        image: 'mac 1.png'
-    },
-    'dialog18': { 
-        title: 'MAC 2', 
-        description: 'System configuration interface',
-        image: 'mac 2.png'
-    },
-    'dialog19': { 
-        title: 'Manager Dialog', 
-        description: 'System configuration interface',
-        image: 'manager dialog.png'
-    },
-    'dialog20': { 
-        title: 'Reports 1', 
-        description: 'System configuration interface',
-        image: 'reports 1.png'
-    },
-    'dialog21': { 
-        title: 'Reports 2', 
-        description: 'System configuration interface',
-        image: 'reports 2.png'
-    }
-};
-
         let currentScrollPosition = 0;
         const thumbnailWidth = 296; // 280px + 16px gap
         const visibleThumbnails = 4;
@@ -813,18 +596,177 @@
             document.getElementById('dialogsGalleryCounter').textContent = `${startIndex}-${endIndex}`;
         }
 
-        // Replace your current openModal function with this
+        // Modify your openModal function
         function openModal(projectId) {
             currentProjectId = projectId;
             const modal = document.getElementById('imageModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalImage = document.getElementById('modalImage');
+            const modalPlaceholder = document.getElementById('modalPlaceholder');
             const modalDescription = document.getElementById('modalDescription');
-            const container = document.getElementById('imageContainer');
+            
+            // Project data with image URLs
+            const projectData = {
+                'graph1': { 
+                    title: 'Rack Elevation', 
+                    description: 'A diagram illustrating the arrangement of IT equipment in a server rack, designed for tracking and managing data center resources.',
+                    image: 'rack elevation.PNG'
+                },
+                'graph2': { 
+                    title: 'Row Elevation', 
+                    description: 'A diagram showing the layout of IT equipment in a single row of a server rack, used for tracking and managing data center resources.',
+                    image: 'row elevation.png'
+                },
+                'graph3': { 
+                    title: 'Equipment Elevation', 
+                    description: 'A diagram depicting the configuration of an individual piece of IT equipment, used for tracking and managing data center resources.',
+                    image: 'equipment elevation.png'
+                },
+                'graph4': { 
+                    title: 'Butterfly View', 
+                    description: 'A "Butterfly View" is a diagram illustrating a manhole\'s internal duct configuration, visualizing occupied and available conduits for telecommunications and utility management.',
+                    image: 'butterfly diagram.png'
+                },
+                'graph5': { 
+                    title: 'Butterfly View - Cables', 
+                    description: 'This "butterfly view" shows the duct and cable configuration, allowing users to visualize and manage occupied and available conduits and cables within the manhole.',
+                    image: 'butterfly diagram - cables.png'
+                },
+                'graph6': { 
+                    title: 'Butterfly View - Notes', 
+                    description: 'This "butterfly view" provides additional notes and details about the manhole\'s configuration.',
+                    image: 'butterfly diagram - notes.png'
+                },
+                'graph7': { 
+                    title: 'Dependency View - Access', 
+                    description: 'Visual representation of different ways to access Dependency View from various parts of the application',
+                    image: 'dependency view - access.png'
+                },
+                'graph8': { 
+                    title: 'Dependency View', 
+                    description: 'The Dependency View visually represents network devices and their interconnections within an infrastructure layout.',
+                    image: 'dependency view.png'
+                },
+                'graph9': { 
+                    title: 'Layer Manager', 
+                    description: 'Interface that provides tools for organizing and controlling layers within a CAD-like workspace',
+                    image: 'layer manager.png'
+                },
+                'graph10': { 
+                    title: 'Layer Manager 2', 
+                    description: 'Another view of the layer management interface with additional filtering features',
+                    image: 'layer manager 2.png'
+                },
+                'tech1': { title: 'Technical Writing Sample 1', description: 'Detailed description of your first writing sample' },
+                // Add these to your existing projectData object
+                'dialog1': { 
+                    title: 'Account Manager', 
+                    description: 'A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.',
+                    image: 'account manager.png'
+                },
+                'dialog2': { 
+                    title: 'Design World 1', 
+                    description: 'Design world interface view',
+                    image: 'design world 1.png'
+                },
+                'dialog3': { 
+                    title: 'Design World 2', 
+                    description: 'Design world interface view',
+                    image: 'design world 2.png'
+                },
+                'dialog4': { 
+                    title: 'Design World 3', 
+                    description: 'Design world interface view',
+                    image: 'design world 3.png'
+                },
+                'dialog5': { 
+                    title: 'Design World 4', 
+                    description: 'Design world interface view',
+                    image: 'design world 4.png'
+                },
+                'dialog6': { 
+                    title: 'Design World 5', 
+                    description: 'Design world interface view',
+                    image: 'design world 5.png'
+                },
+                'dialog7': { 
+                    title: 'Filter Manager 1', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 1.png'
+                },
+                'dialog8': { 
+                    title: 'Filter Manager 2', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 2.png'
+                },
+                'dialog9': { 
+                    title: 'Filter Manager 3', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 3.png'
+                },
+                'dialog10': { 
+                    title: 'Filter Manager 4', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 4.png'
+                },
+                'dialog11': { 
+                    title: 'Filter Manager 5', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 5.png'
+                },
+                'dialog12': { 
+                    title: 'Filter Manager 6', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 6.png'
+                },
+                'dialog13': { 
+                    title: 'Filter Manager 7', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 7.png'
+                },
+                'dialog14': { 
+                    title: 'Filter Manager 8', 
+                    description: 'Filter management interface',
+                    image: 'filter manager 8.png'
+                },
+                'dialog15': { 
+                    title: 'Global Console 1', 
+                    description: 'Global management console interface',
+                    image: 'global console 1.png'
+                },
+                'dialog16': { 
+                    title: 'Global Console 2', 
+                    description: 'Global management console interface',
+                    image: 'global console 2.png'
+                },
+                'dialog17': { 
+                    title: 'MAC 1', 
+                    description: 'MAC interface view',
+                    image: 'mac 1.png'
+                },
+                'dialog18': { 
+                    title: 'MAC 2', 
+                    description: 'MAC interface view',
+                    image: 'mac 2.png'
+                },
+                'dialog19': { 
+                    title: 'Manager Dialog', 
+                    description: 'Manager interface dialog',
+                    image: 'manager dialog.png'
+                },
+                'dialog20': { 
+                    title: 'Reports 1', 
+                    description: 'Reports interface view',
+                    image: 'reports 1.png'
+                },
+                'dialog21': { 
+                    title: 'Reports 2', 
+                    description: 'Reports interface view',
+                    image: 'reports 2.png'
+                }
+            };
             
             const project = projectData[projectId];
-            if (!project) return;
-
             modalTitle.textContent = project.title;
             modalDescription.textContent = project.description;
             
@@ -832,20 +774,16 @@
                 modalImage.src = project.image;
                 modalImage.alt = project.title;
                 modalImage.classList.remove('hidden');
-                modalImage.classList.remove('zoomed');
-                container.classList.remove('zoomed');
-                container.scrollLeft = 0;
-                container.scrollTop = 0;
-                // Reset image styles for centering
-                modalImage.style.width = '';
-                modalImage.style.height = '';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.maxHeight = '80vh';
+                modalPlaceholder.classList.add('hidden');
+                
+                modalImage.onerror = function() {
+                    modalImage.classList.add('hidden');
+                    modalPlaceholder.classList.remove('hidden');
+                };
+            } else {
+                modalImage.classList.add('hidden');
+                modalPlaceholder.classList.remove('hidden');
             }
-            
-            // Reset zoom when opening new image
-            currentZoom = 1;
-            modalImage.style.transform = `scale(${currentZoom})`;
             
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -854,18 +792,11 @@
         function closeModal() {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
-            const container = document.getElementById('imageContainer');
-            
             modal.classList.add('hidden');
             document.body.style.overflow = 'auto';
-            
-            // Reset zoom and panning
+            // Reset zoom when closing
             currentZoom = 1;
             modalImage.style.transform = `scale(${currentZoom})`;
-            modalImage.classList.remove('zoomed');
-            container.classList.remove('zoomed');
-            container.scrollLeft = 0;
-            container.scrollTop = 0;
         }
         
         // Close modal with Escape key
@@ -914,124 +845,24 @@
             }
         });
 
-    // Update these zoom-related variables
         let currentZoom = 1;
         const maxZoom = 3;
         const minZoom = 0.5;
-        const zoomStep = 0.4; // Changed from 0.3 to 0.4 for 140% initial zoom
+        const zoomStep = 0.5;
 
         function zoomImage(direction) {
             event.stopPropagation();
             const modalImage = document.getElementById('modalImage');
-            const container = document.getElementById('imageContainer');
-            const previousZoom = currentZoom;
-
-            // Get natural size
-            const naturalWidth = modalImage.naturalWidth;
-            const naturalHeight = modalImage.naturalHeight;
-
-            // Store the current center point (relative to the image) before zooming
-            const scrollLeftRatio = container.scrollLeft / modalImage.offsetWidth;
-            const scrollTopRatio = container.scrollTop / modalImage.offsetHeight;
-
+            
             if (direction === 'in' && currentZoom < maxZoom) {
                 currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
             } else if (direction === 'out' && currentZoom > minZoom) {
                 currentZoom = Math.max(minZoom, currentZoom - zoomStep);
             }
-
-            if (currentZoom > 1) {
-                modalImage.classList.add('zoomed');
-                container.classList.add('zoomed');
-                modalImage.style.width = (naturalWidth * currentZoom) + 'px';
-                modalImage.style.height = (naturalHeight * currentZoom) + 'px';
-                modalImage.style.maxWidth = 'none';
-                modalImage.style.maxHeight = 'none';
-
-                // Maintain the same relative scroll position after zooming
-                setTimeout(() => {
-                    container.scrollLeft = scrollLeftRatio * modalImage.offsetWidth;
-                    container.scrollTop = scrollTopRatio * modalImage.offsetHeight;
-                }, 0);
-            } else {
-                modalImage.classList.remove('zoomed');
-                container.classList.remove('zoomed');
-                modalImage.style.width = '';
-                modalImage.style.height = '';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.maxHeight = '80vh';
-                container.scrollLeft = 0;
-                container.scrollTop = 0;
-            }
-        }
-
-        // Update closeModal function to reset panning
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const container = document.getElementById('imageContainer');
             
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            
-            // Reset zoom and panning
-            currentZoom = 1;
             modalImage.style.transform = `scale(${currentZoom})`;
-            modalImage.classList.remove('zoomed');
-            container.classList.remove('zoomed');
-            container.scrollLeft = 0;
-            container.scrollTop = 0;
+            modalImage.style.transition = 'transform 0.2s ease';
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-    // Prevent modal from closing when clicking inside it
-    document.querySelector('#imageModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
-    });
-});
-
-modalImage.onload = function() {
-    modalImage.style.width = '';
-    modalImage.style.height = '';
-    modalImage.style.maxWidth = '90vw';
-    modalImage.style.maxHeight = '80vh';
-    currentZoom = 1;
-};
-
-// Add panning functionality
-let isDragging = false;
-let startX, startY, scrollLeftStart, scrollTopStart;
-
-document.getElementById('imageContainer').addEventListener('mousedown', (e) => {
-    if (currentZoom > 1) {
-        isDragging = true;
-        startX = e.pageX;
-        startY = e.pageY;
-        scrollLeftStart = document.getElementById('imageContainer').scrollLeft;
-        scrollTopStart = document.getElementById('imageContainer').scrollTop;
-        document.getElementById('imageContainer').style.cursor = 'grabbing';
-    }
-});
-
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX;
-    const y = e.pageY;
-    const walkX = (startX - x);
-    const walkY = (startY - y);
-    document.getElementById('imageContainer').scrollLeft = scrollLeftStart + walkX;
-    document.getElementById('imageContainer').scrollTop = scrollTopStart + walkY;
-});
-
-document.addEventListener('mouseup', () => {
-    isDragging = false;
-    document.getElementById('imageContainer').style.cursor = currentZoom > 1 ? 'move' : 'default';
-});
-
-
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97814f05778fec1e',t:'MTc1NjY5MzQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
