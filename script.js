@@ -1,4 +1,6 @@
 let projectData = {};
+let filteredDialogIds = [];
+let filteredProjectIds = [];
 
 // Fetch project data from JSON file
 fetch('projects.json')
@@ -7,7 +9,10 @@ fetch('projects.json')
         projectData = data;
         // Any functions that need projectData to be loaded should be called from here
         setupObserver();
-        createFilterButtons();
+        createFilterButtons('graphical', ['All', 'elevation', 'butterfly view', 'dependency view', 'Design World']);
+        createFilterButtons('dialogs', ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting']);
+        filterProjects('graphical', 'All');
+        filterProjects('dialogs', 'All');
     })
     .catch(error => console.error('Error loading project data:', error));
 
@@ -18,16 +23,18 @@ const galleries = {
     graphical: {
         container: 'galleryContainer',
         counter: 'galleryCounter',
-        total: 15,
+        total: 13,
         position: 0,
-        filteredTotal: 15,
+        filteredTotal: 13,
+        ids: ['graph1', 'graph2', 'graph3', 'graph4', 'graph5', 'graph6', 'graph7', 'graph8', 'graph11', 'graph12', 'graph13', 'graph14', 'graph15'],
     },
     dialogs: {
         container: 'dialogsGalleryContainer',
         counter: 'dialogsGalleryCounter',
-        total: 15,
+        total: 17,
         position: 0,
-        filteredTotal: 15,
+        filteredTotal: 17,
+        ids: ['dialog1', 'dialog7', 'dialog8', 'dialog9', 'dialog10', 'dialog11', 'dialog12', 'dialog13', 'dialog14', 'dialog15', 'dialog17', 'dialog18', 'dialog19', 'dialog20', 'dialog21', 'dialog22', 'dialog23'],
     }
 };
 
@@ -56,8 +63,6 @@ function updateGalleryCounter(galleryName) {
 
 // Add these variables at the start of your script
 let currentProjectId = null;
-const projectIds = ['graph1', 'graph2', 'graph3', 'graph4', 'graph5', 'graph6', 'graph7', 'graph8', 'graph9', 'graph10', 'graph11', 'graph12', 'graph13', 'graph14', 'graph15'];
-const dialogIds = ['dialog1', 'dialog7', 'dialog8', 'dialog9', 'dialog10', 'dialog11', 'dialog12', 'dialog13', 'dialog14', 'dialog15', 'dialog17', 'dialog18', 'dialog19', 'dialog20', 'dialog21'];
 
 // Replace your current openModal function with this
 function openModal(projectId) {
@@ -130,9 +135,8 @@ function openPDF(url) {
 function navigateModal(direction) {
     event.stopPropagation();
     
-    // Determine which gallery we're in based on the currentProjectId
     const isDialogGallery = currentProjectId.startsWith('dialog');
-    const currentArray = isDialogGallery ? dialogIds : projectIds;
+    const currentArray = isDialogGallery ? filteredDialogIds : filteredProjectIds;
     
     const currentIndex = currentArray.indexOf(currentProjectId);
     let nextIndex;
@@ -249,24 +253,24 @@ function setupObserver() {
     });
 }
 
-function createFilterButtons() {
-    const categories = ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting'];
-    const container = document.getElementById('dialogsFilterContainer');
+function createFilterButtons(galleryName, categories) {
+    const container = document.getElementById(`${galleryName}FilterContainer`);
 
     categories.forEach(category => {
         const button = document.createElement('button');
         button.textContent = category;
         button.classList.add('px-4', 'py-2', 'text-sm', 'font-medium', 'text-slate-600', 'bg-white', 'border', 'border-slate-200', 'rounded-full', 'hover:bg-slate-50', 'transition-colors', 'shadow-sm');
-        button.onclick = () => filterDialogs(category);
+        button.onclick = () => filterProjects(galleryName, category);
         container.appendChild(button);
     });
 }
 
-function filterDialogs(category) {
-    const gallery = galleries.dialogs;
+function filterProjects(galleryName, category) {
+    const gallery = galleries[galleryName];
     const container = document.getElementById(gallery.container);
     const items = container.querySelectorAll('.gallery-thumbnail');
     let count = 0;
+    let filteredIds = [];
 
     items.forEach(item => {
         const projectId = item.getAttribute('onclick').match(/\('([^\)]+)'\)/)[1];
@@ -275,15 +279,22 @@ function filterDialogs(category) {
         if (category === 'All' || project.category === category) {
             item.style.display = 'block';
             count++;
+            filteredIds.push(projectId);
         } else {
             item.style.display = 'none';
         }
     });
 
+    if (galleryName === 'dialogs') {
+        filteredDialogIds = filteredIds;
+    } else {
+        filteredProjectIds = filteredIds;
+    }
+
     gallery.filteredTotal = count;
     gallery.position = 0;
     container.scrollLeft = 0;
-    updateGalleryCounter('dialogs');
+    updateGalleryCounter(galleryName);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
