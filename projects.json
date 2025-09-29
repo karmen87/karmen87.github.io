@@ -169,13 +169,13 @@
         "title": "Reports 1",
         "description": "System configuration interface",
         "image": "reports 1.png",
-        "category": "Other"
+        "category": "Reporting"
     },
     "dialog21": {
         "title": "Reports 2",
         "description": "System configuration interface",
         "image": "reports 2.png",
-        "category": "Other"
+        "category": "Reporting"
     },
     "dialog22": {
         "title": "Layer Manager",
