@@ -91,25 +91,25 @@
         "title": "Account Manager",
         "description": "A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.",
         "image": "account manager.png",
-        "category": "Other"
+        "category": "Configurations"
     },
     "dialog7": {
         "title": "Filter Manager 1",
         "description": "System configuration interface",
         "image": "filter manager 1.png",
-        "category": "Other"
+        "category": "Configurations"
     },
     "dialog8": {
         "title": "Filter Manager 2",
         "description": "System configuration interface",
         "image": "filter manager 2.png",
-        "category": "Other"
+        "category": "Configurations"
     },
     "dialog9": {
         "title": "Filter Manager 3",
         "description": "System configuration interface",
         "image": "filter manager 3.png",
-        "category": "Other"
+        "category": "Configurations"
     },
     "dialog10": {
         "title": "Filter Manager 4",
@@ -151,19 +151,19 @@
         "title": "MAC 1",
         "description": "System configuration interface",
         "image": "MAC 1.png",
-        "category": "Other"
+        "category": "Configurations"
     },
     "dialog18": {
         "title": "MAC 2",
         "description": "System configuration interface",
         "image": "MAC 2.png",
-        "category": "Other"
+        "category": "Configurations"
     },
     "dialog19": {
         "title": "Manager Dialog",
         "description": "System configuration interface",
         "image": "manager dialog.png",
-        "category": "Other"
+        "category": "Configurations"
     },
     "dialog20": {
         "title": "Reports 1",
