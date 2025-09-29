@@ -9,8 +9,8 @@ fetch('projects.json')
         projectData = data;
         // Any functions that need projectData to be loaded should be called from here
         setupObserver();
-        createFilterButtons('graphical', ['All', 'elevation', 'butterfly view', 'dependency view', 'Design World']);
-        createFilterButtons('dialogs', ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting']);
+        createFilterButtons('graphical', ['All', 'elevation', 'butterfly view', 'dependency view', 'design world']);
+        createFilterButtons('dialogs', ['All', 'management', 'use cases', 'configurations', 'reporting']);
         filterProjects('graphical', 'All');
         filterProjects('dialogs', 'All');
     })
@@ -254,7 +254,7 @@ function createFilterButtons(galleryName, categories) {
 
     categories.forEach(category => {
         const button = document.createElement('button');
-        button.textContent = category;
+        button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
         button.classList.add('px-4', 'py-2', 'text-sm', 'font-medium', 'text-slate-600', 'bg-white', 'border', 'border-slate-200', 'rounded-full', 'hover:bg-slate-50', 'transition-colors', 'shadow-sm');
         button.onclick = () => filterProjects(galleryName, category);
         container.appendChild(button);
@@ -272,7 +272,7 @@ function filterProjects(galleryName, category) {
         const projectId = item.getAttribute('onclick').match(/\('([^\)]+)'\)/)[1];
         const project = projectData[projectId];
 
-        if (category === 'All' || project.category === category) {
+        if (category === 'All' || (project.category && project.category.toLowerCase() === category.toLowerCase())) {
             item.style.display = 'block';
             count++;
             filteredIds.push(projectId);
