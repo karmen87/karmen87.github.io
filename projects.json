@@ -1,0 +1,157 @@
+{
+    "graph1": {
+        "title": "Rack Elevation",
+        "description": "A diagram illustrating the arrangement of IT equipment in a server rack, designed for tracking and managing data center resources.",
+        "image": "rack elevation.PNG"
+    },
+    "graph2": {
+        "title": "Row Elevation",
+        "description": "A diagram showing the layout of IT equipment in a single row of a server rack, used for tracking and managing data center resources.",
+        "image": "row elevation.png"
+    },
+    "graph3": {
+        "title": "Equipment Elevation",
+        "description": "A diagram depicting the configuration of an individual piece of IT equipment, used for tracking and managing data center resources.",
+        "image": "equipment elevation.png"
+    },
+    "graph4": {
+        "title": "Butterfly View",
+        "description": "A \"Butterfly View\" is a diagram illustrating a manhole's internal duct configuration, visualizing occupied and available conduits for telecommunications and utility management.",
+        "image": "butterfly diagram.png"
+    },
+    "graph5": {
+        "title": "Butterfly View - Cables",
+        "description": "This \"butterfly view\" shows the duct and cable configuration, allowing users to visualize and manage occupied and available conduits and cables within the manhole.",
+        "image": "butterfly diagram - cables.png"
+    },
+    "graph6": {
+        "title": "Butterfly View - Notes",
+        "description": "This \"butterfly view\" provides additional notes and details about the manhole's configuration.",
+        "image": "butterfly diagram - notes.png"
+    },
+    "graph7": {
+        "title": "Dependency View - Access",
+        "description": "Visual representation of different ways to access Dependency View from various parts of the application",
+        "image": "dependency view - access.png"
+    },
+    "graph8": {
+        "title": "Dependency View",
+        "description": "The Dependency View visually represents network devices and their interconnections within an infrastructure layout.",
+        "image": "dependency view.png"
+    },
+    "graph9": {
+        "title": "Layer Manager",
+        "description": "Interface that provides tools for organizing and controlling layers within a CAD-like workspace",
+        "image": "layer manager.png"
+    },
+    "graph10": {
+        "title": "Layer Manager 2",
+        "description": "Another view of the layer management interface with additional filtering features",
+        "image": "layer manager 2.png"
+    },
+    "dialog1": {
+        "title": "Account Manager",
+        "description": "A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.",
+        "image": "account manager.png"
+    },
+    "dialog2": {
+        "title": "Design World 1",
+        "description": "System configuration interface",
+        "image": "design world 1.png"
+    },
+    "dialog3": {
+        "title": "Design World 2",
+        "description": "System configuration interface",
+        "image": "design world 2.png"
+    },
+    "dialog4": {
+        "title": "Design World 3",
+        "description": "System configuration interface",
+        "image": "design world 3.png"
+    },
+    "dialog5": {
+        "title": "Design World 4",
+        "description": "System configuration interface",
+        "image": "design world 4.png"
+    },
+    "dialog6": {
+        "title": "Design World 5",
+        "description": "System configuration interface",
+        "image": "design world 5.png"
+    },
+    "dialog7": {
+        "title": "Filter Manager 1",
+        "description": "System configuration interface",
+        "image": "filter manager 1.png"
+    },
+    "dialog8": {
+        "title": "Filter Manager 2",
+        "description": "System configuration interface",
+        "image": "filter manager 2.png"
+    },
+    "dialog9": {
+        "title": "Filter Manager 3",
+        "description": "System configuration interface",
+        "image": "filter manager 3.png"
+    },
+    "dialog10": {
+        "title": "Filter Manager 4",
+        "description": "System configuration interface",
+        "image": "filter manager 4.png"
+    },
+    "dialog11": {
+        "title": "Filter Manager 5",
+        "description": "System configuration interface",
+        "image": "filter manager 5.png"
+    },
+    "dialog12": {
+        "title": "Filter Manager 6",
+        "description": "System configuration interface",
+        "image": "filter manager 6.png"
+    },
+    "dialog13": {
+        "title": "Filter Manager 7",
+        "description": "System configuration interface",
+        "image": "filter manager 7.png"
+    },
+    "dialog14": {
+        "title": "Filter Manager 8",
+        "description": "System configuration interface",
+        "image": "filter manager 8.png"
+    },
+    "dialog15": {
+        "title": "Global Console 1",
+        "description": "System configuration interface",
+        "image": "global console 1.png"
+    },
+    "dialog16": {
+        "title": "Global Console 2",
+        "description": "System configuration interface",
+        "image": "global console 2.png"
+    },
+    "dialog17": {
+        "title": "MAC 1",
+        "description": "System configuration interface",
+        "image": "mac 1.png"
+    },
+    "dialog18": {
+        "title": "MAC 2",
+        "description": "System configuration interface",
+        "image": "mac 2.png"
+    },
+    "dialog19": {
+        "title": "Manager Dialog",
+        "description": "System configuration interface",
+        "image": "manager dialog.png"
+    },
+    "dialog20": {
+        "title": "Reports 1",
+        "description": "System configuration interface",
+        "image": "reports 1.png"
+    },
+    "dialog21": {
+        "title": "Reports 2",
+        "description": "System configuration interface",
+        "image": "reports 2.png"
+    }
+}
