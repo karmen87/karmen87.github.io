@@ -10,7 +10,7 @@ fetch('projects.json')
         // Any functions that need projectData to be loaded should be called from here
         setupObserver();
         createFilterButtons('graphical', ['All', 'elevation', 'butterfly view', 'dependency view', 'Design World']);
-        createFilterButtons('dialogs', ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting', 'Other']);
+        createFilterButtons('dialogs', ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting']);
         filterProjects('graphical', 'All');
         filterProjects('dialogs', 'All');
     })
@@ -23,17 +23,13 @@ const galleries = {
     graphical: {
         container: 'galleryContainer',
         counterTextElement: 'galleryCounterText',
-        total: 13,
         position: 0,
-        filteredTotal: 13,
         ids: ['graph1', 'graph2', 'graph3', 'graph4', 'graph5', 'graph6', 'graph7', 'graph8', 'graph11', 'graph12', 'graph13', 'graph14', 'graph15']
     },
     dialogs: {
         container: 'dialogsGalleryContainer',
         counterTextElement: 'dialogsGalleryCounterText',
-        total: 17,
         position: 0,
-        filteredTotal: 17,
         ids: ['dialog1', 'dialog7', 'dialog8', 'dialog9', 'dialog10', 'dialog11', 'dialog12', 'dialog13', 'dialog14', 'dialog15', 'dialog17', 'dialog18', 'dialog19', 'dialog20', 'dialog21', 'dialog22', 'dialog23']
     }
 };
@@ -57,6 +53,7 @@ function updateGalleryCounter(galleryName) {
     const gallery = galleries[galleryName];
     const startIndex = Math.floor(gallery.position / thumbnailWidth) + 1;
     const endIndex = Math.min(startIndex + visibleThumbnails - 1, gallery.filteredTotal);
+    console.log('updating counter', galleryName, gallery.filteredTotal);
     document.getElementById(gallery.counterTextElement).textContent = `${startIndex}-${endIndex} of ${gallery.filteredTotal}`;
 }
 
