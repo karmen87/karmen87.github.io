@@ -10,7 +10,7 @@ fetch('projects.json')
         // Any functions that need projectData to be loaded should be called from here
         setupObserver();
         createFilterButtons('graphical', ['All', 'elevation', 'butterfly view', 'dependency view', 'Design World']);
-        createFilterButtons('dialogs', ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting']);
+        createFilterButtons('dialogs', ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting', 'Other']);
         filterProjects('graphical', 'All');
         filterProjects('dialogs', 'All');
     })
