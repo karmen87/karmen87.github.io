@@ -16,7 +16,7 @@ fetch('projects.json')
     })
     .catch(error => console.error('Error loading project data:', error));
 
-const thumbnailWidth = 296; // 280px + 16px gap
+const thumbnailWidth = 294; // 278px + 16px gap
 const visibleThumbnails = 4;
 
 const galleries = {
