@@ -53,7 +53,6 @@ function updateGalleryCounter(galleryName) {
     const gallery = galleries[galleryName];
     const startIndex = Math.floor(gallery.position / thumbnailWidth) + 1;
     const endIndex = Math.min(startIndex + visibleThumbnails - 1, gallery.filteredTotal);
-    console.log('updating counter', galleryName, gallery.filteredTotal);
     document.getElementById(gallery.counterTextElement).textContent = `${startIndex}-${endIndex} of ${gallery.filteredTotal}`;
 }
 

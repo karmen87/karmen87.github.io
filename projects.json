@@ -152,8 +152,7 @@
         "description": "System configuration interface",
         "image": "MAC 1.png",
         "category": "Configurations"
-    },
-    "dialog18": {
+    },"dialog18": {
         "title": "MAC 2",
         "description": "System configuration interface",
         "image": "MAC 2.png",
@@ -163,7 +162,7 @@
         "title": "Manager Dialog",
         "description": "System configuration interface",
         "image": "manager dialog.png",
-        "category": "Configurations"
+        "category": "Management"
     },
     "dialog20": {
         "title": "Reports 1",
