@@ -5,91 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Karmen Kardum</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .gallery-item {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        .modal {
-            backdrop-filter: blur(8px);
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .gallery-thumbnail {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .gallery-thumbnail:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-        /* Add to your existing style section */
-       
-        #imageContainer {
-            overflow: hidden; /* Default state */
-            max-width: 90vw;
-            max-height: 80vh;
-            display: flex;
-            justify-content: center; /* Center by default */
-            align-items: center; /* Center by default */
-            position: relative;
-        }
-
-        #imageContainer.zoomed {
-            overflow: auto;
-            cursor: move;
-            justify-content: flex-start; /* Prevent cropping when zoomed */
-            align-items: flex-start; /* Prevent cropping when zoomed */
-        }
-
-        #modalImage {
-            max-width: 90vw;
-            max-height: 80vh;
-            object-fit: contain;
-            transition: width 0.2s ease, height 0.2s ease;
-            display: block;
-        }
-
-        #modalImage.zoomed {
-            max-width: none;
-            max-height: none;
-        }
-
-        .modal-content-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            padding: 2rem;
-            position: relative;
-        }
-
-        /* Navigation arrows */
-        button[onclick="navigateModal('prev')"],
-        button[onclick="navigateModal('next')"] {
-            z-index: 60; /* Increase z-index to ensure arrows are above image */
-            padding: 1rem; /* Increase padding for better visibility */
-            background: rgba(0, 0, 0, 0.4); /* Add semi-transparent background for contrast */
-            border-radius: 50%;
-        }
-
-        button[onclick="navigateModal('prev')"] {
-            left: 1rem; /* Move slightly away from edge for better visibility */
-        }
-
-        button[onclick="navigateModal('next')"] {
-            right: 1rem; /* Move slightly away from edge for better visibility */
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
     <!-- Header -->
@@ -160,104 +76,104 @@
                 <div id="galleryContainer" class="overflow-x-auto scrollbar-hide" style="scroll-behavior: smooth;">
                     <div class="flex space-x-4 pb-4" style="width: max-content;">
                         <!-- Rack Elevation -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph1')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph1')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="rack elevation.PNG" alt="Rack Elevation" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable - Check permissions</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Rack Elevation</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Row Elevation -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph2')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph2')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="row elevation.png" alt="Row Elevation" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Row Elevation</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Equipment Elevation -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph3')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph3')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="equipment elevation.png" alt="Equipment Elevation" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Equipment Elevation</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Butterfly View -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph4')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph4')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="butterfly diagram.png" alt="Butterfly View" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Butterfly View</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Butterfly View - Cables -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph5')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph5')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="butterfly diagram - cables.png" alt="Butterfly View - Cables" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Butterfly View - Cables</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Butterfly View - Notes -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph6')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph6')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="butterfly diagram - notes.png" alt="Butterfly View - Notes" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Butterfly View - Notes</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Dependency View - Access -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph7')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph7')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="dependency view - access.png" alt="Dependency View - Access" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Dependency View - Access</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Dependency View -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph8')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph8')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="dependency view.png" alt="Dependency View" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Dependency View</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Layer Manager -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph9')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph9')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="layer manager.png" alt="Layer Manager" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Layer Manager</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Layer Manager 2 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph10')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph10')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="layer manager 2.png" alt="Layer Manager 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Layer Manager 2</h3>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -292,214 +208,214 @@
                 <div id="dialogsGalleryContainer" class="overflow-x-auto scrollbar-hide" style="scroll-behavior: smooth;">
                     <div class="flex space-x-4 pb-4" style="width: max-content;">
                         <!-- Account Manager -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog1')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog1')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="account manager.png" alt="Account Manager" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Account Manager</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Design World 1 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog2')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog2')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="design world 1.png" alt="Design World 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Design World 1</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Design World 2 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog3')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog3')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="design world 2.png" alt="Design World 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Design World 2</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Design World 3 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog4')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog4')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="design world 3.png" alt="Design World 3" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Design World 3</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Design World 4 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog5')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog5')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="design world 4.png" alt="Design World 4" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Design World 4</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Design World 5 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog6')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog6')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="design world 5.png" alt="Design World 5" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Design World 5</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 1 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog7')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog7')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 1.png" alt="Filter Manager 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 1</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 2 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog8')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog8')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 2.png" alt="Filter Manager 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 2</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 3 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog9')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog9')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 3.png" alt="Filter Manager 3" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 3</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 4 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog10')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog10')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 4.png" alt="Filter Manager 4" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 4</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 5 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog11')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog11')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 5.png" alt="Filter Manager 5" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 5</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 6 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog12')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog12')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 6.png" alt="Filter Manager 6" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 6</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 7 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog13')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog13')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 7.png" alt="Filter Manager 7" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 7</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Filter Manager 8 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog14')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog14')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="filter manager 8.png" alt="Filter Manager 8" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Filter Manager 8</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Global Console 1 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog15')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog15')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="global console 1.png" alt="Global Console 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Global Console 1</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Global Console 2 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog16')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog16')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="global console 2.png" alt="Global Console 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Global Console 2</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- MAC 1 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog17')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog17')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="mac 1.png" alt="MAC 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">MAC 1</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- MAC 2 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog18')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog18')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="mac 2.png" alt="MAC 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">MAC 2</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Manager Dialog -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog19')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog19')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="manager dialog.png" alt="Manager Dialog" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Manager Dialog</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Reports 1 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog20')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog20')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="reports 1.png" alt="Reports 1" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Reports 1</h3>
                             </div>
-                        </div>
+                        </button>
 
                         <!-- Reports 2 -->
-                        <div class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog21')" style="width: 280px; flex-shrink: 0;">
+                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog21')" style="width: 280px; flex-shrink: 0;">
                             <div class="aspect-video bg-slate-100 overflow-hidden">
                                 <img src="reports 2.png" alt="Reports 2" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
                             </div>
                             <div class="p-3">
                                 <h3 class="font-medium text-slate-900 text-sm mb-1">Reports 2</h3>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -596,442 +512,6 @@
         </div>
     </div>
 
-    <script>
-        const projectData = {
-    // Graphical Functions gallery
-    'graph1': { 
-        title: 'Rack Elevation', 
-        description: 'A diagram illustrating the arrangement of IT equipment in a server rack, designed for tracking and managing data center resources.',
-        image: 'rack elevation.PNG'
-    },
-    'graph2': { 
-        title: 'Row Elevation', 
-        description: 'A diagram showing the layout of IT equipment in a single row of a server rack, used for tracking and managing data center resources.',
-        image: 'row elevation.png'
-    },
-    'graph3': { 
-        title: 'Equipment Elevation', 
-        description: 'A diagram depicting the configuration of an individual piece of IT equipment, used for tracking and managing data center resources.',
-        image: 'equipment elevation.png'
-    },
-    'graph4': { 
-        title: 'Butterfly View', 
-        description: 'A "Butterfly View" is a diagram illustrating a manhole\'s internal duct configuration, visualizing occupied and available conduits for telecommunications and utility management.',
-        image: 'butterfly diagram.png'
-    },
-    'graph5': { 
-        title: 'Butterfly View - Cables', 
-        description: 'This "butterfly view" shows the duct and cable configuration, allowing users to visualize and manage occupied and available conduits and cables within the manhole.',
-        image: 'butterfly diagram - cables.png'
-    },
-    'graph6': { 
-        title: 'Butterfly View - Notes', 
-        description: 'This "butterfly view" provides additional notes and details about the manhole\'s configuration.',
-        image: 'butterfly diagram - notes.png'
-    },
-    'graph7': { 
-        title: 'Dependency View - Access', 
-        description: 'Visual representation of different ways to access Dependency View from various parts of the application',
-        image: 'dependency view - access.png'
-    },
-    'graph8': { 
-        title: 'Dependency View', 
-        description: 'The Dependency View visually represents network devices and their interconnections within an infrastructure layout.',
-        image: 'dependency view.png'
-    },
-    'graph9': { 
-        title: 'Layer Manager', 
-        description: 'Interface that provides tools for organizing and controlling layers within a CAD-like workspace',
-        image: 'layer manager.png'
-    },
-    'graph10': { 
-        title: 'Layer Manager 2', 
-        description: 'Another view of the layer management interface with additional filtering features',
-        image: 'layer manager 2.png'
-    },
-
-    // Dialogs gallery
-    'dialog1': { 
-        title: 'Account Manager', 
-        description: 'A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.',
-        image: 'account manager.png'
-    },
-    'dialog2': { 
-        title: 'Design World 1', 
-        description: 'System configuration interface',
-        image: 'design world 1.png'
-    },
-    'dialog3': { 
-        title: 'Design World 2', 
-        description: 'System configuration interface',
-        image: 'design world 2.png'
-    },
-    'dialog4': { 
-        title: 'Design World 3', 
-        description: 'System configuration interface',
-        image: 'design world 3.png'
-    },
-    'dialog5': { 
-        title: 'Design World 4', 
-        description: 'System configuration interface',
-        image: 'design world 4.png'
-    },
-    'dialog6': { 
-        title: 'Design World 5', 
-        description: 'System configuration interface',
-        image: 'design world 5.png'
-    },
-    'dialog7': { 
-        title: 'Filter Manager 1', 
-        description: 'System configuration interface',
-        image: 'filter manager 1.png'
-    },
-    'dialog8': { 
-        title: 'Filter Manager 2', 
-        description: 'System configuration interface',
-        image: 'filter manager 2.png'
-    },
-    'dialog9': { 
-        title: 'Filter Manager 3', 
-        description: 'System configuration interface',
-        image: 'filter manager 3.png'
-    },
-    'dialog10': { 
-        title: 'Filter Manager 4', 
-        description: 'System configuration interface',
-        image: 'filter manager 4.png'
-    },
-    'dialog11': { 
-        title: 'Filter Manager 5', 
-        description: 'System configuration interface',
-        image: 'filter manager 5.png'
-    },
-    'dialog12': { 
-        title: 'Filter Manager 6', 
-        description: 'System configuration interface',
-        image: 'filter manager 6.png'
-    },
-    'dialog13': { 
-        title: 'Filter Manager 7', 
-        description: 'System configuration interface',
-        image: 'filter manager 7.png'
-    },
-    'dialog14': { 
-        title: 'Filter Manager 8', 
-        description: 'System configuration interface',
-        image: 'filter manager 8.png'
-    },
-    'dialog15': { 
-        title: 'Global Console 1', 
-        description: 'System configuration interface',
-        image: 'global console 1.png'
-    },
-    'dialog16': { 
-        title: 'Global Console 2', 
-        description: 'System configuration interface',
-        image: 'global console 2.png'
-    },
-    'dialog17': { 
-        title: 'MAC 1', 
-        description: 'System configuration interface',
-        image: 'mac 1.png'
-    },
-    'dialog18': { 
-        title: 'MAC 2', 
-        description: 'System configuration interface',
-        image: 'mac 2.png'
-    },
-    'dialog19': { 
-        title: 'Manager Dialog', 
-        description: 'System configuration interface',
-        image: 'manager dialog.png'
-    },
-    'dialog20': { 
-        title: 'Reports 1', 
-        description: 'System configuration interface',
-        image: 'reports 1.png'
-    },
-    'dialog21': { 
-        title: 'Reports 2', 
-        description: 'System configuration interface',
-        image: 'reports 2.png'
-    }
-};
-
-        let currentScrollPosition = 0;
-        const thumbnailWidth = 296; // 280px + 16px gap
-        const visibleThumbnails = 4;
-        const totalThumbnails = 10;
-
-        // Add these variables for the dialogs gallery
-        let dialogsScrollPosition = 0;
-        const totalDialogs = 21;
-
-        // Add these variables at the start of your script
-        let currentProjectId = null;
-        const projectIds = ['graph1', 'graph2', 'graph3', 'graph4', 'graph5', 'graph6', 'graph7', 'graph8', 'graph9', 'graph10'];
-        const dialogIds = ['dialog1', 'dialog2', 'dialog3', 'dialog4', 'dialog5', 'dialog6', 'dialog7', 'dialog8', 'dialog9', 'dialog10', 
-    'dialog11', 'dialog12', 'dialog13', 'dialog14', 'dialog15', 'dialog16', 'dialog17', 'dialog18', 'dialog19', 'dialog20', 'dialog21'];
-
-        function scrollGallery(direction) {
-            const container = document.getElementById('galleryContainer');
-            const maxScroll = (totalThumbnails - visibleThumbnails) * thumbnailWidth;
-            
-            if (direction === 'left') {
-                currentScrollPosition = Math.max(0, currentScrollPosition - thumbnailWidth);
-            } else {
-                currentScrollPosition = Math.min(maxScroll, currentScrollPosition + thumbnailWidth);
-            }
-            
-            container.scrollLeft = currentScrollPosition;
-            updateGalleryCounter();
-        }
-
-        function updateGalleryCounter() {
-            const startIndex = Math.floor(currentScrollPosition / thumbnailWidth) + 1;
-            const endIndex = Math.min(startIndex + visibleThumbnails - 1, totalThumbnails);
-            document.getElementById('galleryCounter').textContent = `${startIndex}-${endIndex}`;
-        }
-
-        function scrollDialogsGallery(direction) {
-            const container = document.getElementById('dialogsGalleryContainer');
-            const maxScroll = (totalDialogs - visibleThumbnails) * thumbnailWidth;
-            
-            if (direction === 'left') {
-                dialogsScrollPosition = Math.max(0, dialogsScrollPosition - thumbnailWidth);
-            } else {
-                dialogsScrollPosition = Math.min(maxScroll, dialogsScrollPosition + thumbnailWidth);
-            }
-            
-            container.scrollLeft = dialogsScrollPosition;
-            updateDialogsGalleryCounter();
-        }
-
-        function updateDialogsGalleryCounter() {
-            const startIndex = Math.floor(dialogsScrollPosition / thumbnailWidth) + 1;
-            const endIndex = Math.min(startIndex + visibleThumbnails - 1, totalDialogs);
-            document.getElementById('dialogsGalleryCounter').textContent = `${startIndex}-${endIndex}`;
-        }
-
-        // Replace your current openModal function with this
-        function openModal(projectId) {
-            currentProjectId = projectId;
-            const modal = document.getElementById('imageModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalImage = document.getElementById('modalImage');
-            const modalDescription = document.getElementById('modalDescription');
-            const container = document.getElementById('imageContainer');
-            
-            const project = projectData[projectId];
-            if (!project) return;
-
-            modalTitle.textContent = project.title;
-            modalDescription.textContent = project.description;
-            
-            if (project.image) {
-                modalImage.src = project.image;
-                modalImage.alt = project.title;
-                modalImage.classList.remove('hidden');
-                modalImage.classList.remove('zoomed');
-                container.classList.remove('zoomed');
-                container.scrollLeft = 0;
-                container.scrollTop = 0;
-                // Reset image styles for centering
-                modalImage.style.width = '';
-                modalImage.style.height = '';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.maxHeight = '80vh';
-            }
-            
-            // Reset zoom when opening new image
-            currentZoom = 1;
-            modalImage.style.transform = `scale(${currentZoom})`;
-            
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const container = document.getElementById('imageContainer');
-            
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            
-            // Reset zoom and panning
-            currentZoom = 1;
-            modalImage.style.transform = `scale(${currentZoom})`;
-            modalImage.classList.remove('zoomed');
-            container.classList.remove('zoomed');
-            container.scrollLeft = 0;
-            container.scrollTop = 0;
-        }
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Function to open PDF documents
-        function openPDF(url) {
-            window.open(url, '_blank');
-        }
-
-        // Add the navigation function
-        function navigateModal(direction) {
-            event.stopPropagation();
-            
-            // Determine which gallery we're in based on the currentProjectId
-            const isDialogGallery = currentProjectId.startsWith('dialog');
-            const currentArray = isDialogGallery ? dialogIds : projectIds;
-            
-            const currentIndex = currentArray.indexOf(currentProjectId);
-            let nextIndex;
-            
-            if (direction === 'prev') {
-                nextIndex = currentIndex > 0 ? currentIndex - 1 : currentArray.length - 1;
-            } else {
-                nextIndex = currentIndex < currentArray.length - 1 ? currentIndex + 1 : 0;
-            }
-            
-            currentProjectId = currentArray[nextIndex];
-            openModal(currentProjectId);
-        }
-
-        // keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (!document.getElementById('imageModal').classList.contains('hidden')) {
-                if (e.key === 'Escape') {
-                    closeModal();
-                } else if (e.key === 'ArrowLeft') {
-                    navigateModal('prev');
-                } else if (e.key === 'ArrowRight') {
-                    navigateModal('next');
-                }
-            }
-        });
-
-    // Update these zoom-related variables
-        let currentZoom = 1;
-        const maxZoom = 3;
-        const minZoom = 0.5;
-        const zoomStep = 0.4; // Changed from 0.3 to 0.4 for 140% initial zoom
-
-        function zoomImage(direction) {
-            event.stopPropagation();
-            const modalImage = document.getElementById('modalImage');
-            const container = document.getElementById('imageContainer');
-            const previousZoom = currentZoom;
-
-            // Get natural size
-            const naturalWidth = modalImage.naturalWidth;
-            const naturalHeight = modalImage.naturalHeight;
-
-            // Store the current center point (relative to the image) before zooming
-            const scrollLeftRatio = container.scrollLeft / modalImage.offsetWidth;
-            const scrollTopRatio = container.scrollTop / modalImage.offsetHeight;
-
-            if (direction === 'in' && currentZoom < maxZoom) {
-                currentZoom = Math.min(maxZoom, currentZoom + zoomStep);
-            } else if (direction === 'out' && currentZoom > minZoom) {
-                currentZoom = Math.max(minZoom, currentZoom - zoomStep);
-            }
-
-            if (currentZoom > 1) {
-                modalImage.classList.add('zoomed');
-                container.classList.add('zoomed');
-                modalImage.style.width = (naturalWidth * currentZoom) + 'px';
-                modalImage.style.height = (naturalHeight * currentZoom) + 'px';
-                modalImage.style.maxWidth = 'none';
-                modalImage.style.maxHeight = 'none';
-
-                // Maintain the same relative scroll position after zooming
-                setTimeout(() => {
-                    container.scrollLeft = scrollLeftRatio * modalImage.offsetWidth;
-                    container.scrollTop = scrollTopRatio * modalImage.offsetHeight;
-                }, 0);
-            } else {
-                modalImage.classList.remove('zoomed');
-                container.classList.remove('zoomed');
-                modalImage.style.width = '';
-                modalImage.style.height = '';
-                modalImage.style.maxWidth = '90vw';
-                modalImage.style.maxHeight = '80vh';
-                container.scrollLeft = 0;
-                container.scrollTop = 0;
-            }
-        }
-
-        // Update closeModal function to reset panning
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const container = document.getElementById('imageContainer');
-            
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            
-            // Reset zoom and panning
-            currentZoom = 1;
-            modalImage.style.transform = `scale(${currentZoom})`;
-            modalImage.classList.remove('zoomed');
-            container.classList.remove('zoomed');
-            container.scrollLeft = 0;
-            container.scrollTop = 0;
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-    // Prevent modal from closing when clicking inside it
-    document.querySelector('#imageModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
-    });
-});
-
-modalImage.onload = function() {
-    modalImage.style.width = '';
-    modalImage.style.height = '';
-    modalImage.style.maxWidth = '90vw';
-    modalImage.style.maxHeight = '80vh';
-    currentZoom = 1;
-};
-
-// Add panning functionality
-let isDragging = false;
-let startX, startY, scrollLeftStart, scrollTopStart;
-
-document.getElementById('imageContainer').addEventListener('mousedown', (e) => {
-    if (currentZoom > 1) {
-        isDragging = true;
-        startX = e.pageX;
-        startY = e.pageY;
-        scrollLeftStart = document.getElementById('imageContainer').scrollLeft;
-        scrollTopStart = document.getElementById('imageContainer').scrollTop;
-        document.getElementById('imageContainer').style.cursor = 'grabbing';
-    }
-});
-
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX;
-    const y = e.pageY;
-    const walkX = (startX - x);
-    const walkY = (startY - y);
-    document.getElementById('imageContainer').scrollLeft = scrollLeftStart + walkX;
-    document.getElementById('imageContainer').scrollTop = scrollTopStart + walkY;
-});
-
-document.addEventListener('mouseup', () => {
-    isDragging = false;
-    document.getElementById('imageContainer').style.cursor = currentZoom > 1 ? 'move' : 'default';
-});
-
-
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97814f05778fec1e',t:'MTc1NjY5MzQzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    <script src="script.js"></script>
+</body>
 </html>
