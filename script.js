@@ -20,6 +20,7 @@ const galleries = {
         counter: 'galleryCounter',
         total: 15,
         position: 0,
+        filteredTotal: 15,
     },
     dialogs: {
         container: 'dialogsGalleryContainer',
@@ -245,11 +246,6 @@ function setupObserver() {
     items.forEach(item => {
         item.classList.add('hidden-initial');
         observer.observe(item);
-    });
-
-    const thumbnails = document.querySelectorAll('.gallery-thumbnail h3');
-    thumbnails.forEach(thumbnail => {
-        thumbnail.classList.add('font-bold');
     });
 }
 
