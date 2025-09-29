@@ -1,4 +1,4 @@
-        .gallery-item {
+.gallery-item {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .gallery-item:hover {
@@ -79,4 +79,15 @@
 
         button[onclick="navigateModal('next')"] {
             right: 1rem; /* Move slightly away from edge for better visibility */
+        }
+
+        .gallery-item.hidden-initial {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
