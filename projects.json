@@ -97,19 +97,19 @@
         "title": "Filter Manager 1",
         "description": "System configuration interface",
         "image": "filter manager 1.png",
-        "category": "Configurations"
+        "category": "Management"
     },
     "dialog8": {
         "title": "Filter Manager 2",
         "description": "System configuration interface",
         "image": "filter manager 2.png",
-        "category": "Configurations"
+        "category": "Management"
     },
     "dialog9": {
         "title": "Filter Manager 3",
         "description": "System configuration interface",
         "image": "filter manager 3.png",
-        "category": "Configurations"
+        "category": "Management"
     },
     "dialog10": {
         "title": "Filter Manager 4",
