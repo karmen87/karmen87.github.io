@@ -1,0 +1,82 @@
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            backdrop-filter: blur(8px);
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .gallery-thumbnail {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .gallery-thumbnail:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        /* Add to your existing style section */
+       
+        #imageContainer {
+            overflow: hidden; /* Default state */
+            max-width: 90vw;
+            max-height: 80vh;
+            display: flex;
+            justify-content: center; /* Center by default */
+            align-items: center; /* Center by default */
+            position: relative;
+        }
+
+        #imageContainer.zoomed {
+            overflow: auto;
+            cursor: move;
+            justify-content: flex-start; /* Prevent cropping when zoomed */
+            align-items: flex-start; /* Prevent cropping when zoomed */
+        }
+
+        #modalImage {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            transition: width 0.2s ease, height 0.2s ease;
+            display: block;
+        }
+
+        #modalImage.zoomed {
+            max-width: none;
+            max-height: none;
+        }
+
+        .modal-content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Navigation arrows */
+        button[onclick="navigateModal('prev')"],
+        button[onclick="navigateModal('next')"] {
+            z-index: 60; /* Increase z-index to ensure arrows are above image */
+            padding: 1rem; /* Increase padding for better visibility */
+            background: rgba(0, 0, 0, 0.4); /* Add semi-transparent background for contrast */
+            border-radius: 50%;
+        }
+
+        button[onclick="navigateModal('prev')"] {
+            left: 1rem; /* Move slightly away from edge for better visibility */
+        }
+
+        button[onclick="navigateModal('next')"] {
+            right: 1rem; /* Move slightly away from edge for better visibility */
+        }
