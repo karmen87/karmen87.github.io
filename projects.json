@@ -91,25 +91,25 @@
         "title": "Account Manager",
         "description": "A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.",
         "image": "account manager.png",
-        "category": "Management"
+        "category": "Other"
     },
     "dialog7": {
         "title": "Filter Manager 1",
         "description": "System configuration interface",
         "image": "filter manager 1.png",
-        "category": "Use Cases"
+        "category": "Other"
     },
     "dialog8": {
         "title": "Filter Manager 2",
         "description": "System configuration interface",
         "image": "filter manager 2.png",
-        "category": "Management"
+        "category": "Other"
     },
     "dialog9": {
         "title": "Filter Manager 3",
         "description": "System configuration interface",
         "image": "filter manager 3.png",
-        "category": "Use Cases"
+        "category": "Other"
     },
     "dialog10": {
         "title": "Filter Manager 4",
@@ -145,36 +145,48 @@
         "title": "Global Console 1",
         "description": "System configuration interface",
         "image": "global console 1.png",
-        "category": "Configurations"
+        "category": "Management"
     },
     "dialog17": {
         "title": "MAC 1",
         "description": "System configuration interface",
         "image": "MAC 1.png",
-        "category": "Configurations"
+        "category": "Other"
     },
     "dialog18": {
         "title": "MAC 2",
         "description": "System configuration interface",
         "image": "MAC 2.png",
-        "category": "Configurations"
+        "category": "Other"
     },
     "dialog19": {
         "title": "Manager Dialog",
         "description": "System configuration interface",
         "image": "manager dialog.png",
-        "category": "Management"
+        "category": "Other"
     },
     "dialog20": {
         "title": "Reports 1",
         "description": "System configuration interface",
         "image": "reports 1.png",
-        "category": "Reporting"
+        "category": "Other"
     },
     "dialog21": {
         "title": "Reports 2",
         "description": "System configuration interface",
         "image": "reports 2.png",
-        "category": "Reporting"
+        "category": "Other"
+    },
+    "dialog22": {
+        "title": "Layer Manager",
+        "description": "Interface that provides tools for organizing and controlling layers within a CAD-like workspace",
+        "image": "layer manager.png",
+        "category": "Management"
+    },
+    "dialog23": {
+        "title": "Layer Manager 2",
+        "description": "Another view of the layer management interface with additional filtering features",
+        "image": "layer manager 2.png",
+        "category": "Management"
     }
 }
