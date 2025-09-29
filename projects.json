@@ -49,109 +49,119 @@
         "description": "Another view of the layer management interface with additional filtering features",
         "image": "layer manager 2.png"
     },
-    "dialog1": {
-        "title": "Account Manager",
-        "description": "A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.",
-        "image": "account manager.png"
-    },
-    "dialog2": {
+    "graph11": {
         "title": "Design World 1",
         "description": "System configuration interface",
         "image": "design world 1.png"
     },
-    "dialog3": {
+    "graph12": {
         "title": "Design World 2",
         "description": "System configuration interface",
         "image": "design world 2.png"
     },
-    "dialog4": {
+    "graph13": {
         "title": "Design World 3",
         "description": "System configuration interface",
         "image": "design world 3.png"
     },
-    "dialog5": {
+    "graph14": {
         "title": "Design World 4",
         "description": "System configuration interface",
         "image": "design world 4.png"
     },
-    "dialog6": {
+    "graph15": {
         "title": "Design World 5",
         "description": "System configuration interface",
         "image": "design world 5.png"
     },
+    "dialog1": {
+        "title": "Account Manager",
+        "description": "A user-friendly layout for managing account details, contact information, and billing settings with options to create new accounts and customize templates.",
+        "image": "account manager.png",
+        "category": "Management"
+    },
     "dialog7": {
         "title": "Filter Manager 1",
         "description": "System configuration interface",
-        "image": "filter manager 1.png"
+        "image": "filter manager 1.png",
+        "category": "Use Cases"
     },
     "dialog8": {
         "title": "Filter Manager 2",
         "description": "System configuration interface",
-        "image": "filter manager 2.png"
+        "image": "filter manager 2.png",
+        "category": "Use Cases"
     },
     "dialog9": {
         "title": "Filter Manager 3",
         "description": "System configuration interface",
-        "image": "filter manager 3.png"
+        "image": "filter manager 3.png",
+        "category": "Use Cases"
     },
     "dialog10": {
         "title": "Filter Manager 4",
         "description": "System configuration interface",
-        "image": "filter manager 4.png"
+        "image": "filter manager 4.png",
+        "category": "Use Cases"
     },
     "dialog11": {
         "title": "Filter Manager 5",
         "description": "System configuration interface",
-        "image": "filter manager 5.png"
+        "image": "filter manager 5.png",
+        "category": "Use Cases"
     },
     "dialog12": {
         "title": "Filter Manager 6",
         "description": "System configuration interface",
-        "image": "filter manager 6.png"
+        "image": "filter manager 6.png",
+        "category": "Use Cases"
     },
     "dialog13": {
         "title": "Filter Manager 7",
         "description": "System configuration interface",
-        "image": "filter manager 7.png"
+        "image": "filter manager 7.png",
+        "category": "Use Cases"
     },
     "dialog14": {
         "title": "Filter Manager 8",
         "description": "System configuration interface",
-        "image": "filter manager 8.png"
+        "image": "filter manager 8.png",
+        "category": "Use Cases"
     },
     "dialog15": {
         "title": "Global Console 1",
         "description": "System configuration interface",
-        "image": "global console 1.png"
-    },
-    "dialog16": {
-        "title": "Global Console 2",
-        "description": "System configuration interface",
-        "image": "global console 2.png"
+        "image": "global console 1.png",
+        "category": "Configurations"
     },
     "dialog17": {
         "title": "MAC 1",
         "description": "System configuration interface",
-        "image": "mac 1.png"
+        "image": "MAC 1.png",
+        "category": "Configurations"
     },
     "dialog18": {
         "title": "MAC 2",
         "description": "System configuration interface",
-        "image": "mac 2.png"
+        "image": "MAC 2.png",
+        "category": "Configurations"
     },
     "dialog19": {
         "title": "Manager Dialog",
         "description": "System configuration interface",
-        "image": "manager dialog.png"
+        "image": "manager dialog.png",
+        "category": "Management"
     },
     "dialog20": {
         "title": "Reports 1",
         "description": "System configuration interface",
-        "image": "reports 1.png"
+        "image": "reports 1.png",
+        "category": "Reporting"
     },
     "dialog21": {
         "title": "Reports 2",
         "description": "System configuration interface",
-        "image": "reports 2.png"
+        "image": "reports 2.png",
+        "category": "Reporting"
     }
 }

@@ -6,6 +6,8 @@ fetch('projects.json')
     .then(data => {
         projectData = data;
         // Any functions that need projectData to be loaded should be called from here
+        setupObserver();
+        createFilterButtons();
     })
     .catch(error => console.error('Error loading project data:', error));
 
@@ -16,21 +18,22 @@ const galleries = {
     graphical: {
         container: 'galleryContainer',
         counter: 'galleryCounter',
-        total: 10,
+        total: 15,
         position: 0,
     },
     dialogs: {
         container: 'dialogsGalleryContainer',
         counter: 'dialogsGalleryCounter',
-        total: 21,
+        total: 15,
         position: 0,
+        filteredTotal: 15,
     }
 };
 
 function scrollGallery(galleryName, direction) {
     const gallery = galleries[galleryName];
     const container = document.getElementById(gallery.container);
-    const maxScroll = (gallery.total - visibleThumbnails) * thumbnailWidth;
+    const maxScroll = (gallery.filteredTotal - visibleThumbnails) * thumbnailWidth;
 
     if (direction === 'left') {
         gallery.position = Math.max(0, gallery.position - thumbnailWidth);
@@ -45,16 +48,15 @@ function scrollGallery(galleryName, direction) {
 function updateGalleryCounter(galleryName) {
     const gallery = galleries[galleryName];
     const startIndex = Math.floor(gallery.position / thumbnailWidth) + 1;
-    const endIndex = Math.min(startIndex + visibleThumbnails - 1, gallery.total);
+    const endIndex = Math.min(startIndex + visibleThumbnails - 1, gallery.filteredTotal);
     document.getElementById(gallery.counter).textContent = `${startIndex}-${endIndex}`;
 }
 
 
 // Add these variables at the start of your script
 let currentProjectId = null;
-const projectIds = ['graph1', 'graph2', 'graph3', 'graph4', 'graph5', 'graph6', 'graph7', 'graph8', 'graph9', 'graph10'];
-const dialogIds = ['dialog1', 'dialog2', 'dialog3', 'dialog4', 'dialog5', 'dialog6', 'dialog7', 'dialog8', 'dialog9', 'dialog10', 
-'dialog11', 'dialog12', 'dialog13', 'dialog14', 'dialog15', 'dialog16', 'dialog17', 'dialog18', 'dialog19', 'dialog20', 'dialog21'];
+const projectIds = ['graph1', 'graph2', 'graph3', 'graph4', 'graph5', 'graph6', 'graph7', 'graph8', 'graph9', 'graph10', 'graph11', 'graph12', 'graph13', 'graph14', 'graph15'];
+const dialogIds = ['dialog1', 'dialog7', 'dialog8', 'dialog9', 'dialog10', 'dialog11', 'dialog12', 'dialog13', 'dialog14', 'dialog15', 'dialog17', 'dialog18', 'dialog19', 'dialog20', 'dialog21'];
 
 // Replace your current openModal function with this
 function openModal(projectId) {
@@ -224,6 +226,68 @@ function closeModal() {
     container.classList.remove('zoomed');
     container.scrollLeft = 0;
     container.scrollTop = 0;
+}
+
+function setupObserver() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach(item => {
+        item.classList.add('hidden-initial');
+        observer.observe(item);
+    });
+
+    const thumbnails = document.querySelectorAll('.gallery-thumbnail h3');
+    thumbnails.forEach(thumbnail => {
+        thumbnail.classList.add('font-bold');
+    });
+}
+
+function createFilterButtons() {
+    const categories = ['All', 'Management', 'Use Cases', 'Configurations', 'Reporting'];
+    const container = document.getElementById('dialogsFilterContainer');
+
+    categories.forEach(category => {
+        const button = document.createElement('button');
+        button.textContent = category;
+        button.classList.add('px-4', 'py-2', 'text-sm', 'font-medium', 'text-slate-600', 'bg-white', 'border', 'border-slate-200', 'rounded-full', 'hover:bg-slate-50', 'transition-colors', 'shadow-sm');
+        button.onclick = () => filterDialogs(category);
+        container.appendChild(button);
+    });
+}
+
+function filterDialogs(category) {
+    const gallery = galleries.dialogs;
+    const container = document.getElementById(gallery.container);
+    const items = container.querySelectorAll('.gallery-thumbnail');
+    let count = 0;
+
+    items.forEach(item => {
+        const projectId = item.getAttribute('onclick').match(/\('([^\)]+)'\)/)[1];
+        const project = projectData[projectId];
+
+        if (category === 'All' || project.category === category) {
+            item.style.display = 'block';
+            count++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    gallery.filteredTotal = count;
+    gallery.position = 0;
+    container.scrollLeft = 0;
+    updateGalleryCounter('dialogs');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
