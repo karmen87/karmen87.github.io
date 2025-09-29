@@ -2,42 +2,50 @@
     "graph1": {
         "title": "Rack Elevation",
         "description": "A diagram illustrating the arrangement of IT equipment in a server rack, designed for tracking and managing data center resources.",
-        "image": "rack elevation.PNG"
+        "image": "rack elevation.PNG",
+        "category": "elevation"
     },
     "graph2": {
         "title": "Row Elevation",
         "description": "A diagram showing the layout of IT equipment in a single row of a server rack, used for tracking and managing data center resources.",
-        "image": "row elevation.png"
+        "image": "row elevation.png",
+        "category": "elevation"
     },
     "graph3": {
         "title": "Equipment Elevation",
         "description": "A diagram depicting the configuration of an individual piece of IT equipment, used for tracking and managing data center resources.",
-        "image": "equipment elevation.png"
+        "image": "equipment elevation.png",
+        "category": "elevation"
     },
     "graph4": {
         "title": "Butterfly View",
         "description": "A \"Butterfly View\" is a diagram illustrating a manhole's internal duct configuration, visualizing occupied and available conduits for telecommunications and utility management.",
-        "image": "butterfly diagram.png"
+        "image": "butterfly diagram.png",
+        "category": "butterfly view"
     },
     "graph5": {
         "title": "Butterfly View - Cables",
         "description": "This \"butterfly view\" shows the duct and cable configuration, allowing users to visualize and manage occupied and available conduits and cables within the manhole.",
-        "image": "butterfly diagram - cables.png"
+        "image": "butterfly diagram - cables.png",
+        "category": "butterfly view"
     },
     "graph6": {
         "title": "Butterfly View - Notes",
         "description": "This \"butterfly view\" provides additional notes and details about the manhole's configuration.",
-        "image": "butterfly diagram - notes.png"
+        "image": "butterfly diagram - notes.png",
+        "category": "butterfly view"
     },
     "graph7": {
         "title": "Dependency View - Access",
         "description": "Visual representation of different ways to access Dependency View from various parts of the application",
-        "image": "dependency view - access.png"
+        "image": "dependency view - access.png",
+        "category": "dependency view"
     },
     "graph8": {
         "title": "Dependency View",
         "description": "The Dependency View visually represents network devices and their interconnections within an infrastructure layout.",
-        "image": "dependency view.png"
+        "image": "dependency view.png",
+        "category": "dependency view"
     },
     "graph9": {
         "title": "Layer Manager",
@@ -52,27 +60,32 @@
     "graph11": {
         "title": "Design World 1",
         "description": "System configuration interface",
-        "image": "design world 1.png"
+        "image": "design world 1.png",
+        "category": "Design World"
     },
     "graph12": {
         "title": "Design World 2",
         "description": "System configuration interface",
-        "image": "design world 2.png"
+        "image": "design world 2.png",
+        "category": "Design World"
     },
     "graph13": {
         "title": "Design World 3",
         "description": "System configuration interface",
-        "image": "design world 3.png"
+        "image": "design world 3.png",
+        "category": "Design World"
     },
     "graph14": {
         "title": "Design World 4",
         "description": "System configuration interface",
-        "image": "design world 4.png"
+        "image": "design world 4.png",
+        "category": "Design World"
     },
     "graph15": {
         "title": "Design World 5",
         "description": "System configuration interface",
-        "image": "design world 5.png"
+        "image": "design world 5.png",
+        "category": "Design World"
     },
     "dialog1": {
         "title": "Account Manager",
