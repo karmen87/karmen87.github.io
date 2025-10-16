@@ -152,7 +152,8 @@
         "description": "System configuration interface",
         "image": "MAC 1.png",
         "category": "configurations"
-    },"dialog18": {
+    },
+    "dialog18": {
         "title": "MAC 2",
         "description": "System configuration interface",
         "image": "MAC 2.png",
@@ -187,5 +188,17 @@
         "description": "Another view of the layer management interface with additional filtering features",
         "image": "layer manager 2.png",
         "category": "management"
+    },
+    "tech1": {
+        "title": "User Guide",
+        "description": "Professional documentation example",
+        "thumbnail": "User Guide Thumbnail.png",
+        "category": "technical-writing"
+    },
+    "tech2": {
+        "title": "AI in E-commerce: A Developer's Guide",
+        "description": "Developer Blog Post",
+        "thumbnail": "Dev Guide Thumbnail.png",
+        "category": "technical-writing"
     }
 }
