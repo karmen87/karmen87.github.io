@@ -1,64 +1,94 @@
-/* Define custom properties for colors for reusability */
-:root {
-    --accent-color: #4F46E5; /* A modern indigo for the accent */
-    --subtle-color: #F3F4F6;  /* A light gray for subtle backgrounds */
-    --shadow-color-accent: rgba(79, 70, 229, 0.5);
-}
+.gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            backdrop-filter: blur(8px);
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .gallery-thumbnail {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 278px;
+        }
+        .gallery-thumbnail:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        /* Add to your existing style section */
+       
+        #imageContainer {
+            overflow: hidden; /* Default state */
+            max-width: 90vw;
+            max-height: 80vh;
+            display: flex;
+            justify-content: center; /* Center by default */
+            align-items: center; /* Center by default */
+            position: relative;
+        }
 
-/* Apply a base font and background color */
-body {
-    font-family: 'Inter', sans-serif; /* A clean, modern font */
-    background-color: #FFFFFF;
-}
+        #imageContainer.zoomed {
+            overflow: auto;
+            cursor: move;
+            justify-content: flex-start; /* Prevent cropping when zoomed */
+            align-items: flex-start; /* Prevent cropping when zoomed */
+        }
 
-/* Style for the primary action button with "Subtle Depth" effect */
-.btn-primary {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+        #modalImage {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            transition: width 0.2s ease, height 0.2s ease;
+            display: block;
+        }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 14px var(--shadow-color-accent), 0 3px 6px rgba(0, 0, 0, 0.08);
-}
+        #modalImage.zoomed {
+            max-width: none;
+            max-height: none;
+        }
 
-/* Style for navigation links with "Accent Underscore" effect */
-.nav-link {
-    position: relative;
-    padding-bottom: 0.5rem;
-    transition: color 0.3s ease;
-}
+        .modal-content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            position: relative;
+        }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
-}
+        /* Navigation arrows */
+        button[onclick="navigateModal('prev')"],
+        button[onclick="navigateModal('next')"] {
+            z-index: 60; /* Increase z-index to ensure arrows are above image */
+            padding: 1rem; /* Increase padding for better visibility */
+            background: rgba(0, 0, 0, 0.4); /* Add semi-transparent background for contrast */
+            border-radius: 50%;
+        }
 
-.nav-link:hover {
-    color: #111827; /* Darker text on hover */
-}
+        button[onclick="navigateModal('prev')"] {
+            left: 1rem; /* Move slightly away from edge for better visibility */
+        }
 
-.nav-link:hover::after {
-    width: 100%;
-}
+        button[onclick="navigateModal('next')"] {
+            right: 1rem; /* Move slightly away from edge for better visibility */
+        }
 
-/* Utility for sticky headers in the cinematic scroll section */
-.sticky-header {
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
-    top: 4rem; /* Adjust this value based on header height */
-    background-color: var(--subtle-color);
-    z-index: 10;
-}
+        .gallery-item.hidden-initial {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
