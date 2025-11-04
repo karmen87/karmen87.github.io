@@ -191,13 +191,13 @@
     },
     "tech1": {
         "title": "User Guide",
-        "description": "Professional documentation example",
+        "description": "63-page technical documentation for IRM NexGen v1.9 infrastructure resource management software, covering key concepts, managed objects, equipment tracking, reporting capabilities, and interactive dashboards.",
         "thumbnail": "User Guide Thumbnail.png",
         "category": "technical-writing"
     },
     "tech2": {
         "title": "AI in E-commerce: A Developer's Guide",
-        "description": "Developer Blog Post",
+        "description": "Technical blog post exploring Enthusiast, an open-source agentic AI framework for e-commerce featuring RAG capabilities, vector search, multi-model support, and practical implementation guidance for developers.",
         "thumbnail": "Dev Guide Thumbnail.png",
         "category": "technical-writing"
     },
