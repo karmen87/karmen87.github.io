@@ -200,5 +200,12 @@
         "description": "Developer Blog Post",
         "thumbnail": "Dev Guide Thumbnail.png",
         "category": "technical-writing"
+    },
+    "tech3": {
+        "title": "Enthusiast Framework Documentation",
+        "description": "Documentation site built with Docusaurus 3.9, featuring structured docs, blog with multiple posts, and modern documentation patterns including admonitions, code tabs, and responsive design.",
+        "thumbnail": "Enthusiast Docs Thumbnail.png",
+        "category": "technical-writing",
+        "url": "https://karmen87.github.io/enthusiast-blog/"
     }
 }
