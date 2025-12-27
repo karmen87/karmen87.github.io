@@ -13,587 +13,2252 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karmen Kardum | Technical Writer & Product Manager Portfolio</title>
-    <!-- SEO Meta Tags -->
-        <meta name="description" content="Karmen Kardum - Technical writer with 14+ years of experience in software engineering, blockchain documentation, DeFi protocols, and Web3 content. Portfolio showcasing UX/UI design, technical writing, and documentation projects.">
-        <meta name="robots" content="index, follow">
-        <meta name="theme-color" content="#ffffff">
-
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://karmen87.github.io/">
-
-        <!-- Open Graph Tags -->
-        <meta property="og:title" content="Karmen Kardum - Technical Writer Portfolio">
-        <meta property="og:description" content="Portfolio showcasing technical writing, blockchain documentation, UX/UI design, and software engineering projects.">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://karmen87.github.io/">
-        <meta property="og:locale" content="en_US">
-
-        <!-- Twitter Card Tags -->
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Karmen Kardum - Technical Writer Portfolio">
-        <meta name="twitter:description" content="Portfolio showcasing technical writing, blockchain documentation, UX/UI design, and software engineering projects.">
-
-        <!-- Schema.org Structured Data -->
-        <script type="application/ld+json">
-        {
-        "@context": "https://schema.org/",
-        "@type": "Person",
-        "name": "Karmen Kardum",
-        "jobTitle": "Technical Writer",
-        "url": "https://karmen87.github.io/",
-        "sameAs": [
-            "https://www.linkedin.com/in/karmen-kardum",
-            "https://github.com/karmen87"
-        ],
-        "knowsAbout": [
-            "Technical Writing",
-            "Blockchain Documentation",
-            "Web3 Content",
-            "DeFi Protocols",
-            "Software Engineering",
-            "UX/UI Design",
-            "Product Management",
-            "API Documentation"
-        ],
-        "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "University of Split, FESB"
-        },
-        "hasCredential": {
-            "@type": "EducationalOccupationalCredential",
-            "credentialCategory": "degree",
-            "educationalLevel": "Master's Degree",
-            "about": "Computer Science - Software Engineering"
+    <title>Karmen Kardum - Technical Writer & Infrastructure Designer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        :root {
+            --light-bg: #f8f9fa;
+            --white-bg: #ffffff;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #7c3aed;
+            --accent-tertiary: #06b6d4;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-tertiary: #8899aa;
+            --border: #e2e8f0;
+            --hover-bg: #f0f4ff;
         }
-        </script>
-        <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+
+        /* Dark Mode Colors */
+        body.dark-mode {
+            --light-bg: #0f1419;
+            --white-bg: #1a202c;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #a78bfa;
+            --accent-tertiary: #22d3ee;
+            --text-primary: #f0f4f8;
+            --text-secondary: #c5d0e0;
+            --text-tertiary: #8899aa;
+            --border: #2d3748;
+            --hover-bg: #2d3e5a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom Cursor */
+        * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="4" fill="%23ff6b35" opacity="0.8"/><circle cx="16" cy="16" r="10" fill="none" stroke="%23ff6b35" stroke-width="1.5" opacity="0.4"/></svg>') 16 16, auto;
+        }
+
+        a, button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="6" fill="%23ff6b35" opacity="0.9"/><circle cx="16" cy="16" r="12" fill="none" stroke="%23ff6b35" stroke-width="2" opacity="0.5"/></svg>') 16 16, auto;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Courier New', 'Courier', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        h1 .word {
+            display: inline-block;
+            overflow: hidden;
+            height: 1.1em;
+        }
+
+        h1 .word span {
+            display: block;
+            animation: revealText 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        h1 .word:nth-child(1) span { animation-delay: 0.2s; }
+        h1 .word:nth-child(2) span { animation-delay: 0.4s; }
+
+        @keyframes revealText {
+            0% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Courier New', 'Courier', monospace;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            animation: slideIn 0.8s ease 0.3s both;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        a:hover {
+            color: var(--accent-secondary);
+            border-bottom-color: var(--accent-secondary);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container-wide {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border);
+            padding: 1.25rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode header {
+            background: rgba(26, 32, 44, 0.95);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-family: 'Courier New', 'Courier', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.05em;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        header nav a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        header nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        header nav a:hover,
+        header nav a.active {
+            color: var(--accent-primary);
+        }
+
+        header nav a:hover::after,
+        header nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(124, 58, 237, 0.02) 50%, rgba(6, 182, 212, 0.03) 100%);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(167, 139, 250, 0.05) 50%, rgba(34, 211, 238, 0.05) 100%);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 25s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 30s ease-in-out infinite reverse;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 80px;
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero-content > p {
+            font-size: 1rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-family: 'Courier New', 'Courier', monospace;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease 0.3s both;
+            font-weight: 600;
+        }
+
+        .hero-tagline .highlight {
+            color: var(--accent-primary);
+            font-weight: 900;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 650px;
+            line-height: 1.9;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+            animation: fadeInUp 0.8s ease 0.45s both;
+        }
+
+        .hero-stat {
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 1.5rem;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-primary);
+            font-family: 'Courier New', 'Courier', monospace;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.25rem;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .btn {
+            padding: 0.85rem 2.25rem;
+            border: 2px solid var(--accent-primary);
+            background: var(--accent-primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', 'Courier', monospace;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-secondary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(255, 107, 53, 0.3);
+            border-color: var(--accent-secondary);
+        }
+
+        .btn-secondary {
+            border-color: var(--accent-primary);
+            background: transparent;
+            color: var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: var(--white-bg);
+            margin-bottom: 4rem;
+            transition: background 0.3s ease;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            padding: 1.75rem;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stat-box:hover::before {
+            left: 100%;
+        }
+
+        body.dark-mode .stat-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(167, 139, 250, 0.06) 100%);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 12px 24px rgba(255, 107, 53, 0.15);
+        }
+
+        body.dark-mode .stat-box:hover {
+            box-shadow: 0 12px 24px rgba(255, 107, 53, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Courier New', 'Courier', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Styling */
+        .work-section {
+            padding: 6rem 0;
+            background: var(--white-bg);
+            margin-bottom: 4rem;
+            border-radius: 0;
+            transition: background 0.3s ease;
+            border-top: 3px solid var(--accent-primary);
+            position: relative;
+        }
+
+        .work-section h2 {
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease 0.15s both;
+            max-width: 600px;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: var(--light-bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease forwards;
+            position: relative;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.15s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.25s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.35s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.45s; }
+
+        .gallery-item:hover {
+            transform: translateY(-16px) scale(1.02);
+            box-shadow: 0 24px 48px rgba(255, 107, 53, 0.2);
+            border-color: var(--accent-primary);
+        }
+
+        body.dark-mode .gallery-item:hover {
+            box-shadow: 0 24px 48px rgba(255, 107, 53, 0.25);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(124, 58, 237, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        body.dark-mode .gallery-image {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.18) 0%, rgba(167, 139, 250, 0.12) 100%);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.12);
+        }
+
+        .gallery-info {
+            padding: 1.75rem;
+        }
+
+        .gallery-category {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-family: 'Courier New', 'Courier', monospace;
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .gallery-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .gallery-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-tag {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--accent-primary);
+            border-radius: 3px;
+            border: 1px solid var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .gallery-impact {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        .gallery-cta {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-cta {
+            gap: 1rem;
+        }
+
+        .gallery-cta::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-cta::after {
+            transform: translateX(4px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-primary);
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .modal h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .modal-tag {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--accent-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h4 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .modal-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Pagination / Load More */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .page-btn {
+            padding: 0.7rem 1.4rem;
+            border: 2px solid var(--border);
+            background: var(--white-bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', 'Courier', monospace;
+            font-size: 0.95rem;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            border-color: var(--accent-primary);
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 107, 53, 0.2);
+        }
+
+        .items-count {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            font-family: 'Courier New', 'Courier', monospace;
+            font-weight: 600;
+        }
+
+        /* Technical Writing Cards */
+        .writing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .writing-card {
+            background: var(--white-bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .writing-card:nth-child(1) { animation-delay: 0.2s; }
+        .writing-card:nth-child(2) { animation-delay: 0.3s; }
+        .writing-card:nth-child(3) { animation-delay: 0.4s; }
+
+        .writing-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+            border-color: var(--accent-primary);
+        }
+
+        body.dark-mode .writing-card:hover {
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.22);
+        }
+
+        .writing-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(124, 58, 237, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        body.dark-mode .writing-thumbnail {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.18) 0%, rgba(167, 139, 250, 0.12) 100%);
+        }
+
+        .writing-card:hover .writing-thumbnail {
+            transform: scale(1.12);
+        }
+
+        .writing-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .writing-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .writing-tag {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            font-family: 'Courier New', 'Courier', monospace;
+        }
+
+        .writing-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .writing-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .writing-link {
+            color: var(--accent-primary);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .writing-card:hover .writing-link {
+            gap: 0.75rem;
+        }
+
+        .writing-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .writing-card:hover .writing-link::after {
+            transform: translateX(4px);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
+            border-top: 3px solid var(--accent-primary);
+            border-radius: 0;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .contact {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(167, 139, 250, 0.08) 100%);
+        }
+
+        .contact h2 {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            color: var(--accent-primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 2px solid var(--border);
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            transition: border-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            width: 0%;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--white-bg);
+            border: 2px solid var(--accent-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+            font-weight: bold;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.15) rotate(20deg);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.25);
+        }
+
+        body.dark-mode .theme-toggle {
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.35);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            /* Dropdown adjustments for mobile */
+            .dropdown-content {
+                min-width: 220px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90vw;
+            }
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white-bg);
+            min-width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            z-index: 101;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            text-align: left;
+        }
+        
+        /* Positioning variants */
+        .dropdown-content.right { right: 0; }
+        .dropdown-content.left { left: 0; }
+        .dropdown-content.center { left: 50%; transform: translateX(-50%); }
+
+        body.dark-mode .dropdown-content {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .dropdown-content a {
+            color: var(--text-primary);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--hover-bg);
+            color: var(--accent-primary);
+            padding-left: 24px;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+
+            .hero {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+
+            #hero-canvas {
+                display: none;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            header nav ul {
+                display: none;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .writing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                bottom: 1rem;
+                right: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+                width: 95%;
+            }
+        }
+
+        /* Image Viewer Modal */
+        .image-viewer {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-viewer.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .viewer-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 2001;
+        }
+
+        .viewer-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .viewer-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            z-index: 2001;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: transform 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .viewer-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            color: var(--accent-primary);
+        }
+
+        .viewer-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .viewer-content.grabbing {
+            cursor: grabbing;
+        }
+
+        .viewer-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.1s ease-out;
+            transform-origin: center center;
+            user-select: none;
+            pointer-events: none; /* Let clicks pass to container for drag */
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                gap: 0.75rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-slate-200">
-        <div class="max-w-6xl mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                <div>
-                    <h1 class="text-3xl font-light text-slate-900">Karmen Kardum</h1>
-                    <p class="text-slate-600 mt-2">UX/UI Designer • Technical Writer • Product Manager • Project Manager • Data Analyst</p>
-                </div>
-                <div class="mt-4 md:mt-0 text-right">
-                    <a href="mailto:karmen.kardum@gmail.com" class="flex items-center justify-end text-slate-600 hover:text-slate-900 transition-colors text-sm">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#db4437"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
-                        karmen.kardum@gmail.com
-                    </a>
-                    <p class="flex items-center justify-end text-slate-600 text-sm mt-1">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4285f4"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        +385-91-972-9847
-                    </p>
-                    <a href="https://www.google.com/maps/place/Split,+Croatia" target="_blank" class="flex items-center justify-end text-slate-600 hover:text-slate-900 transition-colors text-sm mt-1">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#34a853"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        Split, Croatia
-                    </a>
-                    <a href="https://linkedin.com/in/karmen-kardum" target="_blank" class="flex items-center justify-end text-slate-600 hover:text-slate-900 transition-colors text-sm mt-1">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
-                        linkedin.com/in/karmen-kardum
-                    </a>
-                    <a href="https://github.com/karmen87" target="_blank" class="flex items-center justify-end text-slate-600 hover:text-slate-900 transition-colors text-sm mt-1">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48 0-.24-.01-1.02-.01-1.8-2.64.57-3.2-1.27-3.2-1.27-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.74 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
-                        github.com/karmen87
-                    </a>
-                </div>
+    <header>
+        <div class="container-wide">
+            <div class="nav-wrapper">
+                <div class="logo">K⚡</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                        <li><a href="#graphical" class="nav-link" data-section="graphical">Graphical</a></li>
+                        <li><a href="#dialogs" class="nav-link" data-section="dialogs">Dialogs</a></li>
+                        <li><a href="#writing" class="nav-link" data-section="writing">Writing</a></li>
+                        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <!-- Introduction Section -->
-        <section class="mb-16">
-            <h2 class="text-2xl font-light text-slate-900 mb-6">About Me</h2>
-            <div class="bg-white rounded-lg p-8 shadow-sm border border-slate-200">
-                <p class="text-slate-700 leading-relaxed text-lg mb-6">
-                    Welcome to my portfolio. I'm a software engineer with a passion for creating intuitive user experiences and clear, comprehensive documentation. My work spans across UX/UI design, technical writing, product management, project management, and data analysis.
-                </p>
-                <p class="text-slate-700 leading-relaxed text-lg mb-8">
-                    I believe in the power of thoughtful design and clear communication to solve real-world problems and enhance user experiences.
-                </p>
-                <a href="Karmen Kardum Resume.pdf" target="_blank" class="inline-flex items-center px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 transition-colors duration-200 font-medium">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    Resume
-                </a>
-            </div>
-        </section>
-
-        <!-- Graphical Functions Portfolio Section -->
-        <section class="mb-16">
-            <h2 class="text-2xl font-light text-slate-900 mb-6">Graphical Functions</h2>
-            <p class="text-slate-600 mb-8">Network and infrastructure visualization tools</p>
-            <div id="graphicalFilterContainer" class="flex space-x-2 mb-4"></div>
-            
-            <!-- Gallery Navigation -->
-            <div class="relative">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex space-x-2">
-                        <button onclick="scrollGallery('graphical', 'left')" class="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm">
-                            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <button onclick="scrollGallery('graphical', 'right')" class="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm">
-                            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="text-sm text-slate-500" id="galleryCounterText">
-                    1-4 of 13
-                </div>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container">
+            <div class="hero-content">
+                <p>UX/UI Designer • Technical Writer • Product Manager</p>
+                <h1>
+                    <span class="word"><span>Karmen</span></span>
+                    <span class="word"><span>Kardum</span></span>
+                </h1>
+                <p class="hero-tagline">Transforming <span class="highlight">complex infrastructure</span> into intuitive visual experiences and documentation that engineers love.</p>
+                <p class="hero-description">I design tools that make infrastructure management simple. I document complex systems so teams ship faster. My work combines thoughtful design, clear communication, and deep technical understanding to solve real problems.</p>
                 
-                <!-- Scrollable Gallery Container -->
-                <div id="galleryContainer" class="overflow-x-auto scrollbar-hide" style="scroll-behavior: smooth;">
-                    <div class="flex space-x-4 pb-4" style="width: max-content;">
-                        <!-- Rack Elevation -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph1')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="rack elevation.PNG" alt="Rack Elevation" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable - Check permissions</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Rack Elevation</h3>
-                            </div>
-                        </button>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">30+</div>
+                        <div class="hero-stat-label">Design Projects</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">2k+</div>
+                        <div class="hero-stat-label">Engineers Reached</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">5k+</div>
+                        <div class="hero-stat-label">Doc Views</div>
+                    </div>
+                </div>
 
-                        <!-- Row Elevation -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph2')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="row elevation.png" alt="Row Elevation" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Row Elevation</h3>
-                            </div>
-                        </button>
-
-                        <!-- Equipment Elevation -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph3')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="equipment elevation.png" alt="Equipment Elevation" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Equipment Elevation</h3>
-                            </div>
-                        </button>
-
-                        <!-- Butterfly View -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph4')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="butterfly diagram.png" alt="Butterfly View" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Butterfly View</h3>
-                            </div>
-                        </button>
-
-                        <!-- Butterfly View - Cables -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph5')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="butterfly diagram - cables.png" alt="Butterfly View - Cables" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Butterfly View - Cables</h3>
-                            </div>
-                        </button>
-
-                        <!-- Butterfly View - Notes -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph6')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="butterfly diagram - notes.png" alt="Butterfly View - Notes" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Butterfly View - Notes</h3>
-                            </div>
-                        </button>
-
-                        <!-- Dependency View - Access -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph7')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="dependency view - access.png" alt="Dependency View - Access" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Dependency View - Access</h3>
-                            </div>
-                        </button>
-
-                        <!-- Dependency View -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph8')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="dependency view.png" alt="Dependency View" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Dependency View</h3>
-                            </div>
-                        </button>
-
-                        <!-- Design World 1 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph11')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="design world 1.png" alt="Design World 1" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Design World 1</h3>
-                            </div>
-                        </button>
-
-                        <!-- Design World 2 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph12')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="design world 2.png" alt="Design World 2" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Design World 2</h3>
-                            </div>
-                        </button>
-
-                        <!-- Design World 3 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph13')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="design world 3.png" alt="Design World 3" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Design World 3</h3>
-                            </div>
-                        </button>
-
-                        <!-- Design World 4 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph14')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="design world 4.png" alt="Design World 4" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Design World 4</h3>
-                            </div>
-                        </button>
-
-                        <!-- Design World 5 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('graph15')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="design world 5.png" alt="Design World 5" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Design World 5</h3>
-                            </div>
-                        </button>
+                <div class="cta-buttons">
+                    <a href="#graphical" class="btn">See My Work</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-btn">Download Resume ▾</button>
+                        <div class="dropdown-content">
+                            <a href="Karmen Kardum Technical Writer Resume.pdf" target="_blank">Technical Writer Resume</a>
+                            <a href="Karmen Kardum Product Manager Resume.pdf" target="_blank">Product Manager Resume</a>
+                            <a href="Karmen Kardum Software Consultant Resume.pdf" target="_blank">Software Consultant Resume</a>
+                            <a href="Karmen Kardum Blockchain Consultant Resume.pdf" target="_blank">Blockchain Consultant Resume</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Dialogs Portfolio Section -->
-        <section class="mb-16">
-            <h2 class="text-2xl font-light text-slate-900 mb-6">Dialogs</h2>
-            <p class="text-slate-600 mb-8">System configuration and management interfaces</p>
-            <div id="dialogsFilterContainer" class="flex space-x-2 mb-4"></div>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a software engineer obsessed with turning complexity into clarity. My journey started with a simple belief: <strong>good design and clear communication can solve real-world problems.</strong></p>
+                    <p>Over the years, I've worked on infrastructure visualization tools used by thousands of engineers, documented complex systems that reduced support tickets by 30%, and designed interfaces that made hard things feel easy.</p>
+                    <p>Whether it's designing a system that shows what's happening in a data center or writing docs that make sense to developers, I bring the same mindset: understand the user, solve the real problem, and make it beautiful.</p>
+                    <div class="dropdown">
+                        <button class="dropdown-btn" style="background:none; border:none; padding:0; font-size:1rem; font-family:inherit; color:var(--text-primary); cursor:pointer; font-weight:700;">
+                            📄 <span style="text-decoration: underline;">Download My Resume ▾</span>
+                        </button>
+                        <div class="dropdown-content left">
+                            <a href="Karmen Kardum Technical Writer Resume.pdf" target="_blank">Technical Writer Resume</a>
+                            <a href="Karmen Kardum Product Manager Resume.pdf" target="_blank">Product Manager Resume</a>
+                            <a href="Karmen Kardum Software Consultant Resume.pdf" target="_blank">Software Consultant Resume</a>
+                            <a href="Karmen Kardum Blockchain Consultant Resume.pdf" target="_blank">Blockchain Consultant Resume</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">13+</div>
+                            <div class="stat-label">Infrastructure Tools</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">17+</div>
+                            <div class="stat-label">System Dialogs</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Published Guides</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Passion for Details</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Graphical Functions Section -->
+    <section class="work-section" id="graphical">
+        <div class="container-wide">
+            <h2>Graphical Functions</h2>
+            <p class="section-subtitle">Infrastructure visualization tools that help teams manage complexity. These designs represent 13+ projects spanning network topology, equipment tracking, and system visualization.</p>
             
-            <!-- Gallery Navigation -->
-            <div class="relative">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex space-x-2">
-                        <button onclick="scrollGallery('dialogs', 'left')" class="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm">
-                            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <button onclick="scrollGallery('dialogs', 'right')" class="p-2 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm">
-                            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="text-sm text-slate-500" id="dialogsGalleryCounterText">
-                    1-4 of 17
+            <div class="gallery" id="graphicalGallery">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+
+            <div class="pagination" id="graphicalPagination">
+                <!-- Pagination buttons will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dialogs Section -->
+    <section class="work-section" id="dialogs">
+        <div class="container-wide">
+            <h2>System Dialogs & Interfaces</h2>
+            <p class="section-subtitle">Configuration and management interfaces for complex enterprise applications. These 17+ designs focus on making difficult workflows intuitive and accessible to technical teams.</p>
+            
+            <div class="gallery" id="dialogsGallery">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+
+            <div class="pagination" id="dialogsPagination">
+                <!-- Pagination buttons will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Writing Section -->
+    <section class="work-section" id="writing">
+        <div class="container-wide">
+            <h2>Technical Writing</h2>
+            <p class="section-subtitle">Documentation, guides, and technical content that clarify complex topics for engineers and product managers. Focused on reducing friction and helping teams understand systems faster.</p>
+            
+            <div class="writing-grid">
+                <div class="writing-card">
+                    <div class="writing-thumbnail">📘</div>
+                    <div class="writing-content">
+                        <div class="writing-tag">Technical Documentation</div>
+                        <h3 class="writing-title">IRM NexGen v1.9 User Guide</h3>
+                        <p class="writing-description">63-page comprehensive guide covering infrastructure resource management. From basic concepts to advanced reporting, this doc reduced support tickets by 40% in the first month of release.</p>
+                        <a href="User documentation suite - Administrator Guide.pdf" class="writing-link" target="_blank">Read User Guide</a>
                     </div>
                 </div>
-                
-                <!-- Scrollable Gallery Container -->
-                <div id="dialogsGalleryContainer" class="overflow-x-auto scrollbar-hide" style="scroll-behavior: smooth;">
-                    <div class="flex space-x-4 pb-4" style="width: max-content;">
-                        <!-- Account Manager -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog1')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="account manager.png" alt="Account Manager" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Account Manager</h3>
-                            </div>
-                        </button>
 
-                        <!-- Filter Manager 1 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog7')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 1.png" alt="Filter Manager 1" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 1</h3>
-                            </div>
-                        </button>
+                <div class="writing-card">
+                    <div class="writing-thumbnail">🤖</div>
+                    <div class="writing-content">
+                        <div class="writing-tag">Developer Guide</div>
+                        <h3 class="writing-title">AI in E-commerce: A Developer's Guide</h3>
+                        <p class="writing-description">Explores implementing agentic AI for e-commerce. 5k+ views on Dev.to. Technical deep-dive covering RAG, vector search, multi-model support, and practical patterns for production systems.</p>
+                        <a href="https://dev.to/karmen87/harnessing-enthusiast-for-scalable-ai-in-e-commerce-a-developers-guide-4k3f" class="writing-link" target="_blank">Read on Dev.to</a>
+                    </div>
+                </div>
 
-                        <!-- Filter Manager 2 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog8')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 2.png" alt="Filter Manager 2" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 2</h3>
-                            </div>
-                        </button>
-
-                        <!-- Filter Manager 3 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog9')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 3.png" alt="Filter Manager 3" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 3</h3>
-                            </div>
-                        </button>
-
-                        <!-- Filter Manager 4 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog10')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 4.png" alt="Filter Manager 4" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 4</h3>
-                            </div>
-                        </button>
-
-                        <!-- Filter Manager 5 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog11')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 5.png" alt="Filter Manager 5" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 5</h3>
-                            </div>
-                        </button>
-
-                        <!-- Filter Manager 6 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog12')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 6.png" alt="Filter Manager 6" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 6</h3>
-                            </div>
-                        </button>
-
-                        <!-- Filter Manager 7 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog13')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 7.png" alt="Filter Manager 7" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 7</h3>
-                            </div>
-                        </button>
-
-                        <!-- Filter Manager 8 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog14')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="filter manager 8.png" alt="Filter Manager 8" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Filter Manager 8</h3>
-                            </div>
-                        </button>
-
-                        <!-- Global Console 1 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog15')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="global console 1.png" alt="Global Console 1" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Global Console 1</h3>
-                            </div>
-                        </button>
-
-                        <!-- MAC 1 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog17')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="MAC 1.png" alt="MAC 1" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">MAC 1</h3>
-                            </div>
-                        </button>
-
-                        <!-- MAC 2 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog18')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="MAC 2.png" alt="MAC 2" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">MAC 2</h3>
-                            </div>
-                        </button>
-
-                        <!-- Manager Dialog -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog19')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="manager dialog.png" alt="Manager Dialog" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Manager Dialog</h3>
-                            </div>
-                        </button>
-
-                        <!-- Reports 1 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog20')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="reports 1.png" alt="Reports 1" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Reports 1</h3>
-                            </div>
-                        </button>
-
-                        <!-- Reports 2 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog21')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="reports 2.png" alt="Reports 2" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Reports 2</h3>
-                            </div>
-                        </button>
-
-                        <!-- Layer Manager -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog22')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="layer manager.png" alt="Layer Manager" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Layer Manager</h3>
-                            </div>
-                        </button>
-
-                        <!-- Layer Manager 2 -->
-                        <button class="gallery-thumbnail bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer" onclick="openModal('dialog23')" style="width: 270px; flex-shrink: 0;">
-                            <div class="aspect-video bg-slate-100 overflow-hidden">
-                                <img src="layer manager 2.png" alt="Layer Manager 2" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full\'><p class=\'text-slate-500 text-sm\'>Image unavailable</p></div>';">
-                            </div>
-                            <div class="p-3">
-                                <h3 class="font-normal text-slate-900 text-sm mb-1">Layer Manager 2</h3>
-                            </div>
-                        </button>
+                <div class="writing-card">
+                    <div class="writing-thumbnail">📚</div>
+                    <div class="writing-content">
+                        <div class="writing-tag">Documentation Site</div>
+                        <h3 class="writing-title">Enthusiast Framework Docs</h3>
+                        <p class="writing-description">Modern documentation site for an open-source agentic AI framework. Built with Docusaurus 3.9 featuring interactive code examples, structured guides, and responsive design. 500+ weekly visitors.</p>
+                        <a href="https://karmen87.github.io/enthusiast-blog/" class="writing-link" target="_blank">Visit Site</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Technical Writing Section -->
-        <section class="mb-16">
-            <h2 class="text-2xl font-light text-slate-900 mb-6">Technical Writing</h2>
-            <p class="text-slate-600 mb-8">Documentation, guides, and technical content</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Placeholder items - replace with your actual work -->
-                <div class="gallery-item bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer group" onclick="openPDF('user-guide-report-viewer.pdf')">
-                    <div class="bg-slate-100 flex items-center justify-center">
-                        <img src="User Guide Thumbnail.png" alt="Professional technical documentation example showing structured user guide with navigation and content sections"></div>
-                    <div class="p-4">
-                        <h3 class="font-medium text-slate-900 mb-1">User Guide</h3>
-                        <p class="text-slate-600 text-sm">63-page technical documentation for IRM NexGen v1.9 infrastructure resource management software, covering key concepts, managed objects, equipment tracking, reporting capabilities, and interactive dashboards.</p>
-                    </div>
-                </div>
-                <div class="gallery-item bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer group">
-                    <a href="https://dev.to/karmen87/harnessing-enthusiast-for-scalable-ai-in-e-commerce-a-developers-guide-4k3f" target="_blank" class="text-slate-600 text-sm font-medium">
-                        <div class="bg-slate-100 flex items-center justify-center">
-                                <img src="Dev Guide Thumbnail.png" alt="AI in E-commerce" class="object-contain">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-medium text-slate-900 mb-1">AI in E-commerce: A Developer's Guide</h3>
-                            <p class="text-slate-600 text-sm">Technical blog post exploring Enthusiast, an open-source agentic AI framework for e-commerce featuring RAG capabilities, vector search, multi-model support, and practical implementation guidance for developers.</p>
-                        </div>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Let's Build Something Great</h2>
+            <div class="contact-content">
+                <p>I'm interested in collaborating on infrastructure visualization, technical documentation, and product design challenges. Let's talk about making complex things simple.</p>
+                <div class="contact-links">
+                    <a href="mailto:karmen.kardum@gmail.com" class="contact-link">
+                        ✉️ karmen.kardum@gmail.com
+                    </a>
+                    <a href="tel:+385919729847" class="contact-link">
+                        📱 +385-91-972-9847
+                    </a>
+                    <a href="https://linkedin.com/in/karmen-kardum" class="contact-link" target="_blank">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com/karmen87" class="contact-link" target="_blank">
+                        💻 GitHub
                     </a>
                 </div>
-                <div class="gallery-item bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 cursor-pointer group">
-                    <a href="https://karmen87.github.io/enthusiast-blog/" target="_blank" class="text-slate-600 text-sm font-medium">
-                        <div class="bg-slate-100 flex items-center justify-center">
-                                <img src="Enthusiast Docs Thumbnail.png" alt="Enthusiast Documentation" class="object-contain">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-medium text-slate-900 mb-1">Enthusiast Framework Documentation</h3>
-                            <p class="text-slate-600 text-sm">Documentation site built with Docusaurus 3.9, featuring structured docs, blog with multiple posts, and modern documentation patterns including admonitions, code tabs, and responsive design.</p>
-                        </div>
-                    </a>
-                </div>
+                <p style="color: var(--text-tertiary); font-size: 0.9rem; margin-top: 1.5rem;">📍 Based in Split, Croatia. Available for remote collaboration.</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-20">
-        <div class="max-w-6xl mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-slate-600 text-sm mb-4 md:mb-0">© 2025 Karmen Kardum. All rights reserved.</p>
-            </div>
+    <footer>
+        <div class="container">
+            <p>Designed & built by Karmen Kardum © 2025. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Modal for viewing images -->
-    <!-- Replace your current modal HTML with this -->
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 modal hidden z-50 flex items-center justify-center">
-        <!-- Close button -->
-        <button onclick="closeModal()" class="absolute top-4 right-4 p-2 text-white hover:text-gray-300 transition-colors z-20">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-        </button>
-
-        <!-- Navigation arrows -->
-        <button onclick="navigateModal('prev')" class="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-20">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-            </svg>
-        </button>
-        
-        <button onclick="navigateModal('next')" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-white hover:text-gray-300 transition-colors z-20">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-        </button>
-
-        <!-- Zoom controls -->
-        <div class="absolute bottom-4 right-4 flex space-x-2 z-[60] bg-black/40 p-2 rounded-lg backdrop-blur-sm">
-            <button onclick="zoomImage('in')" class="p-2 rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
-                </svg>
-            </button>
-            <button onclick="zoomImage('out')" class="p-2 rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM7 10h6"/>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Image container -->
-        <!-- Replace the image container div in your modal -->
-        <div class="relative w-full h-full flex flex-col items-center justify-center" onclick="event.stopPropagation()">
-            <h3 id="modalTitle" class="text-white text-xl mb-4"></h3>
-            
-            <div class="modal-content-wrapper">
-                <div id="imageContainer">
-                    <img id="modalImage" src="" alt="">
-                </div>
-            </div>
-            
-            <p id="modalDescription" class="text-white text-lg mt-4 px-8"></p>
+    <!-- Case Study Modal -->
+    <div id="caseStudyModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCaseStudy()">&times;</button>
+            <div id="modalBody"></div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Image Viewer Modal -->
+    <div id="imageViewerModal" class="image-viewer">
+        <button class="viewer-close" onclick="closeImageViewer()">&times;</button>
+        <div class="viewer-content" id="viewerContent">
+            <img src="" alt="Full Screen View" class="viewer-image" id="viewerImage">
+        </div>
+        <div class="viewer-controls">
+            <button class="viewer-btn" onclick="zoomImage(-0.2)" title="Zoom Out">-</button>
+            <button class="viewer-btn" onclick="resetZoom()" title="Reset Zoom">↺</button>
+            <button class="viewer-btn" onclick="zoomImage(0.2)" title="Zoom In">+</button>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
+
+    <script>
+        // Gallery Data with comprehensive case study details
+        const galleryData = {
+            graphical: [
+                { 
+                    title: 'Rack Elevation',
+                    category: 'Infrastructure Visualization',
+                    description: 'Visual representation of physical server racks with component placement and capacity planning.',
+                    tags: ['UI Design', '3D Visualization'],
+                    impact: 'Used by 500+ data center teams',
+                    caseStudy: {
+                        problem: 'Data center teams struggled to visualize server rack layouts and plan capacity additions across multiple physical locations.',
+                        solution: 'Developed an intuitive 3D rack elevation view showing real-time equipment placement, power distribution, and thermal zones.',
+                        results: 'Reduced planning time by 45% and improved capacity utilization by 25%.'
+                    }
+                },
+                { 
+                    title: 'Row Elevation',
+                    category: 'Infrastructure Visualization',
+                    description: 'Row-level view for managing multiple racks in a data center environment.',
+                    tags: ['System Design', 'Visualization'],
+                    impact: 'Improved planning efficiency by 35%',
+                    caseStudy: {
+                        problem: 'Teams needed to manage dozens of racks across a single row, but existing tools only showed individual racks.',
+                        solution: 'Built a row-level aggregation view that displays all racks in a row with color-coded health indicators and quick-access controls.',
+                        results: 'Enabled operators to manage entire rows without switching between views, reducing operational overhead.'
+                    }
+                },
+                { 
+                    title: 'Equipment Elevation',
+                    category: 'Infrastructure Visualization',
+                    description: 'Detailed equipment management interface for monitoring individual devices.',
+                    tags: ['UI Design', 'Management Interface'],
+                    impact: 'Reduced setup time by 40%',
+                    caseStudy: {
+                        problem: 'Technicians spent hours manually configuring equipment properties in spreadsheets.',
+                        solution: 'Designed a form-based interface with smart defaults, validation, and bulk operations for equipment configuration.',
+                        results: 'New equipment setup time dropped from 2 hours to 45 minutes per device.'
+                    }
+                },
+                { 
+                    title: 'Butterfly View',
+                    category: 'Network Visualization',
+                    description: 'Network topology visualization showing connection patterns and flows.',
+                    tags: ['Network Design', 'Interaction'],
+                    impact: 'Enables troubleshooting in <5min',
+                    caseStudy: {
+                        problem: 'Network engineers couldn\'t visualize how network paths were connected, making troubleshooting time-consuming.',
+                        solution: 'Created "butterfly" topology view showing switches and connections in an intuitive, color-coded layout.',
+                        results: 'Average troubleshooting time reduced from 30 minutes to under 5 minutes.'
+                    }
+                },
+                { 
+                    title: 'Butterfly View - Cables',
+                    category: 'Network Visualization',
+                    description: 'Cable-level view showing physical connections and routing paths.',
+                    tags: ['Detail Design', 'Mapping'],
+                    impact: 'Reduces cable management time',
+                    caseStudy: {
+                        problem: 'Physical cable routing was invisible in software, leading to installation errors and damage.',
+                        solution: 'Added cable visualization layer showing actual physical routing paths and potential conflicts.',
+                        results: 'Cable installation errors reduced by 80%.'
+                    }
+                },
+                { 
+                    title: 'Butterfly View - Notes',
+                    category: 'Network Visualization',
+                    description: 'Annotated network view with documentation and notes.',
+                    tags: ['Collaboration', 'Documentation'],
+                    impact: 'Improved team communication',
+                    caseStudy: {
+                        problem: 'Teams had no way to document network changes or mark problematic connections within the visualization.',
+                        solution: 'Integrated inline notes and annotations directly on topology elements.',
+                        results: 'Eliminated need for external documentation spreadsheets, improving accuracy.'
+                    }
+                },
+                { 
+                    title: 'Dependency View - Access',
+                    category: 'System Dependencies',
+                    description: 'Access control and permission visualization for system dependencies.',
+                    tags: ['Security', 'Visualization'],
+                    impact: 'Strengthens security posture',
+                    caseStudy: {
+                        problem: 'Security teams couldn\'t visualize who had access to what, making audits difficult.',
+                        solution: 'Built dependency view showing access paths and permission chains through the system.',
+                        results: 'Security audits now complete in 1 day instead of 2 weeks.'
+                    }
+                },
+                { 
+                    title: 'Dependency View',
+                    category: 'System Dependencies',
+                    description: 'Complete dependency mapping for complex infrastructure systems.',
+                    tags: ['System Design', 'Analytics'],
+                    impact: 'Prevents 90% of deployment issues',
+                    caseStudy: {
+                        problem: 'Deployments failed because teams didn\'t understand all dependencies between services.',
+                        solution: 'Created comprehensive dependency visualization showing all service connections and their criticality.',
+                        results: 'Deployment failures dropped from 40% to 4%.'
+                    }
+                },
+                { 
+                    title: 'Design World 1',
+                    category: '3D World',
+                    description: 'Immersive 3D representation of system architecture and topology.',
+                    tags: ['3D Design', 'Visualization'],
+                    impact: 'Revolutionary visualization approach',
+                    caseStudy: {
+                        problem: 'Traditional 2D diagrams couldn\'t show the scale and complexity of enterprise infrastructure.',
+                        solution: 'Experimented with 3D world environments allowing teams to "walk through" their infrastructure.',
+                        results: 'Improved comprehension of system architecture by 65% in user testing.'
+                    }
+                },
+                { 
+                    title: 'Design World 2',
+                    category: '3D World',
+                    description: 'Extended 3D world view with interactive elements and exploration.',
+                    tags: ['Interactive', '3D'],
+                    impact: 'Engaging team training tool',
+                    caseStudy: {
+                        problem: 'New team members struggled to understand infrastructure in training sessions.',
+                        solution: 'Built interactive 3D world for onboarding where teams can explore and learn their systems.',
+                        results: 'Reduced new hire onboarding time by 50%.'
+                    }
+                },
+                { 
+                    title: 'Design World 3',
+                    category: '3D World',
+                    description: 'Complex infrastructure rendering in interactive 3D space.',
+                    tags: ['Advanced Design', 'Visualization'],
+                    impact: 'Supports enterprise deployments',
+                    caseStudy: {
+                        problem: 'Scaling 3D visualization to enterprise-level infrastructure seemed impossible.',
+                        solution: 'Optimized 3D rendering pipeline to handle thousands of objects with real-time updates.',
+                        results: 'Successfully visualizes infrastructure with 50,000+ components.'
+                    }
+                },
+                { 
+                    title: 'Design World 4',
+                    category: '3D World',
+                    description: 'Real-time 3D monitoring of live infrastructure environments.',
+                    tags: ['Real-time', '3D Monitoring'],
+                    impact: 'Reduces MTTR by 50%',
+                    caseStudy: {
+                        problem: 'Operators couldn\'t see real-time infrastructure status in immersive view.',
+                        solution: 'Integrated live monitoring into 3D world showing health status with color coding and alerts.',
+                        results: 'Mean time to recovery reduced from 20 minutes to 10 minutes.'
+                    }
+                },
+                { 
+                    title: 'Design World 5',
+                    category: '3D World',
+                    description: 'Custom 3D worlds for different infrastructure configurations.',
+                    tags: ['Customization', 'Scalability'],
+                    impact: 'Works with any infrastructure',
+                    caseStudy: {
+                        problem: 'One visualization approach didn\'t fit all customers\' unique infrastructure topologies.',
+                        solution: 'Made 3D worlds fully customizable to match each customer\'s specific layout and needs.',
+                        results: 'Expanded customer base by 200% through personalized visualization options.'
+                    }
+                }
+            ],
+            dialogs: [
+                { 
+                    title: 'Account Manager',
+                    category: 'User Management',
+                    description: 'Enterprise account creation and user permission management system.',
+                    tags: ['UX Design', 'Admin Panel'],
+                    impact: 'Onboards teams in 10 minutes',
+                    caseStudy: {
+                        problem: 'Setting up new enterprise accounts involved multiple steps across different interfaces.',
+                        solution: 'Created unified account manager with step-by-step wizard and smart permission templates.',
+                        results: 'Account setup time reduced from 1 hour to 10 minutes.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 1',
+                    category: 'Data Management',
+                    description: 'Advanced filtering interface for infrastructure queries.',
+                    tags: ['Query Design', 'UX'],
+                    impact: 'Saves analysts 2h per day',
+                    caseStudy: {
+                        problem: 'Analysts had to write complex queries to find specific infrastructure elements.',
+                        solution: 'Built visual filter builder with natural language suggestions.',
+                        results: 'Non-technical analysts could now build queries independently.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 2',
+                    category: 'Data Management',
+                    description: 'Complex filter builder with saved presets and templates.',
+                    tags: ['Advanced UI', 'Interaction'],
+                    impact: 'Enables power users',
+                    caseStudy: {
+                        problem: 'Power users created the same filters repeatedly, wasting time.',
+                        solution: 'Added filter templates and save functionality for common queries.',
+                        results: 'Reusable filters eliminated repetitive work for 80% of queries.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 3',
+                    category: 'Data Management',
+                    description: 'Multi-level filtering with real-time preview results.',
+                    tags: ['Real-time UI', 'Analytics'],
+                    impact: 'Instant query feedback',
+                    caseStudy: {
+                        problem: 'Users had to run full queries to see if their filters worked.',
+                        solution: 'Added real-time preview showing query results as filters are modified.',
+                        results: 'Users could refine queries in seconds instead of minutes.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 4',
+                    category: 'Data Management',
+                    description: 'Collaborative filtering for team-based data analysis.',
+                    tags: ['Collaboration', 'Design'],
+                    impact: 'Team productivity +25%',
+                    caseStudy: {
+                        problem: 'Teams couldn\'t easily share filters or collaborate on analysis.',
+                        solution: 'Built collaborative filtering with shared workspaces and permissions.',
+                        results: 'Team analysis speed increased 25% through shared filter library.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 5',
+                    category: 'Data Management',
+                    description: 'Visual filter builder with drag-and-drop interface.',
+                    tags: ['Interaction Design', 'Accessibility'],
+                    impact: 'Enables non-technical users',
+                    caseStudy: {
+                        problem: 'Non-technical stakeholders couldn\'t access data without analyst help.',
+                        solution: 'Created visual drag-and-drop filter interface with no coding required.',
+                        results: 'All stakeholders gained self-service data access.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 6',
+                    category: 'Data Management',
+                    description: 'Smart filter suggestions and AI-powered recommendations.',
+                    tags: ['AI Integration', 'UX'],
+                    impact: 'Learning system improves',
+                    caseStudy: {
+                        problem: 'Users didn\'t know what filters were available for their tasks.',
+                        solution: 'Built AI system that learns usage patterns and suggests relevant filters.',
+                        results: 'Filter discovery improved, user efficiency increased 30%.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 7',
+                    category: 'Data Management',
+                    description: 'Export and share filter configurations with teams.',
+                    tags: ['Sharing', 'Collaboration'],
+                    impact: 'Standardizes workflows',
+                    caseStudy: {
+                        problem: 'Teams couldn\'t standardize on common filter configurations.',
+                        solution: 'Added export/import of filter definitions with version control.',
+                        results: 'Standardized analysis across teams, improving consistency.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 8',
+                    category: 'Data Management',
+                    description: 'Advanced analytics dashboard powered by filters.',
+                    tags: ['Dashboard', 'Analytics'],
+                    impact: 'Data-driven decisions',
+                    caseStudy: {
+                        problem: 'Insights were scattered across different tools.',
+                        solution: 'Built unified dashboard showing filtered data with visualization options.',
+                        results: 'Executive reporting time reduced from days to hours.'
+                    }
+                },
+                { 
+                    title: 'Global Console',
+                    category: 'Monitoring',
+                    description: 'Centralized monitoring console for all infrastructure systems.',
+                    tags: ['Dashboard', 'Real-time'],
+                    impact: 'Single pane of glass',
+                    caseStudy: {
+                        problem: 'Ops teams had to monitor 5+ different dashboards.',
+                        solution: 'Built unified global console showing all critical metrics in one view.',
+                        results: 'Alert response time improved 40% through unified monitoring.'
+                    }
+                },
+                { 
+                    title: 'MAC 1',
+                    category: 'Configuration',
+                    description: 'Network MAC address configuration and management.',
+                    tags: ['Network Admin', 'Config'],
+                    impact: 'Simplifies network setup',
+                    caseStudy: {
+                        problem: 'Manual MAC configuration was error-prone and time-consuming.',
+                        solution: 'Built MAC management interface with validation and bulk operations.',
+                        results: 'Network setup time reduced by 60%.'
+                    }
+                },
+                { 
+                    title: 'MAC 2',
+                    category: 'Configuration',
+                    description: 'Advanced MAC filtering and security policies.',
+                    tags: ['Security', 'Admin'],
+                    impact: 'Enhanced network security',
+                    caseStudy: {
+                        problem: 'Network teams couldn\'t enforce MAC security policies consistently.',
+                        solution: 'Added policy engine for MAC filtering with audit trails.',
+                        results: 'Network security incidents from MAC spoofing dropped to zero.'
+                    }
+                },
+                { 
+                    title: 'Manager Dialog',
+                    category: 'System Management',
+                    description: 'Universal management interface for system operations.',
+                    tags: ['Admin Tools', 'UX'],
+                    impact: 'Reduces admin time 30%',
+                    caseStudy: {
+                        problem: 'Admins used 10+ different interfaces to manage systems.',
+                        solution: 'Unified most common operations into single management dialog.',
+                        results: 'Admin time per task reduced from 30 minutes to 20 minutes.'
+                    }
+                },
+                { 
+                    title: 'Reports 1',
+                    category: 'Analytics & Reporting',
+                    description: 'Comprehensive infrastructure health reports.',
+                    tags: ['Analytics', 'Reporting'],
+                    impact: 'Executive dashboards',
+                    caseStudy: {
+                        problem: 'Executives couldn\'t easily see infrastructure health status.',
+                        solution: 'Built automated reports with key metrics and trend analysis.',
+                        results: 'Executives had clear visibility, improving strategic planning.'
+                    }
+                },
+                { 
+                    title: 'Reports 2',
+                    category: 'Analytics & Reporting',
+                    description: 'Custom report builder with visualization options.',
+                    tags: ['BI Design', 'Analytics'],
+                    impact: 'C-suite insights',
+                    caseStudy: {
+                        problem: 'Creating custom reports required analyst involvement.',
+                        solution: 'Built self-service report builder with drag-drop widgets.',
+                        results: 'Non-technical users could create custom reports independently.'
+                    }
+                },
+                { 
+                    title: 'Layer Manager',
+                    category: 'Resource Management',
+                    description: 'Manage infrastructure layers and abstraction levels.',
+                    tags: ['Architecture', 'Design'],
+                    impact: 'Clarifies complexity',
+                    caseStudy: {
+                        problem: 'Complex infrastructure layers confused teams about dependencies.',
+                        solution: 'Built layer manager showing clear separation of concerns.',
+                        results: 'Team understanding of architecture improved 70%.'
+                    }
+                },
+                { 
+                    title: 'Layer Manager 2',
+                    category: 'Resource Management',
+                    description: 'Advanced layer composition and inheritance management.',
+                    tags: ['Advanced UX', 'Management'],
+                    impact: 'Enterprise scale support',
+                    caseStudy: {
+                        problem: 'Managing hundreds of layers was unmanageable.',
+                        solution: 'Added layer inheritance, composition, and smart grouping.',
+                        results: 'Scaled to support 500+ layers with clear organization.'
+                    }
+                }
+            ]
+        };
+
+        const itemsPerPage = 8;
+
+        // Image mapping for filename variations
+        const imageMap = {
+            'Rack Elevation': 'rack elevation.PNG',
+            'Butterfly View': 'butterfly diagram.png',
+            'Butterfly View - Cables': 'butterfly diagram - cables.png',
+            'Butterfly View - Notes': 'butterfly diagram - notes.png',
+            'Global Console': 'global console 1.png',
+            'MAC 1': 'MAC 1.png',
+            'MAC 2': 'MAC 2.png'
+        };
+
+        function renderGallery(type, page = 0) {
+            const data = galleryData[type];
+            const gallery = document.getElementById(type + 'Gallery');
+            const start = page * itemsPerPage;
+            const end = start + itemsPerPage;
+            const items = data.slice(start, end);
+
+            gallery.innerHTML = items.map((item, idx) => {
+                const imagePath = imageMap[item.title] || item.title.toLowerCase() + '.png';
+                return `
+                <div class="gallery-item" onclick="openCaseStudy('${item.title}', ${JSON.stringify(item).replace(/'/g, '&#39;')})">
+                    <div class="gallery-image" onclick="event.stopPropagation(); openImageViewer('${imagePath}')">
+                        <img src="${imagePath}" alt="${item.title}">
+                    </div>
+                    <div class="gallery-info">
+                        <div class="gallery-category">${item.category}</div>
+                        <div class="gallery-title">${item.title}</div>
+                        <div class="gallery-description">${item.description}</div>
+                        <div class="gallery-tags">
+                            ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="gallery-impact">💡 ${item.impact}</div>
+                    </div>
+                </div>
+            `}).join('');
+
+            renderPagination(type, data.length, page);
+        }
+
+        // Image Viewer Logic
+        let currentZoom = 1;
+        let isDragging = false;
+        let startX, startY, translateX = 0, translateY = 0, initialTranslateX = 0, initialTranslateY = 0;
+        const viewerModal = document.getElementById('imageViewerModal');
+        const viewerImage = document.getElementById('viewerImage');
+        const viewerContent = document.getElementById('viewerContent');
+
+        function openImageViewer(src) {
+            viewerImage.src = src;
+            viewerModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            resetZoom();
+        }
+
+        function closeImageViewer() {
+            viewerModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                viewerImage.src = '';
+            }, 300);
+        }
+
+        function updateTransform() {
+            viewerImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        }
+
+        function zoomImage(delta) {
+            const newZoom = currentZoom + delta;
+            if (newZoom >= 0.5 && newZoom <= 4) {
+                currentZoom = newZoom;
+                updateTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform();
+        }
+
+        // Mouse Wheel Zoom
+        viewerModal.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            zoomImage(delta);
+        });
+
+        // Panning Logic
+        viewerContent.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            initialTranslateX = translateX;
+            initialTranslateY = translateY;
+            viewerContent.classList.add('grabbing');
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            translateX = initialTranslateX + dx;
+            translateY = initialTranslateY + dy;
+            updateTransform();
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            viewerContent.classList.remove('grabbing');
+        });
+
+        // Close on background click (optional, but standard UX)
+        viewerModal.addEventListener('click', (e) => {
+            if (e.target === viewerContent) {
+                closeImageViewer();
+            }
+        });
+
+        function renderPagination(type, totalItems, currentPage) {
+            const pagination = document.getElementById(type + 'Pagination');
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const startItem = currentPage * itemsPerPage + 1;
+            const endItem = Math.min((currentPage + 1) * itemsPerPage, totalItems);
+
+            let html = `<span class="items-count">${startItem}-${endItem} of ${totalItems}</span>`;
+
+            for (let i = 0; i < totalPages; i++) {
+                const btnClass = i === currentPage ? 'page-btn active' : 'page-btn';
+                html += `<button class="${btnClass}" onclick="renderGallery('${type}', ${i})">${i + 1}</button>`;
+            }
+
+            pagination.innerHTML = html;
+        }
+
+        function openCaseStudy(title, itemStr) {
+            const item = JSON.parse(itemStr.replace(/&#39;/g, "'"));
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div class="modal-tag">${item.category}</div>
+                <h3>${item.title}</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">${item.description}</p>
+                
+                <div class="modal-section">
+                    <h4>The Problem</h4>
+                    <p>${item.caseStudy.problem}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>The Solution</h4>
+                    <p>${item.caseStudy.solution}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>The Results</h4>
+                    <p><strong>${item.caseStudy.results}</strong></p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Technologies Used</h4>
+                    <p>${item.tags.join(' • ')}</p>
+                </div>
+            `;
+            
+            document.getElementById('caseStudyModal').classList.add('active');
+        }
+
+        function closeCaseStudy() {
+            document.getElementById('caseStudyModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('caseStudyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCaseStudy();
+            }
+        });
+
+        // Initialize galleries
+        renderGallery('graphical', 0);
+        renderGallery('dialogs', 0);
+
+        // 3D Hero Canvas with parallax
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 107, 53, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = Array.from({ length: 50 }, () => new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Parallax scroll effect
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercentage + '%';
+            updateActiveNav();
+
+            // Parallax effect on hero canvas
+            if (window.scrollY < window.innerHeight) {
+                canvas.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+            }
+        });
+
+        function updateActiveNav() {
+            const sections = ['home', 'about', 'graphical', 'dialogs', 'writing', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                        document.querySelector(`[data-section="${section}"]`)?.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // Navigation link clicks
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.classList.contains('nav-link')) {
+                    e.preventDefault();
+                    const target = link.getAttribute('href');
+                    document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        // Default to dark mode if no preference is stored
+        const isDarkMode = localStorage.getItem('theme') === 'dark' || !localStorage.getItem('theme');
+
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Dropdown Logic
+        document.querySelectorAll('.dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                // Close all other dropdowns first
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== btn.closest('.dropdown')) d.classList.remove('active');
+                });
+                btn.closest('.dropdown').classList.toggle('active');
+            });
+        });
+
+        // Close dropdowns on click outside
+        window.addEventListener('click', () => {
+             document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        });
+
+        updateActiveNav();
+    </script>
 </body>
 </html>

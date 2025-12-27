@@ -1,9 +1,29 @@
-.gallery-item {
+/* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Card hover effects */
+        .gallery-item {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .gallery-item:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Experience card hover */
+        #experience .bg-white:hover,
+        #experience .bg-gradient-to-br:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Portfolio context box hover */
+        .bg-slate-50:hover {
+            background-color: rgb(248 250 252);
+            transition: background-color 0.2s ease;
         }
         .modal {
             backdrop-filter: blur(8px);

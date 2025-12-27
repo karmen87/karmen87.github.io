@@ -293,50 +293,338 @@ function filterProjects(galleryName, category) {
     updateGalleryCounter(galleryName);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-// Prevent modal from closing when clicking inside it
-document.querySelector('#imageModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
-    }
-});
-});
-
-modalImage.onload = function() {
-modalImage.style.width = '';
-modalImage.style.height = '';
-modalImage.style.maxWidth = '90vw';
-modalImage.style.maxHeight = '80vh';
-currentZoom = 1;
-};
-
 // Add panning functionality
 let isDragging = false;
 let startX, startY, scrollLeftStart, scrollTopStart;
 
-document.getElementById('imageContainer').addEventListener('mousedown', (e) => {
-if (currentZoom > 1) {
-    isDragging = true;
-    startX = e.pageX;
-    startY = e.pageY;
-    scrollLeftStart = document.getElementById('imageContainer').scrollLeft;
-    scrollTopStart = document.getElementById('imageContainer').scrollTop;
-    document.getElementById('imageContainer').style.cursor = 'grabbing';
+document.addEventListener('DOMContentLoaded', function() {
+    // Prevent modal from closing when clicking inside it
+    const imageModal = document.querySelector('#imageModal');
+    if (imageModal) {
+        imageModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    }
+
+    const modalImage = document.getElementById('modalImage');
+    if (modalImage) {
+        modalImage.onload = function() {
+            modalImage.style.width = '';
+            modalImage.style.height = '';
+            modalImage.style.maxWidth = '90vw';
+            modalImage.style.maxHeight = '80vh';
+            currentZoom = 1;
+        };
+    }
+
+    const imageContainer = document.getElementById('imageContainer');
+    if (imageContainer) {
+        imageContainer.addEventListener('mousedown', (e) => {
+            if (currentZoom > 1) {
+                isDragging = true;
+                startX = e.pageX;
+                startY = e.pageY;
+                scrollLeftStart = imageContainer.scrollLeft;
+                scrollTopStart = imageContainer.scrollTop;
+                imageContainer.style.cursor = 'grabbing';
+            }
+        });
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX;
+        const y = e.pageY;
+        const walkX = (startX - x);
+        const walkY = (startY - y);
+        if (imageContainer) {
+            imageContainer.scrollLeft = scrollLeftStart + walkX;
+            imageContainer.scrollTop = scrollTopStart + walkY;
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        if (imageContainer) {
+            imageContainer.style.cursor = currentZoom > 1 ? 'move' : 'default';
+        }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
+
+    // Resume dropdown toggle
+    const resumeButton = document.getElementById('resume-dropdown-button');
+    const resumeDropdown = document.getElementById('resume-dropdown');
+
+    if (resumeButton && resumeDropdown) {
+        resumeButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            resumeDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!resumeButton.contains(e.target) && !resumeDropdown.contains(e.target)) {
+                resumeDropdown.classList.add('hidden');
+            }
+        });
+
+        // Close dropdown after clicking a resume link
+        const resumeLinks = resumeDropdown.querySelectorAll('a');
+        resumeLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                resumeDropdown.classList.add('hidden');
+            });
+        });
+    }
+
+    // Skills accordion functionality with auto-close
+    const accordionButtons = document.querySelectorAll('.skill-accordion-btn');
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const content = document.getElementById(targetId);
+            const arrow = this.querySelector('svg');
+            const isCurrentlyOpen = !content.classList.contains('hidden');
+
+            // Close all other accordions
+            accordionButtons.forEach(otherButton => {
+                if (otherButton !== button) {
+                    const otherTargetId = otherButton.getAttribute('data-target');
+                    const otherContent = document.getElementById(otherTargetId);
+                    const otherArrow = otherButton.querySelector('svg');
+
+                    otherContent.classList.add('hidden');
+                    otherArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Toggle current accordion
+            if (isCurrentlyOpen) {
+                content.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.remove('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('back-to-top');
+
+    if (backToTopButton) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        // Scroll to top when clicked
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+
+// Work Experience Modal Functions
+const workExperienceData = {
+    crypto: {
+        title: "Cryptocurrency Trading & DeFi Consultant",
+        company: "Predictor",
+        period: "2022 - Present",
+        location: "Remote",
+        description: "Develop algorithmic trading bots and cryptocurrency trading infrastructure for personal trading operations.",
+        bullets: [
+            "Developed algorithmic trading bots for cryptocurrency futures and perpetuals on MEXC exchange",
+            "Built automated trading strategies using Hummingbot framework for cryptocurrency markets",
+            "Operated personal cryptocurrency mining infrastructure as part of Predictor trading operations",
+            "Monitored trading systems 24/7 with team ensuring execution reliability and system uptime",
+            "Co-authored whitepaper content for power perpetuals DeFi protocol (project discontinued in initial phase)",
+            "Conducted research and analysis on DeFi protocol risks, vulnerabilities, and trading strategies",
+            "Implemented risk management systems for cryptocurrency trading operations",
+            "Analyzed on-chain data and cryptocurrency market trends for trading decisions"
+        ]
+    },
+    planetirm: {
+        title: "Product Owner",
+        company: "Planet IRM",
+        period: "Jul 2015 - Jun 2023",
+        location: "Remote",
+        description: "Product Owner for Planet IRM NexGen, enterprise cloud-based infrastructure management platform serving Fortune 500 companies and U.S. Department of Defense agencies.",
+        sections: [
+            {
+                heading: "Product Development & Technical Leadership:",
+                bullets: [
+                    "Designed 125+ UI/UX mockups in Balsamiq defining feature specifications for front-end and back-end development teams",
+                    "Worked with Object Model data architecture framework describing object structure, relations, and properties",
+                    "Collaborated with 10-15 engineers across multiple time zones on system architecture and technical implementation",
+                    "Attended almost all engineering and architecture meetings to understand technical implementation deeply",
+                    "Participated in database design conversations and data modeling discussions with engineering teams",
+                    "Contributed to technical architecture discussions for cloud platform migration"
+                ]
+            },
+            {
+                heading: "Technical Documentation & Specifications:",
+                bullets: [
+                    "Authored 1,800+ pages of comprehensive technical documentation across 28 product versions",
+                    "Created detailed technical specifications and design documents used by development teams for feature implementation",
+                    "Documented complex system architecture, REST API integrations, and deployment workflows",
+                    "Created detailed release notes (30+ pages each) documenting features, bug fixes, and system changes",
+                    "Researched and proposed API documentation approach using Swagger/OpenAPI specification"
+                ]
+            },
+            {
+                heading: "Integration & Quality Assurance:",
+                bullets: [
+                    "Created mockups and documented integration features with third-party enterprise systems (Fluke Networks LinkWare Live, BMC Helix ITSM, ServiceNow)",
+                    "Attended integration design meetings with engineering teams and external partners",
+                    "Conducted acceptance testing and quality validation for new features",
+                    "Established version control processes for documentation using Dr.Explain, GitBook, and Wikipages"
+                ]
+            },
+            {
+                heading: "Stakeholder Collaboration:",
+                bullets: [
+                    "Worked closely with CTO and stakeholders on product strategy and feature prioritization",
+                    "Served as primary product contact for enterprise clients and government agencies",
+                    "Improved user self-service capabilities through comprehensive documentation"
+                ]
+            }
+        ]
+    },
+    i3annotate: {
+        title: "Software Project Manager",
+        company: "i3Annotate",
+        period: "Mar 2017 - Dec 2018",
+        location: "Remote",
+        description: "Led Agile development of multi-platform touchscreen annotation application for business and education from prototype to production release.",
+        bullets: [
+            "Led 6-person development team (contractors and direct reports) through full project lifecycle",
+            "Managed hiring, performance reviews, and team coordination",
+            "Defined project scope, milestones, and resource allocation",
+            "Managed dependencies and stakeholder expectations",
+            "Established testing workflows and validation processes across iOS, Android, Windows, and Mac platforms",
+            "Served as primary liaison between technical teams, non-technical departments, and clients",
+            "Managed Agile ceremonies including sprint planning, daily standups, retrospectives, and release planning",
+            "Tracked and reported project metrics, risks, and progress to executive stakeholders",
+            "Delivered project on-time and within budget"
+        ]
+    },
+    tradfi: {
+        title: "Traditional Finance Trading Consultant",
+        company: "Predictor",
+        period: "2016 - 2020",
+        location: "Remote",
+        description: "Built algorithmic trading infrastructure for traditional financial markets.",
+        bullets: [
+            "Developed algorithmic trading infrastructure for traditional financial markets",
+            "Built market data processing pipelines and order execution systems",
+            "Implemented risk management and monitoring systems for trading operations",
+            "Created data analysis tools for trading strategy backtesting and optimization",
+            "Developed real-time market data processing systems",
+            "Built automated trading strategies and signal generation systems"
+        ]
+    },
+    neos: {
+        title: "Software Developer",
+        company: "Neos",
+        period: "Jul 2011 - Jul 2015",
+        location: "Remote",
+        description: "Developed algorithmic trading systems, SCADA infrastructure, and ERP solutions.",
+        bullets: [
+            "Built Python-based algorithmic trading infrastructure and market data processing systems for financial markets",
+            "Developed real-time data pipelines for market data ingestion, processing, and analysis",
+            "Implemented trading signals and order execution systems",
+            "Developed SCADA system components for public lighting infrastructure management",
+            "Created data pipelines for real-time market data processing",
+            "Implemented SQL databases and optimized query performance for trading systems",
+            "Developed ERP system modules for business process automation"
+        ]
+    }
+};
+
+function openWorkExperience(id) {
+    const data = workExperienceData[id];
+    if (!data) return;
+
+    const modal = document.getElementById('workExperienceModal');
+    const content = document.getElementById('workExperienceContent');
+
+    let html = `
+        <h2 class="text-3xl font-bold text-slate-900 mb-2">${data.title}</h2>
+        <p class="text-xl text-slate-600 mb-1">${data.company}</p>
+        <p class="text-lg text-slate-500 mb-4">${data.period} | ${data.location}</p>
+        <p class="text-slate-700 mb-6 text-lg">${data.description}</p>
+    `;
+
+    if (data.sections) {
+        // For Planet IRM with multiple sections
+        data.sections.forEach(section => {
+            html += `
+                <h3 class="text-xl font-semibold text-slate-900 mt-6 mb-3">${section.heading}</h3>
+                <ul class="list-disc list-outside ml-6 space-y-2">
+            `;
+            section.bullets.forEach(bullet => {
+                html += `<li class="text-slate-700">${bullet}</li>`;
+            });
+            html += `</ul>`;
+        });
+    } else if (data.bullets) {
+        // For other positions with simple bullet lists
+        html += `<ul class="list-disc list-outside ml-6 space-y-2">`;
+        data.bullets.forEach(bullet => {
+            html += `<li class="text-slate-700">${bullet}</li>`;
+        });
+        html += `</ul>`;
+    }
+
+    content.innerHTML = html;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
 }
-});
 
-document.addEventListener('mousemove', (e) => {
-if (!isDragging) return;
-e.preventDefault();
-const x = e.pageX;
-const y = e.pageY;
-const walkX = (startX - x);
-const walkY = (startY - y);
-document.getElementById('imageContainer').scrollLeft = scrollLeftStart + walkX;
-document.getElementById('imageContainer').scrollTop = scrollTopStart + walkY;
-});
+function closeWorkExperience() {
+    const modal = document.getElementById('workExperienceModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
 
-document.addEventListener('mouseup', () => {
-isDragging = false;
-document.getElementById('imageContainer').style.cursor = currentZoom > 1 ? 'move' : 'default';
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('workExperienceModal');
+        if (!modal.classList.contains('hidden')) {
+            closeWorkExperience();
+        }
+    }
 });
