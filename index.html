@@ -613,21 +613,14 @@
             padding: 1.75rem;
         }
 
-        .gallery-category {
-            font-size: 0.8rem;
+        .gallery-title {
+            font-size: 0.95rem;
             color: var(--accent-primary);
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            font-family: 'Courier New', 'Courier', monospace;
-        }
-
-        .gallery-title {
-            font-size: 1.2rem;
-            color: var(--text-primary);
             margin-bottom: 0.75rem;
             font-weight: 700;
+            font-family: 'Courier New', 'Courier', monospace;
         }
 
         .gallery-description {
@@ -636,7 +629,7 @@
             line-height: 1.6;
             margin-bottom: 1rem;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -1584,7 +1577,7 @@
                 { 
                     title: 'Rack Elevation',
                     category: 'Infrastructure Visualization',
-                    description: 'Visual representation of physical server racks with component placement and capacity planning.',
+                    description: '3D visual interface for real-time rack capacity planning, thermal monitoring, and precise equipment placement.',
                     tags: ['UI Design', '3D Visualization'],
                     impact: 'Trusted by data center teams globally',
                     caseStudy: {
@@ -1596,7 +1589,7 @@
                 { 
                     title: 'Row Elevation',
                     category: 'Infrastructure Visualization',
-                    description: 'Row-level view for managing multiple racks in a data center environment.',
+                    description: 'Aggregated row-level visualization enabling simultaneous management of rack health and capacity across entire aisles.',
                     tags: ['System Design', 'Visualization'],
                     impact: 'Significantly improved planning efficiency',
                     caseStudy: {
@@ -1608,7 +1601,7 @@
                 { 
                     title: 'Equipment Elevation',
                     category: 'Infrastructure Visualization',
-                    description: 'Detailed equipment management interface for monitoring individual devices.',
+                    description: 'Smart configuration interface featuring automated validation and bulk operations for rapid device provisioning.',
                     tags: ['UI Design', 'Management Interface'],
                     impact: 'Accelerated equipment configuration',
                     caseStudy: {
@@ -1620,7 +1613,7 @@
                 { 
                     title: 'Butterfly View',
                     category: 'Network Visualization',
-                    description: 'Network topology visualization showing connection patterns and flows.',
+                    description: 'Intuitive network topology mapping that transforms complex connection paths into clear, actionable flow diagrams.',
                     tags: ['Network Design', 'Interaction'],
                     impact: 'Enables rapid troubleshooting',
                     caseStudy: {
@@ -1632,7 +1625,7 @@
                 { 
                     title: 'Butterfly View - Cables',
                     category: 'Network Visualization',
-                    description: 'Cable-level view showing physical connections and routing paths.',
+                    description: 'Physical layer visualization explicitly mapping cable routing paths to prevent installation errors and conflicts.',
                     tags: ['Detail Design', 'Mapping'],
                     impact: 'Streamlines cable management',
                     caseStudy: {
@@ -1644,7 +1637,7 @@
                 { 
                     title: 'Butterfly View - Notes',
                     category: 'Network Visualization',
-                    description: 'Annotated network view with documentation and notes.',
+                    description: 'Collaborative annotation layer allowing teams to document network changes directly within the topology context.',
                     tags: ['Collaboration', 'Documentation'],
                     impact: 'Improved team communication',
                     caseStudy: {
@@ -1656,7 +1649,7 @@
                 { 
                     title: 'Dependency View - Access',
                     category: 'System Dependencies',
-                    description: 'Access control and permission visualization for system dependencies.',
+                    description: 'Security visualization mapping complex access paths and permission chains for streamlined compliance audits.',
                     tags: ['Security', 'Visualization'],
                     impact: 'Strengthens security posture',
                     caseStudy: {
@@ -1668,7 +1661,7 @@
                 { 
                     title: 'Dependency View',
                     category: 'System Dependencies',
-                    description: 'Complete dependency mapping for complex infrastructure systems.',
+                    description: 'Criticality-aware dependency mapping that visualizes service connections to prevent deployment cascades.',
                     tags: ['System Design', 'Analytics'],
                     impact: 'Minimizes deployment risks',
                     caseStudy: {
@@ -1680,7 +1673,7 @@
                 { 
                     title: 'Design World 1',
                     category: '3D World',
-                    description: 'Immersive 3D representation of system architecture and topology.',
+                    description: 'Immersive 3D environment allowing engineers to explore system scale and architecture through a spatial interface.',
                     tags: ['3D Design', 'Visualization'],
                     impact: 'Revolutionary visualization approach',
                     caseStudy: {
@@ -1692,7 +1685,7 @@
                 { 
                     title: 'Design World 2',
                     category: '3D World',
-                    description: 'Extended 3D world view with interactive elements and exploration.',
+                    description: 'Gamified onboarding environment where new team members interactively explore and learn system infrastructure.',
                     tags: ['Interactive', '3D'],
                     impact: 'Engaging team training tool',
                     caseStudy: {
@@ -1704,7 +1697,7 @@
                 { 
                     title: 'Design World 3',
                     category: '3D World',
-                    description: 'Complex infrastructure rendering in interactive 3D space.',
+                    description: 'High-performance 3D rendering pipeline capable of visualizing 50,000+ components in real-time.',
                     tags: ['Advanced Design', 'Visualization'],
                     impact: 'Enables enterprise-scale operations',
                     caseStudy: {
@@ -1716,7 +1709,7 @@
                 { 
                     title: 'Design World 4',
                     category: '3D World',
-                    description: 'Real-time 3D monitoring of live infrastructure environments.',
+                    description: 'Live operational twin integrating real-time health status and alerts directly into the 3D infrastructure model.',
                     tags: ['Real-time', '3D Monitoring'],
                     impact: 'Accelerates incident recovery',
                     caseStudy: {
@@ -1728,7 +1721,7 @@
                 { 
                     title: 'Design World 5',
                     category: '3D World',
-                    description: 'Custom 3D worlds for different infrastructure configurations.',
+                    description: 'Adaptive visualization engine generating custom 3D environments tailored to specific customer infrastructure topologies.',
                     tags: ['Customization', 'Scalability'],
                     impact: 'Universal infrastructure compatibility',
                     caseStudy: {
@@ -1742,7 +1735,7 @@
                 { 
                     title: 'Account Manager',
                     category: 'User Management',
-                    description: 'Enterprise account creation and user permission management system.',
+                    description: 'Unified onboarding wizard with smart templates that streamlines complex enterprise account provisioning.',
                     tags: ['UX Design', 'Admin Panel'],
                     impact: 'Streamlined team onboarding',
                     caseStudy: {
@@ -1754,7 +1747,7 @@
                 { 
                     title: 'Filter Manager 1',
                     category: 'Data Management',
-                    description: 'Advanced filtering interface for infrastructure queries.',
+                    description: 'Visual query builder enabling non-technical analysts to construct complex infrastructure filters using natural language.',
                     tags: ['Query Design', 'UX'],
                     impact: 'Maximizes analyst productivity',
                     caseStudy: {
@@ -1766,7 +1759,7 @@
                 { 
                     title: 'Filter Manager 2',
                     category: 'Data Management',
-                    description: 'Complex filter builder with saved presets and templates.',
+                    description: 'Efficiency-focused filter system allowing power users to template, save, and reuse complex query logic.',
                     tags: ['Advanced UI', 'Interaction'],
                     impact: 'Enables power users',
                     caseStudy: {
@@ -1778,7 +1771,7 @@
                 { 
                     title: 'Filter Manager 3',
                     category: 'Data Management',
-                    description: 'Multi-level filtering with real-time preview results.',
+                    description: 'Reactive filtering interface providing instant visual feedback to speed up query refinement and validation.',
                     tags: ['Real-time UI', 'Analytics'],
                     impact: 'Accelerated data interaction',
                     caseStudy: {
@@ -1790,7 +1783,7 @@
                 { 
                     title: 'Filter Manager 4',
                     category: 'Data Management',
-                    description: 'Collaborative filtering for team-based data analysis.',
+                    description: 'Shared analytical workspace allowing teams to co-create, version, and distribute complex data filters.',
                     tags: ['Collaboration', 'Design'],
                     impact: 'Enhanced team collaboration',
                     caseStudy: {
@@ -1802,7 +1795,7 @@
                 { 
                     title: 'Filter Manager 5',
                     category: 'Data Management',
-                    description: 'Visual filter builder with drag-and-drop interface.',
+                    description: 'No-code drag-and-drop interface democratizing data access for non-technical stakeholders.',
                     tags: ['Interaction Design', 'Accessibility'],
                     impact: 'Enables non-technical users',
                     caseStudy: {
@@ -1814,7 +1807,7 @@
                 { 
                     title: 'Filter Manager 6',
                     category: 'Data Management',
-                    description: 'Smart filter suggestions and AI-powered recommendations.',
+                    description: 'Intelligent assistance system that learns user patterns to suggest relevant filters and optimize workflows.',
                     tags: ['AI Integration', 'UX'],
                     impact: 'Continuous workflow optimization',
                     caseStudy: {
@@ -1826,7 +1819,7 @@
                 { 
                     title: 'Filter Manager 7',
                     category: 'Data Management',
-                    description: 'Export and share filter configurations with teams.',
+                    description: 'Standardization toolset enabling the version-controlled export and import of analytical definitions across teams.',
                     tags: ['Sharing', 'Collaboration'],
                     impact: 'Standardizes workflows',
                     caseStudy: {
@@ -1838,7 +1831,7 @@
                 { 
                     title: 'Filter Manager 8',
                     category: 'Data Management',
-                    description: 'Advanced analytics dashboard powered by filters.',
+                    description: 'Unified analytics hub that transforms filtered raw data into actionable executive insights.',
                     tags: ['Dashboard', 'Analytics'],
                     impact: 'Data-driven decisions',
                     caseStudy: {
@@ -1850,7 +1843,7 @@
                 { 
                     title: 'Global Console',
                     category: 'Monitoring',
-                    description: 'Centralized monitoring console for all infrastructure systems.',
+                    description: '"Single-pane-of-glass" monitoring console consolidating critical metrics from disparate systems into one view.',
                     tags: ['Dashboard', 'Real-time'],
                     impact: 'Unified system visibility',
                     caseStudy: {
@@ -1862,7 +1855,7 @@
                 { 
                     title: 'MAC 1',
                     category: 'Configuration',
-                    description: 'Network MAC address configuration and management.',
+                    description: 'Bulk configuration interface designed to eliminate manual entry errors in network MAC address provisioning.',
                     tags: ['Network Admin', 'Config'],
                     impact: 'Simplifies network setup',
                     caseStudy: {
@@ -1874,7 +1867,7 @@
                 { 
                     title: 'MAC 2',
                     category: 'Configuration',
-                    description: 'Advanced MAC filtering and security policies.',
+                    description: 'Policy enforcement engine providing audit-ready security controls for MAC address filtering.',
                     tags: ['Security', 'Admin'],
                     impact: 'Enhanced network security',
                     caseStudy: {
@@ -1886,7 +1879,7 @@
                 { 
                     title: 'Manager Dialog',
                     category: 'System Management',
-                    description: 'Universal management interface for system operations.',
+                    description: 'Centralized operations hub unifying diverse administrative tasks into a single, consistent user experience.',
                     tags: ['Admin Tools', 'UX'],
                     impact: 'Optimized administrative workflows',
                     caseStudy: {
@@ -1898,7 +1891,7 @@
                 { 
                     title: 'Reports 1',
                     category: 'Analytics & Reporting',
-                    description: 'Comprehensive infrastructure health reports.',
+                    description: 'Automated reporting engine delivering trend analysis and key health metrics for executive consumption.',
                     tags: ['Analytics', 'Reporting'],
                     impact: 'Enhanced executive oversight',
                     caseStudy: {
@@ -1910,7 +1903,7 @@
                 { 
                     title: 'Reports 2',
                     category: 'Analytics & Reporting',
-                    description: 'Custom report builder with visualization options.',
+                    description: 'Self-service BI tool empowering users to build custom visualizations via drag-and-drop widgets.',
                     tags: ['BI Design', 'Analytics'],
                     impact: 'Strategic decision support',
                     caseStudy: {
@@ -1922,7 +1915,7 @@
                 { 
                     title: 'Layer Manager',
                     category: 'Resource Management',
-                    description: 'Manage infrastructure layers and abstraction levels.',
+                    description: 'Visual abstraction tool helping teams deconstruct and understand complex infrastructure dependencies.',
                     tags: ['Architecture', 'Design'],
                     impact: 'Clarifies complexity',
                     caseStudy: {
@@ -1934,7 +1927,7 @@
                 { 
                     title: 'Layer Manager 2',
                     category: 'Resource Management',
-                    description: 'Advanced layer composition and inheritance management.',
+                    description: 'Scalable composition system managing inheritance and grouping for enterprise-grade infrastructure models.',
                     tags: ['Advanced UX', 'Management'],
                     impact: 'Seamless architecture scalability',
                     caseStudy: {
@@ -1974,7 +1967,6 @@
                         <img src="${imagePath}" alt="${item.title}">
                     </div>
                     <div class="gallery-info">
-                        <div class="gallery-category">${item.category}</div>
                         <div class="gallery-title">${item.title}</div>
                         <div class="gallery-description">${item.description}</div>
                         <div class="gallery-tags">
