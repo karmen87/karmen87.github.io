@@ -825,6 +825,134 @@
             font-weight: 600;
         }
 
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-navigation::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tab-navigation::-webkit-scrollbar-track {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .tab-navigation::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 3px;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border);
+            background: var(--light-bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', 'Courier', monospace;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            border-color: var(--accent-primary);
+            background: var(--accent-primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
+        }
+
+        .tab-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+
+        .tab-btn:not(.active) .tab-badge {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Horizontal Gallery */
+        .horizontal-gallery {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 1rem 0 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--border);
+            scroll-behavior: smooth;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar-track {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+
+        .horizontal-gallery .gallery-item {
+            flex: 0 0 320px;
+            height: 400px;
+        }
+
+        .scroll-hint {
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-weight: 600;
+            font-family: 'Courier New', 'Courier', monospace;
+        }
+
+        .scroll-hint::before {
+            content: '← ';
+        }
+
+        .scroll-hint::after {
+            content: ' →';
+        }
+
         /* Technical Writing Cards */
         .writing-grid {
             display: grid;
@@ -1074,7 +1202,7 @@
             h2 {
                 font-size: 1.8rem;
             }
-            
+
             /* Dropdown adjustments for mobile */
             .dropdown-content {
                 min-width: 220px;
@@ -1082,6 +1210,17 @@
                 left: 50%;
                 transform: translateX(-50%);
                 width: 90vw;
+            }
+
+            /* Tab navigation for mobile */
+            .tab-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            /* Horizontal gallery for mobile */
+            .horizontal-gallery .gallery-item {
+                flex: 0 0 280px;
             }
         }
 
@@ -1447,13 +1586,13 @@
         <div class="container-wide">
             <h2>Graphical Functions</h2>
             <p class="section-subtitle">Infrastructure visualization tools that help teams manage complexity. These designs represent extensive projects spanning network topology, equipment tracking, and system visualization.</p>
-            
-            <div class="gallery" id="graphicalGallery">
-                <!-- Gallery items will be populated by JavaScript -->
+
+            <div class="tab-navigation" id="graphicalTabs">
+                <!-- Tab buttons will be populated by JavaScript -->
             </div>
 
-            <div class="pagination" id="graphicalPagination">
-                <!-- Pagination buttons will be populated by JavaScript -->
+            <div id="graphicalTabsContent">
+                <!-- Tab content will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -1463,13 +1602,13 @@
         <div class="container-wide">
             <h2>System Dialogs & Interfaces</h2>
             <p class="section-subtitle">Configuration and management interfaces for complex enterprise applications. These designs focus on making difficult workflows intuitive and accessible to technical teams.</p>
-            
-            <div class="gallery" id="dialogsGallery">
-                <!-- Gallery items will be populated by JavaScript -->
+
+            <div class="tab-navigation" id="dialogsTabs">
+                <!-- Tab buttons will be populated by JavaScript -->
             </div>
 
-            <div class="pagination" id="dialogsPagination">
-                <!-- Pagination buttons will be populated by JavaScript -->
+            <div id="dialogsTabsContent">
+                <!-- Tab content will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -1939,6 +2078,45 @@
             ]
         };
 
+        // Category mappings for tabbed galleries
+        const graphicalCategories = {
+            '3d-worlds': {
+                name: '3D Worlds',
+                items: ['Design World 1', 'Design World 2', 'Design World 3', 'Design World 4', 'Design World 5']
+            },
+            'elevations': {
+                name: 'Elevations',
+                items: ['Rack Elevation', 'Row Elevation', 'Equipment Elevation']
+            },
+            'network-views': {
+                name: 'Network Views',
+                items: ['Butterfly View', 'Butterfly View - Cables', 'Butterfly View - Notes']
+            },
+            'dependencies': {
+                name: 'Dependencies',
+                items: ['Dependency View', 'Dependency View - Access']
+            }
+        };
+
+        const dialogsCategories = {
+            'filters': {
+                name: 'Filters',
+                items: ['Filter Manager 1', 'Filter Manager 2', 'Filter Manager 3', 'Filter Manager 4', 'Filter Manager 5', 'Filter Manager 6', 'Filter Manager 7', 'Filter Manager 8']
+            },
+            'management': {
+                name: 'Management',
+                items: ['Account Manager', 'Global Console', 'Manager Dialog', 'Layer Manager']
+            },
+            'reports': {
+                name: 'Reports & Analytics',
+                items: ['Reports 1', 'Reports 2', 'Layer Manager 2']
+            },
+            'configuration': {
+                name: 'Configuration',
+                items: ['MAC 1', 'MAC 2']
+            }
+        };
+
         const itemsPerPage = 9;
 
         // Image mapping for filename variations
@@ -1975,32 +2153,73 @@
             'Row Elevation': 'row elevation.png'
         };
 
-        function renderGallery(type, page = 0) {
+        function renderTabbedGallery(type, categories) {
             const data = galleryData[type];
-            const gallery = document.getElementById(type + 'Gallery');
-            const start = page * itemsPerPage;
-            const end = start + itemsPerPage;
-            const items = data.slice(start, end);
+            const tabsContainer = document.getElementById(type + 'Tabs');
+            const contentContainer = document.getElementById(type + 'TabsContent');
 
-            gallery.innerHTML = items.map((item, idx) => {
-                const imagePath = imageMap[item.title] || item.title.toLowerCase() + '.png';
-                return `
-                <div class="gallery-item" onclick="openCaseStudy('${item.title}', ${JSON.stringify(item).replace(/'/g, '&#39;')})">
-                    <div class="gallery-image" onclick="event.stopPropagation(); openImageViewer('${imagePath}')">
-                        <img src="${imagePath}" alt="${item.title}">
-                    </div>
-                    <div class="gallery-info">
-                        <div class="gallery-title">${item.title}</div>
-                        <div class="gallery-description">${item.description}</div>
-                        <div class="gallery-tags">
-                            ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+            // Render tab buttons
+            const tabButtons = Object.keys(categories).map((key, index) => {
+                const category = categories[key];
+                const activeClass = index === 0 ? 'active' : '';
+                return `<button class="tab-btn ${activeClass}" data-tab="${key}">${category.name} <span class="tab-badge">${category.items.length}</span></button>`;
+            }).join('');
+            tabsContainer.innerHTML = tabButtons;
+
+            // Render tab content
+            const tabContents = Object.keys(categories).map((key, index) => {
+                const category = categories[key];
+                const activeClass = index === 0 ? 'active' : '';
+                const items = data.filter(item => category.items.includes(item.title));
+
+                const itemsHTML = items.map(item => {
+                    const imagePath = imageMap[item.title] || item.title.toLowerCase() + '.png';
+                    return `
+                    <div class="gallery-item" onclick="openCaseStudy('${item.title}', ${JSON.stringify(item).replace(/'/g, '&#39;')})">
+                        <div class="gallery-image" onclick="event.stopPropagation(); openImageViewer('${imagePath}')">
+                            <img src="${imagePath}" alt="${item.title}">
                         </div>
-                        <div class="gallery-impact">💡 ${item.impact}</div>
+                        <div class="gallery-info">
+                            <div class="gallery-title">${item.title}</div>
+                            <div class="gallery-description">${item.description}</div>
+                            <div class="gallery-tags">
+                                ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+                            </div>
+                            <div class="gallery-impact">💡 ${item.impact}</div>
+                        </div>
                     </div>
-                </div>
-            `}).join('');
+                    `;
+                }).join('');
 
-            renderPagination(type, data.length, page);
+                return `
+                <div class="tab-content ${activeClass}" data-content="${key}">
+                    <div class="horizontal-gallery">
+                        ${itemsHTML}
+                    </div>
+                    <p class="scroll-hint">Scroll to see all ${category.name}</p>
+                </div>
+                `;
+            }).join('');
+            contentContainer.innerHTML = tabContents;
+
+            // Add tab click handlers
+            const tabBtns = tabsContainer.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTab = btn.getAttribute('data-tab');
+
+                    // Remove active from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    contentContainer.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                    // Add active to clicked button and corresponding content
+                    btn.classList.add('active');
+                    const targetContent = contentContainer.querySelector(`[data-content="${targetTab}"]`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
         }
 
         // Image Viewer Logic
@@ -2084,21 +2303,8 @@
             }
         });
 
-        function renderPagination(type, totalItems, currentPage) {
-            const pagination = document.getElementById(type + 'Pagination');
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            const startItem = currentPage * itemsPerPage + 1;
-            const endItem = Math.min((currentPage + 1) * itemsPerPage, totalItems);
-
-            let html = `<span class="items-count">${startItem}-${endItem} of ${totalItems}</span>`;
-
-            for (let i = 0; i < totalPages; i++) {
-                const btnClass = i === currentPage ? 'page-btn active' : 'page-btn';
-                html += `<button class="${btnClass}" onclick="renderGallery('${type}', ${i})">${i + 1}</button>`;
-            }
-
-            pagination.innerHTML = html;
-        }
+        // Old pagination function - no longer needed with tabbed layout
+        // function renderPagination(type, totalItems, currentPage) { ... }
 
         function openCaseStudy(title, itemStr) {
             const item = JSON.parse(itemStr.replace(/&#39;/g, "'"));
@@ -2144,9 +2350,9 @@
             }
         });
 
-        // Initialize galleries
-        renderGallery('graphical', 0);
-        renderGallery('dialogs', 0);
+        // Initialize tabbed galleries
+        renderTabbedGallery('graphical', graphicalCategories);
+        renderTabbedGallery('dialogs', dialogsCategories);
 
         // 3D Hero Canvas with parallax
         const canvas = document.getElementById('hero-canvas');
