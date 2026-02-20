@@ -975,6 +975,7 @@
         .writing-card:nth-child(1) { animation-delay: 0.2s; }
         .writing-card:nth-child(2) { animation-delay: 0.3s; }
         .writing-card:nth-child(3) { animation-delay: 0.4s; }
+        .writing-card:nth-child(4) { animation-delay: 0.5s; }
 
         .writing-card:hover {
             transform: translateY(-12px);
@@ -1067,6 +1068,26 @@
 
         .writing-card:hover .writing-link::after {
             transform: translateX(4px);
+        }
+
+        .writing-links {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .link-separator {
+            color: var(--text-tertiary);
+            font-weight: 700;
+        }
+
+        .writing-links .writing-link {
+            white-space: nowrap;
+        }
+
+        .writing-links .writing-link:not(:last-child) {
+            margin-right: 0.5rem;
         }
 
         /* Contact Section */
@@ -1191,6 +1212,72 @@
 
         body.dark-mode .theme-toggle:hover {
             box-shadow: 0 8px 24px rgba(255, 107, 53, 0.35);
+        }
+
+        /* Project Card Enhancements */
+        .project-card .gallery-image {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 107, 53, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card .gallery-image:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-launch-btn {
+            font-family: 'Courier New', 'Courier', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .project-card .gallery-cta {
+            cursor: pointer;
+            padding: 0.75rem 0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-card .gallery-cta::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .gallery-cta {
+            background: rgba(255, 107, 53, 0.1);
+            padding-left: 1rem;
+        }
+
+        .project-card:hover .gallery-cta::after {
+            transform: translateX(4px);
+        }
+
+        /* Single card centering for Projects */
+        .horizontal-gallery:has(.project-card:only-child) {
+            justify-content: center;
+        }
+
+        .horizontal-gallery .project-card:only-child {
+            flex: 0 0 420px;
         }
 
         /* Mobile Responsive */
@@ -1484,6 +1571,7 @@
                         <li><a href="#about" class="nav-link" data-section="about">About</a></li>
                         <li><a href="#graphical" class="nav-link" data-section="graphical">Graphical</a></li>
                         <li><a href="#dialogs" class="nav-link" data-section="dialogs">Dialogs</a></li>
+                        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
                         <li><a href="#writing" class="nav-link" data-section="writing">Writing</a></li>
                         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
                     </ul>
@@ -1613,6 +1701,22 @@
         </div>
     </section>
 
+    <!-- Projects Section -->
+    <section class="work-section" id="projects">
+        <div class="container-wide">
+            <h2>Projects</h2>
+            <p class="section-subtitle">Full-stack applications combining frontend design, backend architecture, and DevOps automation. Real-world tools solving practical problems.</p>
+
+            <div class="tab-navigation" id="projectsTabs">
+                <!-- Tab buttons will be populated by JavaScript -->
+            </div>
+
+            <div id="projectsTabsContent">
+                <!-- Tab content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <!-- Technical Writing Section -->
     <section class="work-section" id="writing">
         <div class="container-wide">
@@ -1647,6 +1751,20 @@
                         <h3 class="writing-title">Enthusiast Framework Docs</h3>
                         <p class="writing-description">Modern documentation site for an open-source agentic AI framework. Built with Docusaurus 3.9 featuring interactive code examples, structured guides, and responsive design.</p>
                         <a href="https://karmen87.github.io/enthusiast-blog/" class="writing-link" target="_blank">Visit Site</a>
+                    </div>
+                </div>
+
+                <div class="writing-card">
+                    <div class="writing-thumbnail">🚀</div>
+                    <div class="writing-content">
+                        <div class="writing-tag">DevOps Documentation</div>
+                        <h3 class="writing-title">Crypto Alarm Project Documentation</h3>
+                        <p class="writing-description">Complete technical documentation built with Hugo and Relearn theme. Covers dual implementations (JavaScript/Python), alarm logic deep-dives, API integration patterns, and automated deployment via GitHub Actions CI/CD pipeline.</p>
+                        <div class="writing-links">
+                            <a href="https://karmen87.github.io/Crypto_Alarm/" class="writing-link" target="_blank" rel="noopener noreferrer">View Docs Site</a>
+                            <span class="link-separator">•</span>
+                            <a href="https://github.com/karmen87/Crypto_Alarm" class="writing-link" target="_blank" rel="noopener noreferrer">See Repository</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2075,6 +2193,22 @@
                         results: 'Scaled to support 500+ layers with clear organization.'
                     }
                 }
+            ],
+            projects: [
+                {
+                    title: 'Crypto Alarm',
+                    category: 'Web Applications',
+                    description: 'Real-time cryptocurrency price monitoring with intelligent multi-type alarm system. Features client-side JavaScript and Flask/SocketIO server implementations, LocalStorage persistence, and CoinGecko API integration.',
+                    tags: ['JavaScript', 'Python/Flask', 'WebSocket', 'Real-time', 'LocalStorage'],
+                    impact: 'Monitor 24/7 with zero API costs',
+                    link: 'https://karmen87.github.io/Crypto_Alarm/',
+                    linkText: 'Launch Live App',
+                    caseStudy: {
+                        problem: 'Cryptocurrency traders need reliable 24/7 price monitoring without expensive subscription services or complex infrastructure setup.',
+                        solution: 'Built a dual-implementation alarm system: a standalone JavaScript app for simplicity and a Python/Flask server for reliability. Integrated with CoinGecko\'s free API, implemented three alarm types (target price, percentage change, timeframe movement), and used LocalStorage for zero-config persistence.',
+                        results: 'Delivered a production-ready monitoring tool requiring no API keys, no server costs, and no configuration. Supports unlimited trading pairs with 15-second update intervals and continuous audible alerts.'
+                    }
+                }
             ]
         };
 
@@ -2117,6 +2251,13 @@
             }
         };
 
+        const projectsCategories = {
+            'web-apps': {
+                name: 'Web Applications',
+                items: ['Crypto Alarm']
+            }
+        };
+
         const itemsPerPage = 9;
 
         // Image mapping for filename variations
@@ -2150,7 +2291,8 @@
             'Rack Elevation': 'rack elevation.PNG',
             'Reports 1': 'reports 1.png',
             'Reports 2': 'reports 2.png',
-            'Row Elevation': 'row elevation.png'
+            'Row Elevation': 'row elevation.png',
+            'Crypto Alarm': 'crypto-alarm.png'
         };
 
         function renderTabbedGallery(type, categories) {
@@ -2173,22 +2315,49 @@
                 const items = data.filter(item => category.items.includes(item.title));
 
                 const itemsHTML = items.map(item => {
-                    const imagePath = imageMap[item.title] || item.title.toLowerCase() + '.png';
-                    return `
-                    <div class="gallery-item" onclick="openCaseStudy('${item.title}', ${JSON.stringify(item).replace(/'/g, '&#39;')})">
-                        <div class="gallery-image" onclick="event.stopPropagation(); openImageViewer('${imagePath}')">
-                            <img src="${imagePath}" alt="${item.title}">
-                        </div>
-                        <div class="gallery-info">
-                            <div class="gallery-title">${item.title}</div>
-                            <div class="gallery-description">${item.description}</div>
-                            <div class="gallery-tags">
-                                ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+                    const imagePath = imageMap[item.title] || item.title.toLowerCase().replace(/ /g, '-') + '.png';
+
+                    // Check if this is a project with external link
+                    if (item.link) {
+                        return `
+                        <div class="gallery-item project-card">
+                            <div class="gallery-image" onclick="window.open('${item.link}', '_blank', 'noopener,noreferrer')">
+                                <img src="${imagePath}" alt="${item.title}">
+                                <div class="project-overlay">
+                                    <span class="project-launch-btn">Launch App →</span>
+                                </div>
                             </div>
-                            <div class="gallery-impact">💡 ${item.impact}</div>
+                            <div class="gallery-info">
+                                <div class="gallery-title">${item.title}</div>
+                                <div class="gallery-description">${item.description}</div>
+                                <div class="gallery-tags">
+                                    ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+                                </div>
+                                <div class="gallery-impact">💡 ${item.impact}</div>
+                                <div class="gallery-cta" onclick="window.open('${item.link}', '_blank', 'noopener,noreferrer')">
+                                    ${item.linkText || 'View Project'}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    `;
+                        `;
+                    } else {
+                        // Original modal-based rendering for design work
+                        return `
+                        <div class="gallery-item" onclick="openCaseStudy('${item.title}', ${JSON.stringify(item).replace(/'/g, '&#39;')})">
+                            <div class="gallery-image" onclick="event.stopPropagation(); openImageViewer('${imagePath}')">
+                                <img src="${imagePath}" alt="${item.title}">
+                            </div>
+                            <div class="gallery-info">
+                                <div class="gallery-title">${item.title}</div>
+                                <div class="gallery-description">${item.description}</div>
+                                <div class="gallery-tags">
+                                    ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+                                </div>
+                                <div class="gallery-impact">💡 ${item.impact}</div>
+                            </div>
+                        </div>
+                        `;
+                    }
                 }).join('');
 
                 return `
@@ -2353,6 +2522,7 @@
         // Initialize tabbed galleries
         renderTabbedGallery('graphical', graphicalCategories);
         renderTabbedGallery('dialogs', dialogsCategories);
+        renderTabbedGallery('projects', projectsCategories);
 
         // 3D Hero Canvas with parallax
         const canvas = document.getElementById('hero-canvas');
@@ -2417,7 +2587,7 @@
         });
 
         function updateActiveNav() {
-            const sections = ['home', 'about', 'graphical', 'dialogs', 'writing', 'contact'];
+            const sections = ['home', 'about', 'graphical', 'dialogs', 'projects', 'writing', 'contact'];
             const scrollPosition = window.scrollY + 100;
 
             sections.forEach(section => {
