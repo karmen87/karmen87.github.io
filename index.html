@@ -933,7 +933,7 @@
 
         .horizontal-gallery .gallery-item {
             flex: 0 0 320px;
-            height: 400px;
+            height: 450px;
         }
 
         .scroll-hint {
@@ -2378,12 +2378,13 @@
                     }
                 }).join('');
 
+                const scrollHint = type !== 'projects' ? `<p class="scroll-hint">Scroll to see all ${category.name}</p>` : '';
                 return `
                 <div class="tab-content ${activeClass}" data-content="${key}">
                     <div class="horizontal-gallery">
                         ${itemsHTML}
                     </div>
-                    <p class="scroll-hint">Scroll to see all ${category.name}</p>
+                    ${scrollHint}
                 </div>
                 `;
             }).join('');
