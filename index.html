@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-14MX7FECXY"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-14MX7FECXY');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karmen Kardum</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --light-bg: #f8f9fa;
+            --white-bg: #ffffff;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #7c3aed;
+            --accent-tertiary: #06b6d4;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-tertiary: #8899aa;
+            --border: #e2e8f0;
+            --hover-bg: #f0f4ff;
+        }
+
+        /* Dark Mode Colors */
+        body.dark-mode {
+            --light-bg: #0f1419;
+            --white-bg: #1a202c;
+            --accent-primary: #ff6b35;
+            --accent-secondary: #a78bfa;
+            --accent-tertiary: #22d3ee;
+            --text-primary: #f0f4f8;
+            --text-secondary: #c5d0e0;
+            --text-tertiary: #8899aa;
+            --border: #2d3748;
+            --hover-bg: #2d3e5a;
+        }
+
+        /* Dark Mode Typography Adjustments */
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode .logo,
+        body.dark-mode .hero-stat-number,
+        body.dark-mode .stat-number {
+            font-weight: 900;  /* Increase weight for better visibility on dark background */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom Cursor */
+        * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="4" fill="%23ff6b35" opacity="0.8"/><circle cx="16" cy="16" r="10" fill="none" stroke="%23ff6b35" stroke-width="1.5" opacity="0.4"/></svg>') 16 16, auto;
+        }
+
+        a, button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="6" fill="%23ff6b35" opacity="0.9"/><circle cx="16" cy="16" r="12" fill="none" stroke="%23ff6b35" stroke-width="2" opacity="0.5"/></svg>') 16 16, auto;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        h1 .word {
+            display: inline-block;
+            overflow: hidden;
+            height: 1.1em;
+        }
+
+        h1 .word span {
+            display: block;
+            animation: revealText 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        h1 .word:nth-child(1) span { animation-delay: 0.2s; }
+        h1 .word:nth-child(2) span { animation-delay: 0.4s; }
+
+        @keyframes revealText {
+            0% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 3px;
+            animation: slideIn 0.8s ease 0.3s both;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        a:hover {
+            color: var(--accent-secondary);
+            border-bottom-color: var(--accent-secondary);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container-wide {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border);
+            padding: 1.25rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode header {
+            background: rgba(26, 32, 44, 0.95);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.05em;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        header nav a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        header nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        header nav a:hover,
+        header nav a.active {
+            color: var(--accent-primary);
+        }
+
+        header nav a:hover::after,
+        header nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(124, 58, 237, 0.02) 50%, rgba(6, 182, 212, 0.03) 100%);
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(167, 139, 250, 0.05) 50%, rgba(34, 211, 238, 0.05) 100%);
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 25s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 30s ease-in-out infinite reverse;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 80px;
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero-content > p {
+            font-size: 1rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease 0.3s both;
+            font-weight: 600;
+        }
+
+        .hero-tagline .highlight {
+            color: var(--accent-primary);
+            font-weight: 900;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 650px;
+            line-height: 1.9;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+            animation: fadeInUp 0.8s ease 0.45s both;
+        }
+
+        .hero-stat {
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 1.5rem;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-primary);
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.25rem;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .btn {
+            padding: 0.85rem 2.25rem;
+            border: 2px solid var(--accent-primary);
+            background: var(--accent-primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-secondary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(255, 107, 53, 0.3);
+            border-color: var(--accent-secondary);
+        }
+
+        .btn-secondary {
+            border-color: var(--accent-primary);
+            background: transparent;
+            color: var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: var(--white-bg);
+            margin-bottom: 4rem;
+            transition: background 0.3s ease;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            padding: 1.75rem;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stat-box:hover::before {
+            left: 100%;
+        }
+
+        body.dark-mode .stat-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(167, 139, 250, 0.06) 100%);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 12px 24px rgba(255, 107, 53, 0.15);
+        }
+
+        body.dark-mode .stat-box:hover {
+            box-shadow: 0 12px 24px rgba(255, 107, 53, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section Styling */
+        .work-section {
+            padding: 6rem 0;
+            background: var(--white-bg);
+            margin-bottom: 4rem;
+            border-radius: 0;
+            transition: background 0.3s ease;
+            border-top: 3px solid var(--accent-primary);
+            position: relative;
+        }
+
+        .work-section h2 {
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease 0.15s both;
+            max-width: 600px;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: var(--light-bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease forwards;
+            position: relative;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.15s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.25s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.35s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.45s; }
+
+        .gallery-item:hover {
+            transform: translateY(-16px) scale(1.02);
+            box-shadow: 0 24px 48px rgba(255, 107, 53, 0.2);
+            border-color: var(--accent-primary);
+        }
+
+        body.dark-mode .gallery-item:hover {
+            box-shadow: 0 24px 48px rgba(255, 107, 53, 0.25);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(124, 58, 237, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        body.dark-mode .gallery-image {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.18) 0%, rgba(167, 139, 250, 0.12) 100%);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.12);
+        }
+
+        .gallery-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-title {
+            font-size: 0.95rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+        }
+
+        .gallery-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .gallery-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-tag {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--accent-primary);
+            border-radius: 3px;
+            border: 1px solid var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .gallery-impact {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin-top: 1rem;
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+
+        .gallery-cta {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-cta {
+            gap: 1rem;
+        }
+
+        .gallery-cta::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-cta::after {
+            transform: translateX(4px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-primary);
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .modal h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .modal-tag {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.12);
+            color: var(--accent-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h4 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .modal-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Pagination / Load More */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .page-btn {
+            padding: 0.7rem 1.4rem;
+            border: 2px solid var(--border);
+            background: var(--white-bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            font-size: 0.95rem;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            border-color: var(--accent-primary);
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 107, 53, 0.2);
+        }
+
+        .items-count {
+            display: flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            font-weight: 600;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-navigation::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tab-navigation::-webkit-scrollbar-track {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        .tab-navigation::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 3px;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border);
+            background: var(--light-bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            border-color: var(--accent-primary);
+            background: var(--accent-primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
+        }
+
+        .tab-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+
+        .tab-btn:not(.active) .tab-badge {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Horizontal Gallery */
+        .horizontal-gallery {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 1rem 0 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--border);
+            scroll-behavior: smooth;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar-track {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        .horizontal-gallery::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+
+        .horizontal-gallery .gallery-item {
+            flex: 0 0 320px;
+            min-height: 450px;
+            height: auto;
+        }
+
+        .scroll-hint {
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-weight: 600;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+        }
+
+        .scroll-hint::before {
+            content: '← ';
+        }
+
+        .scroll-hint::after {
+            content: ' →';
+        }
+
+        /* Technical Writing Cards */
+        .writing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .writing-card {
+            background: var(--white-bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .writing-card:nth-child(1) { animation-delay: 0.2s; }
+        .writing-card:nth-child(2) { animation-delay: 0.3s; }
+        .writing-card:nth-child(3) { animation-delay: 0.4s; }
+        .writing-card:nth-child(4) { animation-delay: 0.5s; }
+
+        .writing-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+            border-color: var(--accent-primary);
+        }
+
+        body.dark-mode .writing-card:hover {
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.22);
+        }
+
+        .writing-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(124, 58, 237, 0.08) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        body.dark-mode .writing-thumbnail {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.18) 0%, rgba(167, 139, 250, 0.12) 100%);
+        }
+
+        .writing-card:hover .writing-thumbnail {
+            transform: scale(1.12);
+        }
+
+        .writing-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 0.5rem;
+        }
+
+        .writing-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .writing-tag {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+        }
+
+        .writing-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .writing-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .writing-link {
+            color: var(--accent-primary);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .writing-card:hover .writing-link {
+            gap: 0.75rem;
+        }
+
+        .writing-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .writing-card:hover .writing-link::after {
+            transform: translateX(4px);
+        }
+
+        .writing-links {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .link-separator {
+            color: var(--text-tertiary);
+            font-weight: 700;
+        }
+
+        .writing-links .writing-link {
+            white-space: nowrap;
+        }
+
+        .writing-links .writing-link:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
+            border-top: 3px solid var(--accent-primary);
+            border-radius: 0;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .contact {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.12) 0%, rgba(167, 139, 250, 0.08) 100%);
+        }
+
+        .contact h2 {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            color: var(--accent-primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 2px solid var(--border);
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+            transition: border-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            width: 0%;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--white-bg);
+            border: 2px solid var(--accent-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+            font-weight: bold;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.15) rotate(20deg);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.25);
+        }
+
+        body.dark-mode .theme-toggle {
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.25);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.35);
+        }
+
+        /* Project Card Enhancements */
+        .project-card .gallery-image {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 107, 53, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card .gallery-image:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-launch-btn {
+            font-family: 'Courier New', 'Courier', 'Lucida Console', 'Monaco', 'Consolas', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .project-card .gallery-cta {
+            cursor: pointer;
+            padding: 0.75rem 0;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-card .gallery-cta::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .gallery-cta {
+            background: rgba(255, 107, 53, 0.1);
+            padding-left: 1rem;
+        }
+
+        .project-card:hover .gallery-cta::after {
+            transform: translateX(4px);
+        }
+
+        /* Single card centering for Projects */
+        /* Fallback for browsers without :has() support */
+        .horizontal-gallery.single-project {
+            justify-content: center;
+        }
+
+        .horizontal-gallery.single-project .project-card {
+            flex: 0 0 420px;
+            min-height: 500px;
+        }
+
+        /* Modern browsers with :has() support */
+        @supports selector(:has(*)) {
+            .horizontal-gallery:has(.project-card:only-child) {
+                justify-content: center;
+            }
+
+            .horizontal-gallery .project-card:only-child {
+                flex: 0 0 420px;
+                min-height: 500px;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.45rem;  /* 3.5rem * 0.7 */
+            }
+
+            h2 {
+                font-size: 1.54rem;  /* 2.2rem * 0.7 */
+            }
+
+            h3 {
+                font-size: 1.05rem;  /* 1.5rem * 0.7 */
+            }
+
+            .hero-tagline {
+                font-size: 0.98rem;  /* 1.4rem * 0.7 */
+            }
+
+            .hero-stat-number, .stat-number {
+                font-size: 1.75rem;  /* 2.5rem * 0.7 */
+            }
+
+            .logo {
+                font-size: 1.26rem;  /* 1.8rem * 0.7 */
+            }
+
+            p, .body-text {
+                font-size: 0.94rem;  /* Base text scaled */
+            }
+
+            /* Dropdown adjustments for mobile */
+            .dropdown-content {
+                min-width: 220px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90vw;
+            }
+
+            /* Tab navigation for mobile */
+            .tab-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            /* Horizontal gallery for mobile */
+            .horizontal-gallery .gallery-item {
+                flex: 0 0 280px;
+            }
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white-bg);
+            min-width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            z-index: 101;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            text-align: left;
+        }
+        
+        /* Positioning variants */
+        .dropdown-content.right { right: 0; }
+        .dropdown-content.left { left: 0; }
+        .dropdown-content.center { left: 50%; transform: translateX(-50%); }
+
+        body.dark-mode .dropdown-content {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .dropdown-content a {
+            color: var(--text-primary);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--hover-bg);
+            color: var(--accent-primary);
+            padding-left: 24px;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+
+            .hero {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+
+            #hero-canvas {
+                display: none;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            header nav ul {
+                display: none;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .writing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .theme-toggle {
+                width: 48px;
+                height: 48px;
+                bottom: 1rem;
+                right: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+                width: 95%;
+            }
+        }
+
+        /* Image Viewer Modal */
+        .image-viewer {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-viewer.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .viewer-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 2001;
+        }
+
+        .viewer-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .viewer-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .viewer-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            z-index: 2001;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: transform 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .viewer-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            color: var(--accent-primary);
+        }
+
+        .viewer-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        .viewer-content.grabbing {
+            cursor: grabbing;
+        }
+
+        .viewer-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.1s ease-out;
+            transform-origin: center center;
+            user-select: none;
+            pointer-events: none; /* Let clicks pass to container for drag */
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                gap: 0.75rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container-wide">
+            <div class="nav-wrapper">
+                <div class="logo">K⚡</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                        <li><a href="#graphical" class="nav-link" data-section="graphical">Graphical</a></li>
+                        <li><a href="#dialogs" class="nav-link" data-section="dialogs">Dialogs</a></li>
+                        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                        <li><a href="#writing" class="nav-link" data-section="writing">Writing</a></li>
+                        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container">
+            <div class="hero-content">
+                <p>UX/UI Designer • Technical Writer • Product Manager</p>
+                <h1>
+                    <span class="word"><span>Karmen</span></span>
+                    <span class="word"><span>Kardum</span></span>
+                </h1>
+                <p class="hero-tagline">Transforming <span class="highlight">complex infrastructure</span> into intuitive visual experiences and documentation that engineers love.</p>
+                <p class="hero-description">I design tools that make infrastructure management simple. I document complex systems so teams ship faster. My work combines thoughtful design, clear communication, and deep technical understanding to solve real problems.</p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">30+</div>
+                        <div class="hero-stat-label">Design Projects</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">28</div>
+                        <div class="hero-stat-label">Product Releases</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">1,800+</div>
+                        <div class="hero-stat-label">Pages Authored</div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#graphical" class="btn">See My Work</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-btn">Download Resume ▾</button>
+                        <div class="dropdown-content">
+                            <a href="Karmen Kardum Technical Writer Resume.pdf" target="_blank" rel="noopener noreferrer">Technical Writer Resume</a>
+                            <a href="Karmen Kardum Product Manager Resume.pdf" target="_blank" rel="noopener noreferrer">Product Manager Resume</a>
+                            <a href="Karmen Kardum Software Consultant Resume.pdf" target="_blank" rel="noopener noreferrer">Software Consultant Resume</a>
+                            <a href="Karmen Kardum Blockchain Consultant Resume.pdf" target="_blank" rel="noopener noreferrer">Blockchain Consultant Resume</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a software engineer obsessed with turning complexity into clarity. My journey started with a simple belief: <strong>good design and clear communication can solve real-world problems.</strong></p>
+                    <p>Over the years, I've worked on infrastructure visualization tools used by thousands of engineers, documented complex systems that reduced support tickets, and designed interfaces that made hard things feel easy.</p>
+                    <p>Whether it's designing a system that shows what's happening in a data center or writing docs that make sense to developers, I bring the same mindset: understand the user, solve the real problem, and make it beautiful.</p>
+                    <div class="dropdown">
+                        <button class="dropdown-btn" style="background:none; border:none; padding:0; font-size:1rem; font-family:inherit; color:var(--text-primary); cursor:pointer; font-weight:700;">
+                            📄 <span style="text-decoration: underline;">Download My Resume ▾</span>
+                        </button>
+                        <div class="dropdown-content left">
+                            <a href="Karmen Kardum Technical Writer Resume.pdf" target="_blank" rel="noopener noreferrer">Technical Writer Resume</a>
+                            <a href="Karmen Kardum Product Manager Resume.pdf" target="_blank" rel="noopener noreferrer">Product Manager Resume</a>
+                            <a href="Karmen Kardum Software Consultant Resume.pdf" target="_blank" rel="noopener noreferrer">Software Consultant Resume</a>
+                            <a href="Karmen Kardum Blockchain Consultant Resume.pdf" target="_blank" rel="noopener noreferrer">Blockchain Consultant Resume</a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="about-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">13+</div>
+                            <div class="stat-label">Infrastructure Tools</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">17+</div>
+                            <div class="stat-label">System Dialogs</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Published Guides</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Passion for Details</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Graphical Functions Section -->
+    <section class="work-section" id="graphical">
+        <div class="container-wide">
+            <h2>Graphical Functions</h2>
+            <p class="section-subtitle">Infrastructure visualization tools that help teams manage complexity. These designs represent extensive projects spanning network topology, equipment tracking, and system visualization.</p>
+
+            <div class="tab-navigation" id="graphicalTabs">
+                <!-- Tab buttons will be populated by JavaScript -->
+            </div>
+
+            <div id="graphicalTabsContent">
+                <!-- Tab content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Dialogs Section -->
+    <section class="work-section" id="dialogs">
+        <div class="container-wide">
+            <h2>System Dialogs & Interfaces</h2>
+            <p class="section-subtitle">Configuration and management interfaces for complex enterprise applications. These designs focus on making difficult workflows intuitive and accessible to technical teams.</p>
+
+            <div class="tab-navigation" id="dialogsTabs">
+                <!-- Tab buttons will be populated by JavaScript -->
+            </div>
+
+            <div id="dialogsTabsContent">
+                <!-- Tab content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="work-section" id="projects">
+        <div class="container-wide">
+            <h2>Projects</h2>
+            <p class="section-subtitle">Full-stack applications combining frontend design, backend architecture, and DevOps automation. Real-world tools solving practical problems.</p>
+
+            <div class="tab-navigation" id="projectsTabs">
+                <!-- Tab buttons will be populated by JavaScript -->
+            </div>
+
+            <div id="projectsTabsContent">
+                <!-- Tab content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Writing Section -->
+    <section class="work-section" id="writing">
+        <div class="container-wide">
+            <h2>Technical Writing</h2>
+            <p class="section-subtitle">Documentation, guides, and technical content that clarify complex topics for engineers and product managers. Focused on reducing friction and helping teams understand systems faster.</p>
+            
+            <div class="writing-grid">
+                <div class="writing-card">
+                    <div class="writing-thumbnail">
+                        <img src="User Guide Thumbnail_v2.png" alt="Report Viewer Guide" loading="lazy">
+                    </div>
+                    <div class="writing-content">
+                        <div class="writing-tag">Technical Documentation</div>
+                        <h3 class="writing-title">Report Viewer Guide</h3>
+                        <p class="writing-description">63-page comprehensive guide covering infrastructure resource management. From basic concepts to advanced reporting, this user guide significantly reduced support tickets.</p>
+                        <a href="user-guide-report-viewer.pdf" class="writing-link" target="_blank" rel="noopener noreferrer">Read User Guide</a>
+                    </div>
+                </div>
+
+                <div class="writing-card">
+                    <div class="writing-thumbnail">
+                        <img src="Dev Guide Thumbnail_v2.png" alt="AI in E-commerce Developer Guide" loading="lazy">
+                    </div>
+                    <div class="writing-content">
+                        <div class="writing-tag">Developer Guide</div>
+                        <h3 class="writing-title">AI in E-commerce: A Developer's Guide</h3>
+                        <p class="writing-description">Explores implementing agentic AI for e-commerce. Technical deep-dive covering RAG, vector search, multi-model support, and practical patterns for production systems.</p>
+                        <a href="https://dev.to/karmen87/harnessing-enthusiast-for-scalable-ai-in-e-commerce-a-developers-guide-4k3f" class="writing-link" target="_blank" rel="noopener noreferrer">Read on Dev.to</a>
+                    </div>
+                </div>
+
+                <div class="writing-card">
+                    <div class="writing-thumbnail">
+                        <img src="Enthusiast Docs Thumbnail_v2.png" alt="Enthusiast Framework Documentation" loading="lazy">
+                    </div>
+                    <div class="writing-content">
+                        <div class="writing-tag">Documentation Site</div>
+                        <h3 class="writing-title">Enthusiast Framework Docs</h3>
+                        <p class="writing-description">Modern documentation site for an open-source agentic AI framework. Built with Docusaurus 3.9 featuring interactive code examples, structured guides, and responsive design.</p>
+                        <a href="https://karmen87.github.io/enthusiast-blog/" class="writing-link" target="_blank" rel="noopener noreferrer">Visit Site</a>
+                    </div>
+                </div>
+
+                <div class="writing-card">
+                    <div class="writing-thumbnail">
+                        <img src="Crypto Alarm Docs_v2.png" alt="Crypto Alarm Project Documentation" loading="lazy">
+                    </div>
+                    <div class="writing-content">
+                        <div class="writing-tag">DevOps Documentation</div>
+                        <h3 class="writing-title">Crypto Alarm Project Documentation</h3>
+                        <p class="writing-description">Complete technical documentation built with Hugo and Relearn theme. Covers dual implementations (JavaScript/Python), alarm logic deep-dives, API integration patterns, and automated deployment via GitHub Actions CI/CD pipeline.</p>
+                        <div class="writing-links">
+                            <a href="https://karmen87.github.io/Crypto_Alarm/" class="writing-link" target="_blank" rel="noopener noreferrer">View Docs Site</a>
+                            <span class="link-separator">•</span>
+                            <a href="https://github.com/karmen87/Crypto_Alarm" class="writing-link" target="_blank" rel="noopener noreferrer">See Repository</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Let's Build Something Great</h2>
+            <div class="contact-content">
+                <p>I'm interested in collaborating on infrastructure visualization, technical documentation, and product design challenges. Let's talk about making complex things simple.</p>
+                <div class="contact-links">
+                    <a href="mailto:karmen.kardum@gmail.com" class="contact-link">
+                        ✉️ karmen.kardum@gmail.com
+                    </a>
+                    <a href="tel:+385919729847" class="contact-link">
+                        📱 +385-91-972-9847
+                    </a>
+                    <a href="https://linkedin.com/in/karmen-kardum" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com/karmen87" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        💻 GitHub
+                    </a>
+                </div>
+                <p style="color: var(--text-tertiary); font-size: 0.9rem; margin-top: 1.5rem;">📍 Based in Split, Croatia. Available for remote collaboration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Designed & built by Karmen Kardum © 2025. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Case Study Modal -->
+    <div id="caseStudyModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCaseStudy()" aria-label="Close case study">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div id="imageViewerModal" class="image-viewer">
+        <button class="viewer-close" onclick="closeImageViewer()" aria-label="Close image viewer">&times;</button>
+        <div class="viewer-content" id="viewerContent">
+            <img src="" alt="Full Screen View" class="viewer-image" id="viewerImage">
+        </div>
+        <div class="viewer-controls">
+            <button class="viewer-btn" onclick="zoomImage(-0.2)" title="Zoom Out" aria-label="Zoom out">-</button>
+            <button class="viewer-btn" onclick="resetZoom()" title="Reset Zoom" aria-label="Reset zoom">↺</button>
+            <button class="viewer-btn" onclick="zoomImage(0.2)" title="Zoom In" aria-label="Zoom in">+</button>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+
+    <script>
+        // Gallery Data with comprehensive case study details
+        const galleryData = {
+            graphical: [
+                { 
+                    title: 'Rack Elevation',
+                    category: 'Infrastructure Visualization',
+                    description: 'Interactive 3D interface for precise equipment placement, real-time capacity monitoring, and detailed asset configuration.',
+                    tags: ['Capacity Planning', '3D UI'],
+                    impact: 'Trusted by data center teams globally',
+                    caseStudy: {
+                        problem: 'Data center teams struggled to visualize server rack layouts and plan capacity additions across multiple physical locations.',
+                        solution: 'Developed an intuitive 3D rack elevation view showing real-time equipment placement, power distribution, and thermal zones.',
+                        results: 'Reduced planning time by 45% and improved capacity utilization by 25%.'
+                    }
+                },
+                { 
+                    title: 'Row Elevation',
+                    category: 'Infrastructure Visualization',
+                    description: 'Aggregated multi-rack visualization with color-coded health and capacity indicators for rapid data center floor analysis.',
+                    tags: ['Aggregated View', 'Health Monitoring'],
+                    impact: 'Significantly improved planning efficiency',
+                    caseStudy: {
+                        problem: 'Teams needed to manage dozens of racks across a single row, but existing tools only showed individual racks.',
+                        solution: 'Built a row-level aggregation view that displays all racks in a row with color-coded health indicators and quick-access controls.',
+                        results: 'Enabled operators to manage entire rows without switching between views, reducing operational overhead.'
+                    }
+                },
+                { 
+                    title: 'Equipment Elevation',
+                    category: 'Infrastructure Visualization',
+                    description: 'High-precision component diagram illustrating front-panel configuration, modular slots, and port status connectivity.',
+                    tags: ['Form Design', 'Bulk Operations'],
+                    impact: 'Accelerated equipment configuration',
+                    caseStudy: {
+                        problem: 'Technicians spent hours manually configuring equipment properties in spreadsheets.',
+                        solution: 'Designed a form-based interface with smart defaults, validation, and bulk operations for equipment configuration.',
+                        results: 'New equipment setup time dropped from 2 hours to 45 minutes per device.'
+                    }
+                },
+                { 
+                    title: 'Butterfly View',
+                    category: 'Network Visualization',
+                    description: 'Cross-sectional visualization of underground utility infrastructure mapping conduit occupancy and duct bank capacity.',
+                    tags: ['Network Flows', 'Interactive Graph'],
+                    impact: 'Enables rapid troubleshooting',
+                    caseStudy: {
+                        problem: 'Network engineers couldn\'t visualize how network paths were connected, making troubleshooting time-consuming.',
+                        solution: 'Created "butterfly" topology view showing switches and connections in an intuitive, color-coded layout.',
+                        results: 'Average troubleshooting time reduced from 30 minutes to under 5 minutes.'
+                    }
+                },
+                { 
+                    title: 'Butterfly View - Cables',
+                    category: 'Network Visualization',
+                    description: 'Detailed schematic visualizing physical cable connections and service routing paths within underground duct banks.',
+                    tags: ['Layer 1 Mapping', 'Routing Logic'],
+                    impact: 'Streamlines cable management',
+                    caseStudy: {
+                        problem: 'Physical cable routing was invisible in software, leading to installation errors and damage.',
+                        solution: 'Added cable visualization layer showing actual physical routing paths and potential conflicts.',
+                        results: 'Cable installation errors reduced by 80%.'
+                    }
+                },
+                { 
+                    title: 'Butterfly View - Notes',
+                    category: 'Network Visualization',
+                    description: 'Annotation layer enabling engineers to attach critical maintenance notes and specifications directly to visual assets.',
+                    tags: ['Team Collaboration', 'Documentation'],
+                    impact: 'Improved team communication',
+                    caseStudy: {
+                        problem: 'Teams had no way to document network changes or mark problematic connections within the visualization.',
+                        solution: 'Integrated inline notes and annotations directly on topology elements.',
+                        results: 'Eliminated need for external documentation spreadsheets, improving accuracy.'
+                    }
+                },
+                { 
+                    title: 'Dependency View - Access',
+                    category: 'System Dependencies',
+                    description: 'Interactive visualization mapping user permissions, access control, and entry points across the system dependency graph.',
+                    tags: ['Security Audit', 'Permission Mapping'],
+                    impact: 'Strengthens security posture',
+                    caseStudy: {
+                        problem: 'Security teams couldn\'t visualize who had access to what, making audits difficult.',
+                        solution: 'Built dependency view showing access paths and permission chains through the system.',
+                        results: 'Security audits now complete in 1 day instead of 2 weeks.'
+                    }
+                },
+                { 
+                    title: 'Dependency View',
+                    category: 'System Dependencies',
+                    description: 'Comprehensive topology map visualizing critical interdependencies between hardware, software, and services for impact analysis.',
+                    tags: ['Criticality Analysis', 'System Mapping'],
+                    impact: 'Minimizes deployment risks',
+                    caseStudy: {
+                        problem: 'Deployments failed because teams didn\'t understand all dependencies between services.',
+                        solution: 'Created comprehensive dependency visualization showing all service connections and their criticality.',
+                        results: 'Deployment failures dropped from 40% to 4%.'
+                    }
+                },
+                { 
+                    title: 'Design World 1',
+                    category: '3D World',
+                    description: 'Immersive 3D "digital twin" environment allowing spatial navigation and facility-level infrastructure inspection.',
+                    tags: ['Spatial Design', '3D Navigation'],
+                    impact: 'Revolutionary visualization approach',
+                    caseStudy: {
+                        problem: 'Traditional 2D diagrams couldn\'t show the scale and complexity of enterprise infrastructure.',
+                        solution: 'Experimented with 3D world environments allowing teams to "walk through" their infrastructure.',
+                        results: 'Improved comprehension of system architecture by 65% in user testing.'
+                    }
+                },
+                { 
+                    title: 'Design World 2',
+                    category: '3D World',
+                    description: 'Interactive 3D aisle view providing spatial context for asset location and thermal/power density analysis.',
+                    tags: ['Gamification', 'Training Sim'],
+                    impact: 'Engaging team training tool',
+                    caseStudy: {
+                        problem: 'New team members struggled to understand infrastructure in training sessions.',
+                        solution: 'Built interactive 3D world for onboarding where teams can explore and learn their systems.',
+                        results: 'Reduced new hire onboarding time by 50%.'
+                    }
+                },
+                { 
+                    title: 'Design World 3',
+                    category: '3D World',
+                    description: 'High-fidelity 3D visualization for inspecting physical structural constraints and equipment clearance.',
+                    tags: ['WebGL', 'Performance Optimization'],
+                    impact: 'Enables enterprise-scale operations',
+                    caseStudy: {
+                        problem: 'Scaling 3D visualization to enterprise-level infrastructure seemed impossible.',
+                        solution: 'Optimized 3D rendering pipeline to handle thousands of objects with real-time updates.',
+                        results: 'Successfully visualizes infrastructure with 50,000+ components.'
+                    }
+                },
+                { 
+                    title: 'Design World 4',
+                    category: '3D World',
+                    description: 'Scalable multi-zone 3D rendering for visualizing complex, multi-room data center environments.',
+                    tags: ['Real-time Data', 'Operational Twin'],
+                    impact: 'Accelerates incident recovery',
+                    caseStudy: {
+                        problem: 'Operators couldn\'t see real-time infrastructure status in immersive view.',
+                        solution: 'Integrated live monitoring into 3D world showing health status with color coding and alerts.',
+                        results: 'Mean time to recovery reduced from 20 minutes to 10 minutes.'
+                    }
+                },
+                { 
+                    title: 'Design World 5',
+                    category: '3D World',
+                    description: 'Architectural 3D visualization mode emphasizing structural layout and spatial relationships for facility planning.',
+                    tags: ['Procedural Gen', 'Customization'],
+                    impact: 'Universal infrastructure compatibility',
+                    caseStudy: {
+                        problem: 'One visualization approach didn\'t fit all customers\' unique infrastructure topologies.',
+                        solution: 'Made 3D worlds fully customizable to match each customer\'s specific layout and needs.',
+                        results: 'Expanded customer base by 200% through personalized visualization options.'
+                    }
+                }
+            ],
+            dialogs: [
+                { 
+                    title: 'Account Manager',
+                    category: 'User Management',
+                    description: 'Centralized dashboard for enterprise account lifecycle management, billing configuration, and permission settings.',
+                    tags: ['Wizard Pattern', 'Permission System'],
+                    impact: 'Streamlined team onboarding',
+                    caseStudy: {
+                        problem: 'Setting up new enterprise accounts involved multiple steps across different interfaces.',
+                        solution: 'Created unified account manager with step-by-step wizard and smart permission templates.',
+                        results: 'Account setup time reduced from 1 hour to 10 minutes.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 1',
+                    category: 'Data Management',
+                    description: 'Advanced query builder for constructing complex, multi-criteria logic for granular data filtering.',
+                    tags: ['Natural Language', 'Search UX'],
+                    impact: 'Maximizes analyst productivity',
+                    caseStudy: {
+                        problem: 'Analysts had to write complex queries to find specific infrastructure elements.',
+                        solution: 'Built visual filter builder with natural language suggestions.',
+                        results: 'Non-technical analysts could now build queries independently.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 2',
+                    category: 'Data Management',
+                    description: 'Query engine field selector supporting dynamic attribute discovery for precise data targeting.',
+                    tags: ['Workflow Automation', 'Power User Tools'],
+                    impact: 'Enables power users',
+                    caseStudy: {
+                        problem: 'Power users created the same filters repeatedly, wasting time.',
+                        solution: 'Added filter templates and save functionality for common queries.',
+                        results: 'Reusable filters eliminated repetitive work for 80% of queries.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 3',
+                    category: 'Data Management',
+                    description: 'Boolean logic editor enabling nested AND/OR conditions for sophisticated data segmentation.',
+                    tags: ['Instant Feedback', 'Data Validation'],
+                    impact: 'Accelerated data interaction',
+                    caseStudy: {
+                        problem: 'Users had to run full queries to see if their filters worked.',
+                        solution: 'Added real-time preview showing query results as filters are modified.',
+                        results: 'Users could refine queries in seconds instead of minutes.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 4',
+                    category: 'Data Management',
+                    description: 'Repository for storing, retrieving, and sharing complex query templates across teams.',
+                    tags: ['Team Collaboration', 'Versioning'],
+                    impact: 'Enhanced team collaboration',
+                    caseStudy: {
+                        problem: 'Teams couldn\'t easily share filters or collaborate on analysis.',
+                        solution: 'Built collaborative filtering with shared workspaces and permissions.',
+                        results: 'Team analysis speed increased 25% through shared filter library.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 5',
+                    category: 'Data Management',
+                    description: 'Real-time validation view providing instant data feedback as query parameters are adjusted.',
+                    tags: ['Drag-and-Drop', 'Accessibility'],
+                    impact: 'Enables non-technical users',
+                    caseStudy: {
+                        problem: 'Non-technical stakeholders couldn\'t access data without analyst help.',
+                        solution: 'Created visual drag-and-drop filter interface with no coding required.',
+                        results: 'All stakeholders gained self-service data access.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 6',
+                    category: 'Data Management',
+                    description: 'Simplified filtering mode enabling non-technical users to access data without complex syntax.',
+                    tags: ['Predictive UX', 'Smart Suggestions'],
+                    impact: 'Continuous workflow optimization',
+                    caseStudy: {
+                        problem: 'Users didn\'t know what filters were available for their tasks.',
+                        solution: 'Built AI system that learns usage patterns and suggests relevant filters.',
+                        results: 'Filter discovery improved, user efficiency increased 30%.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 7',
+                    category: 'Data Management',
+                    description: 'Intelligent query validation system that proactively identifies and helps resolve logic conflicts.',
+                    tags: ['Export/Import', 'Governance'],
+                    impact: 'Standardizes workflows',
+                    caseStudy: {
+                        problem: 'Teams couldn\'t standardize on common filter configurations.',
+                        solution: 'Added export/import of filter definitions with version control.',
+                        results: 'Standardized analysis across teams, improving consistency.'
+                    }
+                },
+                { 
+                    title: 'Filter Manager 8',
+                    category: 'Data Management',
+                    description: 'Contextual integration allowing query logic to be applied directly within reporting and dashboard workflows.',
+                    tags: ['Data Visualization', 'Executive Dash'],
+                    impact: 'Data-driven decisions',
+                    caseStudy: {
+                        problem: 'Insights were scattered across different tools.',
+                        solution: 'Built unified dashboard showing filtered data with visualization options.',
+                        results: 'Executive reporting time reduced from days to hours.'
+                    }
+                },
+                { 
+                    title: 'Global Console',
+                    category: 'Monitoring',
+                    description: 'Unified command center aggregating real-time alerts, health metrics, and activity logs into a single view.',
+                    tags: ['Single Pane', 'Multi-System View'],
+                    impact: 'Unified system visibility',
+                    caseStudy: {
+                        problem: 'Ops teams had to monitor 5+ different dashboards.',
+                        solution: 'Built unified global console showing all critical metrics in one view.',
+                        results: 'Alert response time improved 40% through unified monitoring.'
+                    }
+                },
+                { 
+                    title: 'MAC 1',
+                    category: 'Configuration',
+                    description: 'Network interface management tool for tracking MAC address assignments and OUI vendor mappings.',
+                    tags: ['Data Entry', 'Validation Logic'],
+                    impact: 'Simplifies network setup',
+                    caseStudy: {
+                        problem: 'Manual MAC configuration was error-prone and time-consuming.',
+                        solution: 'Built MAC management interface with validation and bulk operations.',
+                        results: 'Network setup time reduced by 60%.'
+                    }
+                },
+                { 
+                    title: 'MAC 2',
+                    category: 'Configuration',
+                    description: 'Configuration editor for managing network identity attributes and assigning device security policies.',
+                    tags: ['Access Control', 'Audit Logs'],
+                    impact: 'Enhanced network security',
+                    caseStudy: {
+                        problem: 'Network teams couldn\'t enforce MAC security policies consistently.',
+                        solution: 'Added policy engine for MAC filtering with audit trails.',
+                        results: 'Network security incidents from MAC spoofing dropped to zero.'
+                    }
+                },
+                { 
+                    title: 'Manager Dialog',
+                    category: 'System Management',
+                    description: 'Standardized master-detail interface pattern ensuring consistent user experience for object management.',
+                    tags: ['System Management', 'Workflow Unification'],
+                    impact: 'Optimized administrative workflows',
+                    caseStudy: {
+                        problem: 'Admins used 10+ different interfaces to manage systems.',
+                        solution: 'Unified most common operations into single management dialog.',
+                        results: 'Admin time per task reduced from 30 minutes to 20 minutes.'
+                    }
+                },
+                { 
+                    title: 'Reports 1',
+                    category: 'Analytics & Reporting',
+                    description: 'Interactive report viewer providing formatted data output with built-in export and print capabilities.',
+                    tags: ['Data Storytelling', 'Automated Reporting'],
+                    impact: 'Enhanced executive oversight',
+                    caseStudy: {
+                        problem: 'Executives couldn\'t easily see infrastructure health status.',
+                        solution: 'Built automated reports with key metrics and trend analysis.',
+                        results: 'Executives had clear visibility, improving strategic planning.'
+                    }
+                },
+                { 
+                    title: 'Reports 2',
+                    category: 'Analytics & Reporting',
+                    description: 'Self-service designer enabling users to define custom columns, grouping logic, and sort orders.',
+                    tags: ['Widget System', 'Self-Service BI'],
+                    impact: 'Strategic decision support',
+                    caseStudy: {
+                        problem: 'Creating custom reports required analyst involvement.',
+                        solution: 'Built self-service report builder with drag-drop widgets.',
+                        results: 'Non-technical users could create custom reports independently.'
+                    }
+                },
+                { 
+                    title: 'Layer Manager',
+                    category: 'Resource Management',
+                    description: 'CAD-style palette for toggling visibility of distinct infrastructure layers and stratums.',
+                    tags: ['Abstraction', 'Mental Model'],
+                    impact: 'Clarifies complexity',
+                    caseStudy: {
+                        problem: 'Complex infrastructure layers confused teams about dependencies.',
+                        solution: 'Built layer manager showing clear separation of concerns.',
+                        results: 'Team understanding of architecture improved 70%.'
+                    }
+                },
+                { 
+                    title: 'Layer Manager 2',
+                    category: 'Resource Management',
+                    description: 'Advanced interface for customizing visual properties and hierarchical relationships of topology overlays.',
+                    tags: ['System Architecture', 'Complex Hierarchies'],
+                    impact: 'Seamless architecture scalability',
+                    caseStudy: {
+                        problem: 'Managing hundreds of layers was unmanageable.',
+                        solution: 'Added layer inheritance, composition, and smart grouping.',
+                        results: 'Scaled to support 500+ layers with clear organization.'
+                    }
+                }
+            ],
+            projects: [
+                {
+                    title: 'Crypto Alarm',
+                    category: 'Web Applications',
+                    description: 'Real-time cryptocurrency price monitoring with intelligent multi-type alarm system. Features client-side JavaScript and Flask/SocketIO server implementations, LocalStorage persistence, and CoinGecko API integration.',
+                    tags: ['JavaScript', 'Python/Flask', 'WebSocket', 'Real-time', 'LocalStorage'],
+                    impact: 'Monitor 24/7 with zero API costs',
+                    link: 'https://karmen87.github.io/Crypto_Alarm/app/',
+                    linkText: 'Launch Live App',
+                    caseStudy: {
+                        problem: 'Cryptocurrency traders need reliable 24/7 price monitoring without expensive subscription services or complex infrastructure setup.',
+                        solution: 'Built a dual-implementation alarm system: a standalone JavaScript app for simplicity and a Python/Flask server for reliability. Integrated with CoinGecko\'s free API, implemented three alarm types (target price, percentage change, timeframe movement), and used LocalStorage for zero-config persistence.',
+                        results: 'Delivered a production-ready monitoring tool requiring no API keys, no server costs, and no configuration. Supports unlimited trading pairs with 15-second update intervals and continuous audible alerts.'
+                    }
+                }
+            ]
+        };
+
+        // Category mappings for tabbed galleries
+        const graphicalCategories = {
+            '3d-worlds': {
+                name: '3D Worlds',
+                items: ['Design World 1', 'Design World 2', 'Design World 3', 'Design World 4', 'Design World 5']
+            },
+            'elevations': {
+                name: 'Elevations',
+                items: ['Rack Elevation', 'Row Elevation', 'Equipment Elevation']
+            },
+            'network-views': {
+                name: 'Network Views',
+                items: ['Butterfly View', 'Butterfly View - Cables', 'Butterfly View - Notes']
+            },
+            'dependencies': {
+                name: 'Dependencies',
+                items: ['Dependency View', 'Dependency View - Access']
+            }
+        };
+
+        const dialogsCategories = {
+            'filters': {
+                name: 'Filters',
+                items: ['Filter Manager 1', 'Filter Manager 2', 'Filter Manager 3', 'Filter Manager 4', 'Filter Manager 5', 'Filter Manager 6', 'Filter Manager 7', 'Filter Manager 8']
+            },
+            'management': {
+                name: 'Management',
+                items: ['Account Manager', 'Global Console', 'Manager Dialog', 'Layer Manager']
+            },
+            'reports': {
+                name: 'Reports & Analytics',
+                items: ['Reports 1', 'Reports 2', 'Layer Manager 2']
+            },
+            'configuration': {
+                name: 'Configuration',
+                items: ['MAC 1', 'MAC 2']
+            }
+        };
+
+        const projectsCategories = {
+            'web-apps': {
+                name: 'Web Applications',
+                items: ['Crypto Alarm']
+            }
+        };
+
+        const itemsPerPage = 9;
+
+        // Image mapping for filename variations
+        const imageMap = {
+            'Account Manager': 'account manager.png',
+            'Butterfly View': 'butterfly diagram.png',
+            'Butterfly View - Cables': 'butterfly diagram - cables.png',
+            'Butterfly View - Notes': 'butterfly diagram - notes.png',
+            'Dependency View': 'dependency view.png',
+            'Dependency View - Access': 'dependency view - access.png',
+            'Design World 1': 'design world 1.png',
+            'Design World 2': 'design world 2.png',
+            'Design World 3': 'design world 3.png',
+            'Design World 4': 'design world 4.png',
+            'Design World 5': 'design world 5.png',
+            'Equipment Elevation': 'equipment elevation.png',
+            'Filter Manager 1': 'filter manager 1.png',
+            'Filter Manager 2': 'filter manager 2.png',
+            'Filter Manager 3': 'filter manager 3.png',
+            'Filter Manager 4': 'filter manager 4.png',
+            'Filter Manager 5': 'filter manager 5.png',
+            'Filter Manager 6': 'filter manager 6.png',
+            'Filter Manager 7': 'filter manager 7.png',
+            'Filter Manager 8': 'filter manager 8.png',
+            'Global Console': 'global console 1.png',
+            'Layer Manager': 'layer manager.png',
+            'Layer Manager 2': 'layer manager 2.png',
+            'MAC 1': 'MAC 1.png',
+            'MAC 2': 'MAC 2.png',
+            'Manager Dialog': 'manager dialog.png',
+            'Rack Elevation': 'rack elevation.png',
+            'Reports 1': 'reports 1.png',
+            'Reports 2': 'reports 2.png',
+            'Row Elevation': 'row elevation.png',
+            'Crypto Alarm': 'Crypto Alarm.png'
+        };
+
+        function renderTabbedGallery(type, categories) {
+            const data = galleryData[type];
+            const tabsContainer = document.getElementById(type + 'Tabs');
+            const contentContainer = document.getElementById(type + 'TabsContent');
+
+            // Render tab buttons
+            const tabButtons = Object.keys(categories).map((key, index) => {
+                const category = categories[key];
+                const activeClass = index === 0 ? 'active' : '';
+                return `<button class="tab-btn ${activeClass}" data-tab="${key}">${category.name} <span class="tab-badge">${category.items.length}</span></button>`;
+            }).join('');
+            tabsContainer.innerHTML = tabButtons;
+
+            // Render tab content
+            const tabContents = Object.keys(categories).map((key, index) => {
+                const category = categories[key];
+                const activeClass = index === 0 ? 'active' : '';
+                const items = data.filter(item => category.items.includes(item.title));
+
+                const itemsHTML = items.map(item => {
+                    const imagePath = imageMap[item.title] || item.title.toLowerCase().replace(/ /g, '-') + '.png';
+
+                    // Check if this is a project with external link
+                    if (item.link) {
+                        return `
+                        <div class="gallery-item project-card">
+                            <div class="gallery-image" onclick="window.open('${item.link}', '_blank', 'noopener,noreferrer')">
+                                <img src="${imagePath}" alt="${item.title}" loading="lazy">
+                                <div class="project-overlay">
+                                    <span class="project-launch-btn">Launch App →</span>
+                                </div>
+                            </div>
+                            <div class="gallery-info">
+                                <div class="gallery-title">${item.title}</div>
+                                <div class="gallery-description">${item.description}</div>
+                                <div class="gallery-tags">
+                                    ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+                                </div>
+                                <div class="gallery-impact">💡 ${item.impact}</div>
+                                <div class="gallery-cta" onclick="window.open('${item.link}', '_blank', 'noopener,noreferrer')">
+                                    ${item.linkText || 'View Project'}
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    } else {
+                        // Original modal-based rendering for design work
+                        return `
+                        <div class="gallery-item" onclick="openCaseStudy('${item.title}', ${JSON.stringify(item).replace(/'/g, '&#39;')})">
+                            <div class="gallery-image" onclick="event.stopPropagation(); openImageViewer('${imagePath}')">
+                                <img src="${imagePath}" alt="${item.title}" loading="lazy">
+                            </div>
+                            <div class="gallery-info">
+                                <div class="gallery-title">${item.title}</div>
+                                <div class="gallery-description">${item.description}</div>
+                                <div class="gallery-tags">
+                                    ${item.tags.map(tag => `<span class="gallery-tag">${tag}</span>`).join('')}
+                                </div>
+                                <div class="gallery-impact">💡 ${item.impact}</div>
+                            </div>
+                        </div>
+                        `;
+                    }
+                }).join('');
+
+                const scrollHint = type !== 'projects' ? `<p class="scroll-hint">Scroll to see all ${category.name}</p>` : '';
+                return `
+                <div class="tab-content ${activeClass}" data-content="${key}">
+                    <div class="horizontal-gallery">
+                        ${itemsHTML}
+                    </div>
+                    ${scrollHint}
+                </div>
+                `;
+            }).join('');
+            contentContainer.innerHTML = tabContents;
+
+            // Add tab click handlers
+            const tabBtns = tabsContainer.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetTab = btn.getAttribute('data-tab');
+
+                    // Remove active from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    contentContainer.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                    // Add active to clicked button and corresponding content
+                    btn.classList.add('active');
+                    const targetContent = contentContainer.querySelector(`[data-content="${targetTab}"]`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Image Viewer Logic
+        let currentZoom = 1;
+        let isDragging = false;
+        let startX, startY, translateX = 0, translateY = 0, initialTranslateX = 0, initialTranslateY = 0;
+        const viewerModal = document.getElementById('imageViewerModal');
+        const viewerImage = document.getElementById('viewerImage');
+        const viewerContent = document.getElementById('viewerContent');
+
+        function openImageViewer(src) {
+            viewerImage.src = src;
+            viewerModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            resetZoom();
+        }
+
+        function closeImageViewer() {
+            viewerModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                viewerImage.src = '';
+            }, 300);
+        }
+
+        function updateTransform() {
+            viewerImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+        }
+
+        function zoomImage(delta) {
+            const newZoom = currentZoom + delta;
+            if (newZoom >= 0.5 && newZoom <= 4) {
+                currentZoom = newZoom;
+                updateTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform();
+        }
+
+        // Mouse Wheel Zoom
+        viewerModal.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            zoomImage(delta);
+        });
+
+        // Panning Logic
+        viewerContent.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            initialTranslateX = translateX;
+            initialTranslateY = translateY;
+            viewerContent.classList.add('grabbing');
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            translateX = initialTranslateX + dx;
+            translateY = initialTranslateY + dy;
+            updateTransform();
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            viewerContent.classList.remove('grabbing');
+        });
+
+        // Close on background click (clicking outside image)
+        viewerModal.addEventListener('click', (e) => {
+            if (e.target === viewerModal || e.target === viewerContent) {
+                closeImageViewer();
+            }
+        });
+
+        // Old pagination function - no longer needed with tabbed layout
+        // function renderPagination(type, totalItems, currentPage) { ... }
+
+        function openCaseStudy(title, itemStr) {
+            const item = JSON.parse(itemStr.replace(/&#39;/g, "'"));
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div class="modal-tag">${item.category}</div>
+                <h3>${item.title}</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">${item.description}</p>
+                
+                <div class="modal-section">
+                    <h4>The Problem</h4>
+                    <p>${item.caseStudy.problem}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>The Solution</h4>
+                    <p>${item.caseStudy.solution}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>The Results</h4>
+                    <p><strong>${item.caseStudy.results}</strong></p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Technologies Used</h4>
+                    <p>${item.tags.join(' • ')}</p>
+                </div>
+            `;
+            
+            document.getElementById('caseStudyModal').classList.add('active');
+        }
+
+        function closeCaseStudy() {
+            document.getElementById('caseStudyModal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('caseStudyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCaseStudy();
+            }
+        });
+
+        // Close modals on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                const caseStudyModal = document.getElementById('caseStudyModal');
+                const imageViewerModal = document.getElementById('imageViewerModal');
+
+                if (caseStudyModal.classList.contains('active')) {
+                    closeCaseStudy();
+                }
+                if (imageViewerModal.classList.contains('active')) {
+                    closeImageViewer();
+                }
+            }
+        });
+
+        // Initialize tabbed galleries
+        renderTabbedGallery('graphical', graphicalCategories);
+        renderTabbedGallery('dialogs', dialogsCategories);
+        renderTabbedGallery('projects', projectsCategories);
+
+        // Fallback for browsers without :has() support - center single project cards
+        document.querySelectorAll('.horizontal-gallery').forEach(gallery => {
+            const projectCards = gallery.querySelectorAll('.project-card');
+            if (projectCards.length === 1) {
+                gallery.classList.add('single-project');
+            }
+        });
+
+        // 3D Hero Canvas with parallax
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 107, 53, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = Array.from({ length: 50 }, () => new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Parallax scroll effect
+        window.addEventListener('scroll', () => {
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrollPercentage + '%';
+            updateActiveNav();
+
+            // Parallax effect on hero canvas
+            if (window.scrollY < window.innerHeight) {
+                canvas.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+            }
+        });
+
+        function updateActiveNav() {
+            const sections = ['home', 'about', 'graphical', 'dialogs', 'projects', 'writing', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                        document.querySelector(`[data-section="${section}"]`)?.classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // Navigation link clicks
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.classList.contains('nav-link')) {
+                    e.preventDefault();
+                    const target = link.getAttribute('href');
+                    document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        // Default to dark mode if no preference is stored
+        const isDarkMode = localStorage.getItem('theme') === 'dark' || !localStorage.getItem('theme');
+
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        } else {
+            themeToggle.textContent = '🌙';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Dropdown Logic
+        document.querySelectorAll('.dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                // Close all other dropdowns first
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== btn.closest('.dropdown')) d.classList.remove('active');
+                });
+                btn.closest('.dropdown').classList.toggle('active');
+            });
+        });
+
+        // Close dropdowns on click outside
+        window.addEventListener('click', () => {
+             document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        });
+
+        updateActiveNav();
+    </script>
+</body>
+</html>
