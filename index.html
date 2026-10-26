@@ -1812,7 +1812,7 @@
                     <div class="writing-content">
                         <div class="writing-tag">DevOps Documentation</div>
                         <h3 class="writing-title">Crypto Alarm Project Documentation</h3>
-                        <p class="writing-description">Complete technical documentation I built with Hugo and Relearn theme. Covers dual implementations (JavaScript/Python), alarm logic deep-dives, API integration patterns, and automated deployment via GitHub Actions CI/CD pipeline.</p>
+                        <p class="writing-description">Complete technical documentation I built with Hugo and Relearn theme. Covers the Python application architecture, alarm logic deep-dives, API integration patterns, and automated deployment via GitHub Actions CI/CD pipeline.</p>
                         <div class="writing-links">
                             <a href="https://karmen87.github.io/Crypto_Alarm/" class="writing-link" target="_blank" rel="noopener noreferrer">View Docs Site</a>
                         </div>
@@ -2256,8 +2256,8 @@
                     linkText: 'See Repository',
                     caseStudy: {
                         problem: 'Cryptocurrency traders need reliable 24/7 price monitoring without expensive subscription services or complex infrastructure setup.',
-                        solution: 'Built a dual-implementation alarm system: a standalone JavaScript app for simplicity and a Python/Flask server for reliability. Integrated with CoinGecko\'s free API, implemented three alarm types (target price, percentage change, timeframe movement), and used LocalStorage for zero-config persistence.',
-                        results: 'Delivered a production-ready monitoring tool requiring no API keys, no server costs, and no configuration. Supports unlimited trading pairs with 15-second update intervals and continuous audible alerts.'
+                        solution: 'Consolidated the project into a single Python application: a Flask and Socket.IO server that streams live prices from Binance\'s public WebSocket API, evaluates three alarm types (target price, percentage from max/min, timeframe movement) every second, and persists state to a JSON file. A dependency-free browser UI renders what the server sends, and ntfy, Telegram or webhook notifications cover the case where no browser is open.',
+                        results: 'Delivered a production-ready monitoring tool requiring no API keys and no paid services. Alarms keep firing with no browser open, and the app runs with a single command or through Docker Compose.'
                     }
                 }
             ]
